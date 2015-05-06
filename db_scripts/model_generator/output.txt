@@ -1,0 +1,1070 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#     * Rearrange models' order
+#     * Make sure each model has one field with primary_key=True
+# Feel free to rename the models, but don't rename db_table values or field names.
+#
+# Also note: You'll have to insert the output of 'django-admin.py sqlcustom [appname]'
+# into your database.
+
+from django.db import models
+
+class Aact(models.Model):
+    aactno = models.IntegerField(primary_key=True)
+    action = models.CharField(max_length=10)
+    occurred = models.DateField(null=True, blank=True)
+    fmtoccurred = models.CharField(max_length=10, blank=True)
+    completed = models.DateField(null=True, blank=True)
+    fmtcompleted = models.CharField(max_length=10, blank=True)
+    showweb = models.CharField(max_length=1, blank=True)
+    narr = models.CharField(max_length=2000, blank=True)
+    acid = models.ForeignKey(Acc, db_column='acid')
+    cno = models.ForeignKey(Coop, null=True, db_column='cno', blank=True)
+    eno = models.ForeignKey(Eval, null=True, db_column='eno', blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateField()
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'aact'
+
+class Acc(models.Model):
+    acid = models.IntegerField(primary_key=True)
+    acp = models.CharField(unique=True, max_length=4)
+    acno = models.IntegerField(unique=True)
+    acs = models.CharField(unique=True, max_length=4, blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    whynull = models.CharField(max_length=10, blank=True)
+    core = models.CharField(max_length=1, blank=True)
+    backup = models.CharField(max_length=1, blank=True)
+    lifeform = models.CharField(max_length=10, blank=True)
+    acimpt = models.CharField(max_length=10, blank=True)
+    uniform = models.CharField(max_length=10, blank=True)
+    acform = models.CharField(max_length=2, blank=True)
+    received = models.DateField()
+    datefmt = models.CharField(max_length=10, blank=True)
+    taxno = models.ForeignKey(Tax, db_column='taxno')
+    pivol = models.ForeignKey(Pi, null=True, db_column='pivol', blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'acc'
+
+class Acit(models.Model):
+    citno = models.IntegerField(primary_key=True)
+    acid = models.ForeignKey(Acc, db_column='acid')
+    abbr = models.ForeignKey(Lit, null=True, db_column='abbr', blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.IntegerField(null=True, blank=True)
+    citref = models.CharField(max_length=60, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'acit'
+
+class Ag(models.Model):
+    agname = models.CharField(max_length=20, primary_key=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    url = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'ag'
+
+class Al(models.Model):
+    alno = models.IntegerField(primary_key=True)
+    action = models.CharField(unique=True, max_length=10)
+    acted = models.DateField(unique=True)
+    acid = models.ForeignKey(Acc, unique=True, db_column='acid')
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    cno = models.ForeignKey(Coop, null=True, db_column='cno', blank=True)
+    ivid = models.ForeignKey(Iv, null=True, db_column='ivid', blank=True)
+    orno = models.ForeignKey(Ord, null=True, db_column='orno', blank=True)
+    oldtaxno = models.ForeignKey(Tax, null=True, db_column='oldtaxno', blank=True)
+    newtaxno = models.ForeignKey(Tax, null=True, db_column='newtaxno', blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'al'
+
+class An(models.Model):
+    anno = models.IntegerField(primary_key=True)
+    acid = models.ForeignKey(Acc, unique=True, db_column='acid')
+    idtype = models.CharField(max_length=10)
+    idrank = models.IntegerField(null=True, blank=True)
+    topname = models.CharField(max_length=1, blank=True)
+    plantid = models.CharField(unique=True, max_length=40)
+    searchid = models.CharField(max_length=40, blank=True)
+    agname = models.ForeignKey(Ag, unique=True, null=True, db_column='agname', blank=True)
+    ivid = models.ForeignKey(Iv, null=True, db_column='ivid', blank=True)
+    cno = models.ForeignKey(Coop, null=True, db_column='cno', blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'an'
+
+class Bad(models.Model):
+    ivid = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'bad'
+
+class Cd(models.Model):
+    dno = models.ForeignKey(Dsc, primary_key=True, db_column='dno')
+    code = models.CharField(max_length=30, primary_key=True)
+    def_field = models.CharField(max_length=240, db_column='def', blank=True) # Field renamed because it was a Python reserved word.
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'cd'
+
+class Cg(models.Model):
+    cgid = models.CharField(max_length=20, primary_key=True)
+    cgname = models.CharField(unique=True, max_length=60, blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    historical = models.CharField(max_length=1, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'cg'
+
+class Cn(models.Model):
+    taxno = models.ForeignKey(Tax, primary_key=True, db_column='taxno')
+    cname = models.CharField(max_length=50, primary_key=True)
+    source = models.CharField(max_length=20, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    cnid = models.CharField(max_length=50, blank=True)
+    class Meta:
+        db_table = u'cn'
+
+class Coop(models.Model):
+    cno = models.IntegerField(primary_key=True)
+    validcno = models.ForeignKey('self', null=True, db_column='validcno', blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    lname = models.CharField(max_length=40, blank=True)
+    title = models.CharField(max_length=5, blank=True)
+    fname = models.CharField(max_length=30, blank=True)
+    job = models.CharField(max_length=40, blank=True)
+    org = models.CharField(max_length=60, blank=True)
+    orgid = models.CharField(max_length=10, blank=True)
+    add1 = models.CharField(unique=True, max_length=60, blank=True)
+    add2 = models.CharField(max_length=60, blank=True)
+    add3 = models.CharField(max_length=60, blank=True)
+    city = models.CharField(unique=True, max_length=20, blank=True)
+    zip = models.CharField(max_length=10, blank=True)
+    geono = models.ForeignKey(Geo, unique=True, null=True, db_column='geono', blank=True)
+    phone1 = models.CharField(max_length=30, blank=True)
+    phone2 = models.CharField(max_length=30, blank=True)
+    fax = models.CharField(max_length=30, blank=True)
+    email = models.CharField(max_length=100, blank=True)
+    active = models.CharField(max_length=1, blank=True)
+    cat = models.CharField(max_length=4, blank=True)
+    arsregion = models.CharField(max_length=3, blank=True)
+    discipline = models.CharField(max_length=10, blank=True)
+    initials = models.CharField(max_length=6, blank=True)
+    coop = models.CharField(unique=True, max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'coop'
+
+class Crop(models.Model):
+    cropno = models.IntegerField(primary_key=True)
+    crop = models.CharField(unique=True, max_length=20)
+    cmt = models.CharField(max_length=2000, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'crop'
+
+class DelLog(models.Model):
+    del_id = models.IntegerField(primary_key=True)
+    owner_table = models.CharField(max_length=30, blank=True)
+    table_col = models.CharField(max_length=400, blank=True)
+    table_val = models.CharField(max_length=2000, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    date_stamp = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'del_log'
+
+class Dist(models.Model):
+    distno = models.IntegerField(primary_key=True)
+    taxno = models.ForeignKey(Tax, db_column='taxno')
+    geono = models.ForeignKey(Geo, null=True, db_column='geono', blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'dist'
+
+class Dsc(models.Model):
+    dno = models.IntegerField(primary_key=True)
+    dqname = models.CharField(unique=True, max_length=10)
+    dname = models.CharField(max_length=30, blank=True)
+    cac = models.CharField(max_length=1)
+    dcat = models.CharField(max_length=10, blank=True)
+    obtype = models.CharField(max_length=10)
+    usecode = models.CharField(max_length=1, blank=True)
+    obmaxlen = models.IntegerField(null=True, blank=True)
+    obformat = models.CharField(max_length=15, blank=True)
+    obmax = models.IntegerField(null=True, blank=True)
+    obmin = models.IntegerField(null=True, blank=True)
+    orgtype = models.CharField(max_length=10, blank=True)
+    orgformat = models.CharField(max_length=15, blank=True)
+    cropno = models.ForeignKey(Crop, unique=True, db_column='cropno')
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    def_field = models.CharField(max_length=240, db_column='def', blank=True) # Field renamed because it was a Python reserved word.
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'dsc'
+
+class Durl(models.Model):
+    urltype = models.CharField(unique=True, max_length=10)
+    seqno = models.IntegerField(unique=True)
+    cropno = models.ForeignKey(Crop, unique=True, db_column='cropno')
+    dno = models.ForeignKey(Dsc, unique=True, null=True, db_column='dno', blank=True)
+    code = models.ForeignKey(Cd, unique=True, null=True, db_column='code', blank=True)
+    caption = models.CharField(max_length=60, blank=True)
+    url = models.CharField(max_length=100)
+    site = models.ForeignKey(MainSite, db_column='site')
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateField()
+    modified = models.DateField(null=True, blank=True)
+    eno = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'durl'
+
+class Ecit(models.Model):
+    citno = models.IntegerField(primary_key=True)
+    eno = models.ForeignKey(Eval, db_column='eno')
+    abbr = models.ForeignKey(Lit, null=True, db_column='abbr', blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.IntegerField(null=True, blank=True)
+    citref = models.CharField(max_length=240, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'ecit'
+
+class Embr(models.Model):
+    cno = models.ForeignKey(Coop, primary_key=True, db_column='cno')
+    eno = models.ForeignKey(Eval, primary_key=True, db_column='eno')
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'embr'
+
+class Eval(models.Model):
+    eno = models.IntegerField(primary_key=True)
+    ename = models.CharField(unique=True, max_length=100)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    geono = models.ForeignKey(Geo, null=True, db_column='geono', blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    methods = models.CharField(max_length=4000, blank=True)
+    studytype = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'eval'
+
+class Fam(models.Model):
+    famno = models.IntegerField(primary_key=True)
+    validfamno = models.ForeignKey('self', null=True, db_column='validfamno', blank=True)
+    family = models.CharField(unique=True, max_length=25)
+    famauthor = models.CharField(unique=True, max_length=100, blank=True)
+    altfamily = models.CharField(max_length=25, blank=True)
+    subfamily = models.CharField(unique=True, max_length=25, blank=True)
+    tribe = models.CharField(unique=True, max_length=25, blank=True)
+    subtribe = models.CharField(unique=True, max_length=25, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'fam'
+
+class Ga(models.Model):
+    gano = models.IntegerField(primary_key=True)
+    mrkno = models.ForeignKey(Mrk, unique=True, db_column='mrkno')
+    eno = models.ForeignKey(Eval, unique=True, db_column='eno')
+    method = models.CharField(max_length=2000, blank=True)
+    scoring_method = models.CharField(max_length=1000, blank=True)
+    control_values = models.CharField(max_length=1000, blank=True)
+    no_obs_alleles = models.IntegerField(null=True, blank=True)
+    max_gob_alleles = models.IntegerField(null=True, blank=True)
+    size_alleles = models.CharField(max_length=100, blank=True)
+    unusual_alleles = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=4000, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'ga'
+
+class Gcit(models.Model):
+    citno = models.IntegerField(primary_key=True)
+    gno = models.ForeignKey(Gn, db_column='gno')
+    abbr = models.ForeignKey(Lit, null=True, db_column='abbr', blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.IntegerField(null=True, blank=True)
+    citref = models.CharField(max_length=60, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'gcit'
+
+class GeneralConfig(models.Model):
+    config = models.CharField(max_length=1024, blank=True)
+    label = models.CharField(max_length=64, blank=True)
+    userid = models.CharField(max_length=32, blank=True)
+    class Meta:
+        db_table = u'general_config'
+
+class Geo(models.Model):
+    geono = models.IntegerField(primary_key=True)
+    validgeono = models.ForeignKey('self', null=True, db_column='validgeono', blank=True)
+    country = models.CharField(unique=True, max_length=30)
+    state = models.CharField(unique=True, max_length=20, blank=True)
+    isofull = models.CharField(max_length=100, blank=True)
+    isoshort = models.CharField(max_length=60, blank=True)
+    statefull = models.CharField(max_length=60, blank=True)
+    iso3 = models.CharField(max_length=3, blank=True)
+    iso2 = models.CharField(max_length=2, blank=True)
+    st = models.CharField(max_length=3, blank=True)
+    cflag = models.CharField(max_length=1)
+    lath = models.CharField(max_length=1, blank=True)
+    lonh = models.CharField(max_length=1, blank=True)
+    regno = models.ForeignKey(Reg, null=True, db_column='regno', blank=True)
+    changed = models.DateField(null=True, blank=True)
+    oldname = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'geo'
+
+class Germrule(models.Model):
+    ruleno = models.IntegerField(primary_key=True)
+    substrata = models.CharField(max_length=70, blank=True)
+    temp = models.CharField(max_length=30, blank=True)
+    requirements = models.CharField(max_length=500, blank=True)
+    author = models.CharField(max_length=20, blank=True)
+    category = models.CharField(max_length=10, blank=True)
+    days = models.CharField(max_length=20, blank=True)
+    taxno = models.ForeignKey(Tax, null=True, db_column='taxno', blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'germrule'
+
+class Gn(models.Model):
+    gno = models.IntegerField(primary_key=True)
+    validgno = models.ForeignKey('self', null=True, db_column='validgno', blank=True)
+    qual = models.CharField(max_length=2, blank=True)
+    ghybrid = models.CharField(max_length=1, blank=True)
+    genus = models.CharField(unique=True, max_length=30)
+    gauthor = models.CharField(unique=True, max_length=100, blank=True)
+    subgenus = models.CharField(unique=True, max_length=30, blank=True)
+    section = models.CharField(unique=True, max_length=30, blank=True)
+    series = models.CharField(unique=True, max_length=30, blank=True)
+    subseries = models.CharField(unique=True, max_length=30, blank=True)
+    famno = models.ForeignKey(Fam, null=True, db_column='famno', blank=True)
+    othfamily = models.CharField(max_length=100, blank=True)
+    cname = models.CharField(max_length=30, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    subsection = models.CharField(unique=True, max_length=30, blank=True)
+    class Meta:
+        db_table = u'gn'
+
+class Gnt(models.Model):
+    gno = models.ForeignKey(Gn, primary_key=True, db_column='gno')
+    famno = models.ForeignKey(Fam, primary_key=True, db_column='famno')
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'gnt'
+
+class Gob(models.Model):
+    gobno = models.IntegerField(primary_key=True)
+    gano = models.ForeignKey(Ga, unique=True, db_column='gano')
+    ivid = models.ForeignKey(Iv, unique=True, db_column='ivid')
+    indiv = models.IntegerField(unique=True, null=True, blank=True)
+    gob = models.CharField(max_length=1000)
+    genbank_link = models.CharField(max_length=200, blank=True)
+    image_link = models.CharField(max_length=200, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'gob'
+
+class GrinwinIni(models.Model):
+    type = models.CharField(max_length=32, blank=True)
+    label = models.CharField(max_length=32, blank=True)
+    value = models.CharField(max_length=64, blank=True)
+    class Meta:
+        db_table = u'grinwin_ini'
+
+class Hab(models.Model):
+    srcno = models.ForeignKey(Src, primary_key=True, db_column='srcno')
+    acid = models.ForeignKey(Acc, db_column='acid')
+    latd = models.IntegerField(null=True, blank=True)
+    latm = models.IntegerField(null=True, blank=True)
+    lats = models.IntegerField(null=True, blank=True)
+    lath = models.CharField(max_length=1, blank=True)
+    lond = models.IntegerField(null=True, blank=True)
+    lonm = models.IntegerField(null=True, blank=True)
+    lons = models.IntegerField(null=True, blank=True)
+    lonh = models.CharField(max_length=1, blank=True)
+    elev = models.IntegerField(null=True, blank=True)
+    quant = models.IntegerField(null=True, blank=True)
+    units = models.CharField(max_length=2, blank=True)
+    cform = models.CharField(max_length=2, blank=True)
+    plants = models.IntegerField(null=True, blank=True)
+    locality = models.CharField(max_length=240, blank=True)
+    habitat = models.CharField(max_length=240, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    gctype = models.CharField(max_length=10, blank=True)
+    gstype = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'hab'
+
+class Iact(models.Model):
+    iactno = models.IntegerField(primary_key=True)
+    action = models.CharField(max_length=10)
+    occurred = models.DateField(null=True, blank=True)
+    datefmt = models.CharField(max_length=10, blank=True)
+    quant = models.IntegerField(null=True, blank=True)
+    units = models.CharField(max_length=2, blank=True)
+    iform = models.CharField(max_length=2, blank=True)
+    ivid = models.ForeignKey(Iv, db_column='ivid')
+    cno = models.ForeignKey(Coop, null=True, db_column='cno', blank=True)
+    eno = models.ForeignKey(Eval, null=True, db_column='eno', blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    iactqual = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'iact'
+
+class Ig(models.Model):
+    igname = models.CharField(max_length=100, primary_key=True)
+    site = models.ForeignKey(MainSite, primary_key=True, db_column='site')
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'ig'
+
+class Igm(models.Model):
+    ivid = models.ForeignKey(Iv, primary_key=True, db_column='ivid')
+    igname = models.ForeignKey(Ig, primary_key=True, db_column='igname')
+    site = models.ForeignKey(Ig, primary_key=True, db_column='site')
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'igm'
+
+class Im(models.Model):
+    imname = models.CharField(max_length=20, primary_key=True)
+    site = models.ForeignKey(MainSite, primary_key=True, db_column='site')
+    ivt = models.CharField(max_length=2)
+    munits = models.CharField(max_length=2, blank=True)
+    debit = models.CharField(max_length=1)
+    dform = models.CharField(max_length=2)
+    dquant = models.IntegerField(null=True, blank=True)
+    dunits = models.CharField(max_length=2, blank=True)
+    dcritical = models.IntegerField(null=True, blank=True)
+    rcritical = models.IntegerField(null=True, blank=True)
+    regen = models.CharField(max_length=10, blank=True)
+    ptests = models.IntegerField(null=True, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    cno = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'im'
+
+class Ipr(models.Model):
+    acid = models.ForeignKey(Acc, unique=True, db_column='acid')
+    iprtype = models.CharField(unique=True, max_length=10)
+    iprid = models.CharField(unique=True, max_length=40, blank=True)
+    iprno = models.IntegerField(null=True, blank=True)
+    iprcrop = models.CharField(max_length=60, blank=True)
+    iprname = models.CharField(max_length=240, blank=True)
+    issued = models.DateField(null=True, blank=True)
+    expired = models.DateField(null=True, blank=True)
+    cno = models.ForeignKey(Coop, null=True, db_column='cno', blank=True)
+    citno = models.ForeignKey(Acit, null=True, db_column='citno', blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    accepted = models.DateField(null=True, blank=True)
+    expected = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'ipr'
+
+class Iv(models.Model):
+    ivid = models.IntegerField(primary_key=True)
+    ivp = models.CharField(unique=True, max_length=4)
+    ivno = models.IntegerField(unique=True)
+    ivs = models.CharField(unique=True, max_length=8, blank=True)
+    ivt = models.CharField(unique=True, max_length=2)
+    imname = models.ForeignKey(Im, null=True, db_column='imname', blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    distribute = models.CharField(max_length=1, blank=True)
+    loc1 = models.CharField(max_length=10, blank=True)
+    loc2 = models.CharField(max_length=10, blank=True)
+    loc3 = models.CharField(max_length=10, blank=True)
+    loc4 = models.CharField(max_length=10, blank=True)
+    onhand = models.IntegerField(null=True, blank=True)
+    munits = models.CharField(max_length=2, blank=True)
+    debit = models.CharField(max_length=1, blank=True)
+    dform = models.CharField(max_length=2, blank=True)
+    dquant = models.IntegerField(null=True, blank=True)
+    dunits = models.CharField(max_length=2, blank=True)
+    dcritical = models.IntegerField(null=True, blank=True)
+    rcritical = models.IntegerField(null=True, blank=True)
+    pstatus = models.CharField(max_length=10, blank=True)
+    status = models.CharField(max_length=10, blank=True)
+    statcmt = models.CharField(max_length=60, blank=True)
+    acid = models.ForeignKey(Acc, db_column='acid')
+    parent = models.IntegerField(null=True, blank=True)
+    cno = models.ForeignKey(Coop, null=True, db_column='cno', blank=True)
+    backupiv = models.IntegerField(null=True, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'iv'
+
+class Lit(models.Model):
+    abbr = models.CharField(max_length=20, primary_key=True)
+    stdabbr = models.CharField(max_length=240, blank=True)
+    reftitle = models.CharField(max_length=240, blank=True)
+    editor = models.CharField(max_length=240, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'lit'
+
+class MainSite(models.Model):
+    id = models.IntegerField(primary_key=True)
+    field1 = models.CharField(max_length=45)
+    class Meta:
+        db_table = u'main_site'
+
+class Mbr(models.Model):
+    cno = models.ForeignKey(Coop, primary_key=True, db_column='cno')
+    cgid = models.ForeignKey(Cg, primary_key=True, db_column='cgid')
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    localid = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'mbr'
+
+class Mcit(models.Model):
+    citno = models.IntegerField(primary_key=True)
+    mrkno = models.ForeignKey(Mrk, db_column='mrkno')
+    abbr = models.ForeignKey(Lit, null=True, db_column='abbr', blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.IntegerField(null=True, blank=True)
+    citref = models.CharField(max_length=60, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'mcit'
+
+class MenuItem(models.Model):
+    menu_id = models.IntegerField(null=True, blank=True)
+    seqno = models.IntegerField(null=True, blank=True)
+    type = models.CharField(max_length=32, blank=True)
+    module = models.CharField(max_length=64, blank=True)
+    path = models.CharField(max_length=64, blank=True)
+    item = models.CharField(max_length=64, blank=True)
+    hint = models.CharField(max_length=64, blank=True)
+    arg = models.CharField(max_length=254, blank=True)
+    class Meta:
+        db_table = u'menu_item'
+
+class MenuName(models.Model):
+    menu_id = models.IntegerField(null=True, blank=True)
+    menu_name = models.CharField(max_length=32, blank=True)
+    user_id = models.CharField(max_length=32, blank=True)
+    parent = models.CharField(max_length=32, blank=True)
+    title = models.CharField(max_length=64, blank=True)
+    class Meta:
+        db_table = u'menu_name'
+
+class Mrk(models.Model):
+    mrkno = models.IntegerField(primary_key=True)
+    cropno = models.ForeignKey(Crop, unique=True, db_column='cropno')
+    site = models.ForeignKey(MainSite, db_column='site')
+    marker = models.CharField(unique=True, max_length=100)
+    synonyms = models.CharField(max_length=200, blank=True)
+    repeat_motif = models.CharField(max_length=100, blank=True)
+    primers = models.CharField(max_length=200, blank=True)
+    assay_conditions = models.CharField(max_length=4000, blank=True)
+    range_products = models.CharField(max_length=60, blank=True)
+    known_standards = models.CharField(max_length=300, blank=True)
+    genbank_no = models.CharField(max_length=20, blank=True)
+    map_location = models.CharField(max_length=100, blank=True)
+    position = models.CharField(max_length=1000, blank=True)
+    cmt = models.CharField(max_length=4000, blank=True)
+    poly_type = models.CharField(max_length=10, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'mrk'
+
+class Narr(models.Model):
+    acid = models.ForeignKey(Acc, primary_key=True, db_column='acid')
+    ntype = models.CharField(max_length=1, primary_key=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    narr = models.CharField(max_length=4000)
+    class Meta:
+        db_table = u'narr'
+
+class Oact(models.Model):
+    oactno = models.IntegerField(primary_key=True)
+    action = models.CharField(max_length=10)
+    acted = models.DateField()
+    actid = models.CharField(max_length=40, blank=True)
+    orno = models.ForeignKey(Ord, db_column='orno')
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    coop = models.CharField(max_length=100, blank=True)
+    cno = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'oact'
+
+class Ob(models.Model):
+    dno = models.ForeignKey(Dsc, unique=True, db_column='dno')
+    ob = models.CharField(unique=True, max_length=30)
+    acid = models.ForeignKey(Acc, unique=True, db_column='acid')
+    eno = models.ForeignKey(Eval, unique=True, db_column='eno')
+    qno = models.ForeignKey(Qual, unique=True, null=True, db_column='qno', blank=True)
+    ivid = models.ForeignKey(Iv, unique=True, null=True, db_column='ivid', blank=True)
+    orgvalue = models.CharField(max_length=30, blank=True)
+    freq = models.FloatField(null=True, blank=True)
+    mean = models.IntegerField(null=True, blank=True)
+    high = models.IntegerField(null=True, blank=True)
+    low = models.IntegerField(null=True, blank=True)
+    sdev = models.IntegerField(null=True, blank=True)
+    ssize = models.IntegerField(null=True, blank=True)
+    cmt = models.CharField(max_length=500, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    obno = models.IntegerField(primary_key=True)
+    rank = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'ob'
+
+class Oi(models.Model):
+    orno = models.ForeignKey(Ord, unique=True, null=True, db_column='orno', blank=True)
+    oino = models.IntegerField(unique=True, null=True, blank=True)
+    item = models.CharField(max_length=40, blank=True)
+    quant = models.IntegerField(null=True, blank=True)
+    units = models.CharField(max_length=2, blank=True)
+    dform = models.CharField(max_length=2, blank=True)
+    rest = models.CharField(max_length=10, blank=True)
+    status = models.CharField(max_length=10, blank=True)
+    acted = models.DateField(null=True, blank=True)
+    cno = models.ForeignKey(Coop, null=True, db_column='cno', blank=True)
+    ivid = models.ForeignKey(Iv, null=True, db_column='ivid', blank=True)
+    acid = models.ForeignKey(Acc, null=True, db_column='acid', blank=True)
+    taxno = models.ForeignKey(Tax, null=True, db_column='taxno', blank=True)
+    taxon = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    itno = models.IntegerField(primary_key=True)
+    class Meta:
+        db_table = u'oi'
+
+class Ord(models.Model):
+    orno = models.IntegerField(primary_key=True)
+    origno = models.ForeignKey('self', null=True, db_column='origno', blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    localno = models.IntegerField(null=True, blank=True)
+    ortype = models.CharField(max_length=2, blank=True)
+    ordered = models.DateField(null=True, blank=True)
+    status = models.CharField(max_length=10, blank=True)
+    done = models.CharField(max_length=1, blank=True)
+    acted = models.DateField(null=True, blank=True)
+    source = models.ForeignKey(Coop, null=True, db_column='source', blank=True)
+    orderer = models.ForeignKey(Coop, null=True, db_column='orderer', blank=True)
+    shipto = models.ForeignKey(Coop, null=True, db_column='shipto', blank=True)
+    final = models.ForeignKey(Coop, db_column='final')
+    reqref = models.CharField(max_length=10, blank=True)
+    supplylow = models.CharField(max_length=1, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    request = models.CharField(max_length=900, blank=True)
+    class Meta:
+        db_table = u'ord'
+
+class Ped(models.Model):
+    acid = models.ForeignKey(Acc, primary_key=True, db_column='acid')
+    released = models.DateField(null=True, blank=True)
+    datefmt = models.CharField(max_length=10, blank=True)
+    citno = models.ForeignKey(Acit, null=True, db_column='citno', blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    pedigree = models.CharField(max_length=2000, blank=True)
+    class Meta:
+        db_table = u'ped'
+
+class Pi(models.Model):
+    pivol = models.IntegerField(primary_key=True)
+    piyear = models.IntegerField()
+    lowpi = models.IntegerField()
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'pi'
+
+class Pt(models.Model):
+    ivid = models.ForeignKey(Iv, unique=True, db_column='ivid')
+    pttype = models.CharField(unique=True, max_length=10)
+    ptcode = models.CharField(unique=True, max_length=10)
+    began = models.DateField(null=True, blank=True)
+    finished = models.DateField(unique=True, null=True, blank=True)
+    results = models.CharField(max_length=10, blank=True)
+    needed = models.IntegerField(null=True, blank=True)
+    started = models.IntegerField(null=True, blank=True)
+    completed = models.IntegerField(null=True, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'pt'
+
+class Qual(models.Model):
+    qno = models.IntegerField(primary_key=True)
+    qual = models.CharField(max_length=30)
+    dno = models.ForeignKey(Dsc, db_column='dno')
+    def_field = models.CharField(max_length=240, db_column='def', blank=True) # Field renamed because it was a Python reserved word.
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'qual'
+
+class Quar(models.Model):
+    acid = models.ForeignKey(Acc, primary_key=True, db_column='acid')
+    qtype = models.CharField(max_length=10, primary_key=True)
+    status = models.CharField(max_length=10, blank=True)
+    cno = models.ForeignKey(Coop, db_column='cno')
+    entered = models.DateField(null=True, blank=True)
+    establish = models.DateField(null=True, blank=True)
+    expected = models.DateField(null=True, blank=True)
+    released = models.DateField(null=True, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    site = models.ForeignKey(MainSite, null=True, db_column='site', blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'quar'
+
+class Reg(models.Model):
+    regno = models.IntegerField(primary_key=True)
+    area = models.CharField(unique=True, max_length=20)
+    region = models.CharField(unique=True, max_length=30, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'reg'
+
+        
+class SecUser(models.Model):
+    id = models.IntegerField(primary_key=True)
+    user_name = models.CharField(unique=True, max_length=50)
+    password = models.CharField(max_length=255)
+    enabled = models.CharField(max_length=1, blank=True)
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'sec_user'
+        
+        
+class SecUserCoop
+    id = models.IntegerField(primary_key=True)
+    cno = models.ForeignKey(Coop, null=False, db_column='cno', blank=False)
+    sec_user_id = models.ForeignKey(SecUser, null=False, db_column='id', blank=False)
+    status_flag = models.CharField(max_length=1, blank=False) # A=Active, I=Inactive
+    class Meta:
+        db_table = u'sec_user_coop'
+        
+        
+class SecPriv(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sec_user_coop_id = models.ForeignKey(SecUserCoop, null=False, db_column='id', blank=False)
+    table_name = models.CharField(max_length=50)
+    target_sec_user_id = models.IntegerField(null=True, blank=True)
+    priv_create = models.CharField(max_length=1, blank=True)
+    priv_read = models.CharField(max_length=1, blank=True)
+    priv_update = models.CharField(max_length=1, blank=True)
+    priv_delete = models.CharField(max_length=1, blank=True)
+    enabled = models.CharField(max_length=1)
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'sec_priv'
+        
+        
+        
+        
+        
+        
+class Smbr(models.Model):
+    srcno = models.ForeignKey(Src, primary_key=True, db_column='srcno')
+    acid = models.ForeignKey(Acc, db_column='acid')
+    cno = models.ForeignKey(Coop, primary_key=True, db_column='cno')
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'smbr'
+
+class SqlOperators(models.Model):
+    oper = models.CharField(max_length=12, blank=True)
+    seqno = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'sql_operators'
+
+class Src(models.Model):
+    srcno = models.IntegerField(primary_key=True)
+    srctype = models.CharField(max_length=10)
+    srcdate = models.DateField(null=True, blank=True)
+    datefmt = models.CharField(max_length=10, blank=True)
+    origin = models.CharField(max_length=1, blank=True)
+    acid = models.ForeignKey(Acc, db_column='acid')
+    geono = models.ForeignKey(Geo, null=True, db_column='geono', blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    srcqual = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'src'
+
+class Taut(models.Model):
+    shortaut = models.CharField(max_length=30, primary_key=True)
+    longaut = models.CharField(max_length=100, blank=True)
+    smarkaut = models.CharField(max_length=30, blank=True)
+    lmarkaut = models.CharField(max_length=100, blank=True)
+    shexpaut = models.CharField(max_length=30, blank=True)
+    lgexpaut = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateField()
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'taut'
+
+class Tax(models.Model):
+    taxno = models.IntegerField(primary_key=True)
+    validtaxno = models.ForeignKey('self', null=True, db_column='validtaxno', blank=True)
+    shybrid = models.CharField(max_length=1, blank=True)
+    species = models.CharField(max_length=30)
+    sauthor = models.CharField(max_length=100, blank=True)
+    ssphybrid = models.CharField(max_length=1, blank=True)
+    subsp = models.CharField(max_length=30, blank=True)
+    sspauthor = models.CharField(max_length=100, blank=True)
+    varhybrid = models.CharField(max_length=1, blank=True)
+    var = models.CharField(max_length=30, blank=True)
+    varauthor = models.CharField(max_length=100, blank=True)
+    svhybrid = models.CharField(max_length=1, blank=True)
+    subvar = models.CharField(max_length=30, blank=True)
+    svauthor = models.CharField(max_length=100, blank=True)
+    fhybrid = models.CharField(max_length=1, blank=True)
+    forma = models.CharField(max_length=30, blank=True)
+    fauthor = models.CharField(max_length=100, blank=True)
+    gno = models.ForeignKey(Gn, db_column='gno')
+    cropno = models.ForeignKey(Crop, null=True, db_column='cropno', blank=True)
+    psite1 = models.ForeignKey(MainSite, null=True, db_column='psite1', blank=True)
+    psite2 = models.ForeignKey(MainSite, null=True, db_column='psite2', blank=True)
+    rest = models.CharField(max_length=10, blank=True)
+    lifeform = models.CharField(max_length=10, blank=True)
+    fert = models.CharField(max_length=10, blank=True)
+    pending = models.CharField(max_length=1, blank=True)
+    qual = models.CharField(max_length=6, blank=True)
+    cno = models.ForeignKey(Coop, null=True, db_column='cno', blank=True)
+    verified = models.DateField(null=True, blank=True)
+    taxon = models.CharField(unique=True, max_length=100, blank=True)
+    taxauthor = models.CharField(unique=True, max_length=100, blank=True)
+    protologue = models.CharField(max_length=240, blank=True)
+    taxcmt = models.CharField(max_length=2000, blank=True)
+    sitecmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    othname = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'tax'
+
+class Taxtorc(models.Model):
+    taxno = models.IntegerField()
+    dno = models.IntegerField()
+    ct = models.IntegerField(null=True, blank=True)
+    taxon = models.CharField(max_length=70, blank=True)
+    crop = models.CharField(max_length=20, blank=True)
+    cropno = models.IntegerField(null=True, blank=True)
+    genus = models.CharField(max_length=30, blank=True)
+    class Meta:
+        db_table = u'taxtorc'
+
+class Tcit(models.Model):
+    citno = models.IntegerField(primary_key=True)
+    taxno = models.ForeignKey(Tax, db_column='taxno')
+    abbr = models.ForeignKey(Lit, null=True, db_column='abbr', blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.IntegerField(null=True, blank=True)
+    citref = models.CharField(max_length=60, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'tcit'
+
+class Turl(models.Model):
+    turlno = models.IntegerField(primary_key=True)
+    urltype = models.CharField(max_length=10)
+    famno = models.ForeignKey(Fam, db_column='famno')
+    gno = models.ForeignKey(Gn, null=True, db_column='gno', blank=True)
+    taxno = models.ForeignKey(Tax, null=True, db_column='taxno', blank=True)
+    caption = models.CharField(max_length=240, blank=True)
+    url = models.CharField(max_length=100)
+    site = models.ForeignKey(MainSite, db_column='site')
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateField()
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'turl'
+
+class Uses(models.Model):
+    taxno = models.ForeignKey(Tax, primary_key=True, db_column='taxno')
+    taxuse = models.CharField(max_length=10, primary_key=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    usetype = models.CharField(max_length=250, blank=True)
+    class Meta:
+        db_table = u'uses'
+
+class Via(models.Model):
+    viano = models.IntegerField(primary_key=True)
+    tested = models.DateField()
+    datefmt = models.CharField(max_length=10, blank=True)
+    norm = models.IntegerField(null=True, blank=True)
+    abnorm = models.IntegerField(null=True, blank=True)
+    dormant = models.IntegerField(null=True, blank=True)
+    viable = models.IntegerField(null=True, blank=True)
+    vigor = models.CharField(max_length=10, blank=True)
+    sample = models.IntegerField(null=True, blank=True)
+    reps = models.IntegerField(null=True, blank=True)
+    ivid = models.ForeignKey(Iv, db_column='ivid')
+    eno = models.ForeignKey(Eval, null=True, db_column='eno', blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'via'
+
+class Vou(models.Model):
+    acid = models.ForeignKey(Acc, unique=True, db_column='acid')
+    vtype = models.CharField(unique=True, max_length=10)
+    ivid = models.ForeignKey(Iv, unique=True, null=True, db_column='ivid', blank=True)
+    cno = models.ForeignKey(Coop, unique=True, null=True, db_column='cno', blank=True)
+    vouchered = models.DateField(unique=True, null=True, blank=True)
+    datefmt = models.CharField(max_length=10, blank=True)
+    collid = models.CharField(unique=True, max_length=40, blank=True)
+    vloc = models.CharField(unique=True, max_length=500)
+    vcontent = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateField(null=True, blank=True)
+    modified = models.DateField(null=True, blank=True)
+    thumbnail = models.CharField(max_length=500, blank=True)
+    vno = models.IntegerField(primary_key=True)
+    class Meta:
+        db_table = u'vou'
+

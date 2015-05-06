@@ -1,0 +1,433 @@
+<html>
+	<head>
+		<style>
+			body {
+				padding:30px 30px 30px 30px;
+				background-color:white;
+			}
+			blockquote {
+				font-family:courier new;
+			}
+			h1 {
+				background-color:#efefef;
+				padding:10px 10px 10px 10px;
+				border:1px solid black;
+			}
+			h2 {
+				padding:5px 5px 5px 5px;				
+				border:1px solid black;
+			}
+			h3 {
+				background-color:#efefef;
+				padding:5px 5px 5px 5px;
+				border-bottom:1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>GRIN to Grin-Global Migration Guide</h1>
+		<p>
+		This file describes how to migrate data from the existing GRIN databases (named '<code>PROD</code>' and '<code>MAIN</code>' in oracle)
+		to the new Grin-Global schema.  It uses the following items that are stored in the Grin-Global SVN repository:
+		<ul>
+			<li><a href='http://mw25pi-grin-t1.visitor.iastate.edu:8080/svn/GrinGlobal/trunk/GrinGlobal.DatabaseCopier'>GrinGlobal.DatabaseCopier</a></li>
+			<li><a href='http://mw25pi-grin-t1.visitor.iastate.edu:8080/svn/GrinGlobal/trunk/db_scripts/new_db_schema.csv'>new_db_schema.csv</a></li>
+		</ul>
+		</p>
+		
+		<h2>Prerequesites</h2>
+		<p>
+			To run successfully, the migration must be performed under these circumstances:
+			<ul>
+				<li>.NET 3.5 sp1 must be installed</li>
+				<li>Both the source database and the target database must be in MySQL on the same server</li>
+			</ul>
+		</p>
+		
+		<a name='#overview' /><h2>Overview</h2>
+		<p>
+			The following steps must be completed in the given order for the migration to work properly:
+			<ol>
+				<li><a href='#copy_current_data'>Copy current GRIN data</a> to a format Database Copier understands</li>
+				<li><a href='#create_migration_db'>Create migration database</a> in MySQL</li>
+				<li><a href='#mass_load'>Mass load current GRIN data</a> into migration database</li>
+				<li><a href='#create_int_fields'>Create auto-increment fields</a> for all tables that do not have them already</li>
+				<li><a href='#create_migration_indexes'>Create Migration indexes</a> for tables in the migration database</li>
+				<li><a href='#create_new_db'>Create new Grin-Global database</a></li>
+				<li><a href='#create_script'>Create the migration script</a> that does most of the work</li>
+				<li><a href='#create_tables'>Create tables and indexes</a> in the new Grin-Global database</li>
+				<li><a href='#populate_field_mappings'>Populate Table and Field mappings</a> in the sec_* tables in new Grin-Global database</li>
+				<li><a href='#copy_keys_and_data'>Copy keys and data</a> from old GRIN database into the new Grin-Global database</li>
+				<li><a href='#verify_migration'>Verify Migration</a></li>
+				<li><a href='#change_engines'>Change MySQL storage engine to InnoDB</a> for most of the new Grin-Global tables</li>
+				<li><a href='#create_constraints'>Create the referential constraints</a></li>
+				<li><a href='#drop_migration_tables'>Drop migration tables</a></li>
+			</ol>
+			<h4>Note:</h4>
+			<p>
+				The reason we change storage engines after migrating data is simply for performance during the migration.
+				We cannot create constraints against tables using the MyISAM storage engine in MySQL, 
+				so that step must be performed after switching them to the InnoDB storage engine.
+			</p>
+		<p>
+		<h2>Migration Step Details</h2>
+		<p>
+			Follow each step in turn to successfully migrate data from the old GRIN database to the new Grin-Global database.
+			<ol>
+				<li><h3><a name='copy_current_data' />Copy Current GRIN Data</h3>
+					<p>
+						This step consists of 4 parts:
+						<ol>
+							<li>Copy the schema from <code>MAIN</code></li>
+							<li>Copy the data from <code>MAIN</code></li>
+							<li>Copy the schema from <code>PROD</code></li>
+							<li>Copy the data from <code>PROD</code></li>
+						</ol>
+						All are performed by using the <code>GrinGlobal.DatabaseCopier</code> tool.  It is recommended you do them in the given order for sake of time only.
+						The MAIN and PROD parts are completely separate and may be performed concurrently on different client workstations to speed up the process if need be.
+						However, <b>you must point <code>MAIN</code> at a different destination folder than <code>PROD</code></b> as they will both generate a file named "<code>__schema.xml</code>".
+					</p>
+					<ol>
+						<li>
+							<h4>Part 1: Copy the Schema from <code>MAIN</code></h4>
+							<p>	
+								Here's a screenshot of how the tool should be configured to do this (click the 'List Tables' button after specifying the database connection):
+								<p>
+									<img border='0' src='copy_grin_schema_main.jpg' /><br />
+								</p>
+								<p>
+									<b>NOTE:</b> Only the following tables are needed, so make sure only the following are checked before clicking 'Go':
+									<ul>
+										<li><code>CODE_COLUMN</code></li>
+										<li><code>CODE_RULE</code></li>
+										<li><code>CODE_VALUE</code></li>
+										<li><code>SITE</code></li>
+										<li><code>SITEUSER</code></li>
+									</ul>
+								</p>
+								Clicking 'Go' will create a file named '<code>__schema.xml</code>' in the given "Write Schema / Data To:" folder.
+							</p>
+						</li>
+						<li>
+							<h4>Part 2: Copy the Data from <code>MAIN</code></h4>
+							<p>	
+								Here's a screenshot of how the tool should be configured to do this (click the 'List Tables' button after specifying the database connection):
+								<p>
+									<img border='0' src='copy_grin_data_main.jpg' /><br />
+								</p>
+								<p>
+									<b>NOTE:</b> The table list is the same as in Part 1.  Just the selection of the "Write Data" radio button on the lower left is the only difference.
+								</p>
+								Clicking 'Go' will create a file for each table checked in the table list in the given "Write Schema / Data To:" folder.  This process may take some time.
+							</p>
+						</li>
+						<li>
+							<h4>Part 3: Copy the Schema from <code>PROD</code></h4>
+							<p>	
+								Here's a screenshot of how the tool should be configured to do this (click the 'List Tables' button after specifying the database connection):
+								<p>
+									<img border='0' src='copy_grin_schema_prod.jpg' /><br />
+								</p>
+								<p>
+									<b>UNCHECK</b> the following tables in the table list before clicking 'Go' (this data is not stored in the new Grin-Global database):
+									<ul>
+										<li><code>COTIV</code></li>
+										<li><code>CSR</code></li>
+										<li><code>CSR_ACID</code></li>
+										<li><code>CSR_ACP</code></li>
+										<li><code>CSR_COOP</code></li>
+										<li><code>CSR_DETAIL</code></li>
+										<li><code>CSR_INST</code></li>
+										<li><code>CSR_MASTER</code></li>
+										<li><code>DEL_LOG</code></li>
+										<li><code>EXACC</code></li>
+										<li><code>EXMBR</code></li>
+										<li><code>EXPL</code></li>
+										<li><code>EXPRPT</code></li>
+										<li><code>FCIT</code></li>
+										<li><code>GENERAL_CONFIG</code></li>
+										<li><code>GENIV</code></li>
+										<li><code>GRINWIN_INI</code></li>
+										<li><code>GSPIIV</code></li>
+										<li><code>MENU_ITEM</code></li>
+										<li><code>MENU_NAME</code></li>
+										<li><code>NAIV</code></li>
+										<li><code>NC7IV</code></li>
+										<li><code>NE9IV</code></li>
+										<li><code>NPGS_SUM_ITEM</code></li>
+										<li><code>NR6IV</code></li>
+										<li><code>NSSLIV</code></li>
+										<li><code>OPGCIV</code></li>
+										<li><code>ORIGIN</code></li>
+										<li><code>PARLIV</code></li>
+										<li><code>S9IV</code></li>
+										<li><code>SOYIV</code></li>
+										<li><code>SQL_OPERATORS</code></li>
+										<li><code>STATS</code></li>
+										<li><code>TAXTOIM</code></li>
+										<li><code>TAXTOOBS</code></li>
+										<li><code>TAXTORC</code></li>
+										<li><code>TOBIV</code></li>
+										<li><code>W6IV</code></li>
+									</ul>
+								</p>
+								This will create a file named '<code>__schema.xml</code>' in the given "Write Schema / Data To:" folder.
+							</p>							
+						</li>
+						<li>
+							<h4>Part 4: Copy the Data from PROD</h4>
+							<p>	
+								Here's a screenshot of how the tool should be configured to do this (click the 'List Tables' button after specifying the database connection):
+								<p>
+									<img border='0' src='copy_grin_data_prod.jpg' /><br />
+								</p>
+								<p>
+									<b>NOTE:</b> The table list is the same as in Part 3.  Just the selection of the "Write Data" radio button on the lower left is the only difference.
+								</p>
+								Clicking 'Go' will create a file for each table checked in the table list in the given "Write Schema / Data To:" folder.  This process may will some time.
+							</p>
+						</li>
+					</ol>
+					<p><a href='#overview'>Back to Overview</a></p>					
+				</li>
+				<li><h3><a name='create_migration_indexes' />Create migration database</h3>
+					<p>
+						In the '<code>migration</code>' database, ensure the following indexes exist.  If they do not, create them -- or migration will take a really long time.
+						<ul>
+							<li>Index spanning <code>an.acid</code>, <code>an.idrank</code></li>
+							<li>Index on <code>acit.abbr</code></li>
+							<li>Index on <code>ecit.abbr</code></li>
+							<li>Index on <code>gcit.abbr</code></li>
+							<li>Index on <code>mcit.abbr</code></li>
+							<li>Index on <code>tcit.abbr</code></li>
+						</ul>
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='mass_load' />Mass Load Current GRIN Data</h3>
+					<p>
+						This step consists of 4 parts:
+						<ol>
+							<li>Write the tables and indexes from <code>MAIN</code>'s <code>__schema.xml</code> to MySQL</li>
+							<li>Write the data from <code>MAIN</code>'s data files to MySQL</li>
+							<li>Write the tables and indexes from <code>PROD</code>'s <code>__schema.xml</code> to MySQL</li>
+							<li>Write the data from <code>PROD</code>'s data files to MySQL</li>
+						</ol>
+						All are performed by using the <code>GrinGlobal.DatabaseCopier</code> tool.  They <b>must</b> be performed in the given order.
+						<h4>NOTE: Both <code>MAIN</code> and <code>PROD</code> should be pushed into the database named '<code>migration</code>' in MySQL</h4>
+					</p>
+					<ol>
+						<li>
+							<h4>Part 1: Write the tables and indexes from <code>MAIN</code>'s <code>__schema.xml</code> to MySQL</h4>
+							<p>
+								A screenshot of configuring the <code>GrinGlobal.DatabaseCopier</code> tool to write only the tables and indexes to the migration database:
+							</p>
+							<img src='write_migration_schema1_main.jpg' border='0' />
+							<p>
+								This will create all tables and indexes from <code>MAIN</code> in the migration database. <b>DO NOT SELECT EITHER OF THE CONSTRAINTS CHECK BOXES</b>
+								Doing so will cause the data copying portion to fail.
+							</p>
+						</li>
+						<li>
+							<h4>Part 2: Write the data from <code>MAIN</code>'s data files to MySQL</h4>
+							<p>
+								A screenshot of configuring the <code>GrinGlobal.DatabaseCopier</code> tool to copy the data from MAIN's data files into the migration database:
+							</p>
+							<img src='write_migration_data_main.jpg' border='0' />
+							<p>
+								This will copy all records from <code>MAIN</code>'s data file into the migration database.  This may take quite some time.
+							</p>
+						</li>
+						<li>
+							<h4>Part 3: Write the tables and indexes from <code>PROD</code>'s <code>__schema.xml</code> to MySQL</h4>
+							<p>
+								A screenshot of configuring the <code>GrinGlobal.DatabaseCopier</code> tool to write only the tables and indexes to the migration database:
+							</p>
+							<img src='write_migration_schema1_prod.jpg' border='0' />
+							<p>
+								This will create all tables and indexes from <code>PROD</code> in the migration database. <b>DO NOT SELECT EITHER OF THE CONSTRAINTS CHECK BOXES</b>
+								Doing so will cause the data copying portion to fail.
+							</p>
+						</li>
+						<li>
+							<h4>Part 4: Write the data from <code>PROD</code>'s data files to MySQL</h4>
+							<p>
+								A screenshot of configuring the <code>GrinGlobal.DatabaseCopier</code> tool to copy the data from PROD's data files into the migration database:
+							</p>
+							<img src='write_migration_data_prod.jpg' border='0' />
+							<p>
+								This will copy all records from <code>PROD</code>'s data file into the migration database.
+							</p>
+						</li>
+					</ol>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li>
+					<h3><a name='create_int_fields' />Create Missing Auto-Increment Fields</h3>
+					<p>
+						The sql migration script generated by the <code>GrinGlobal.DatabaseCopier</code> tool requires each table to have its primary key be a single integer field that is auto-incremented.  Not all tables in the current GRIN schema fit this prerequesite, so we need to add those keys now.  A script was not created for this portion because it is difficult to do generically.  Some tables have compound primary keys, some have primary keys that are integers but not auto-incremented, etc.
+					</p>
+					<p>
+						Instead, we give the following list of table/fields that need to be added.  Note the existing primary key may need to be disabled for this to work.
+						<b>Add the following as <code>primary key, int(11) signed auto_increment</code></b>
+						<ul>
+							<li><code>ag.agid</code></li>
+							<li><code>cd.cdid</code></li>
+							<li><code>cg.cgid_int</code> (NOT <code>cg.cgid</code> -- it already exists but is a string and is needed by the migration)</li>
+							<li><code>cn.cnid_int</code> (NOT <code>cn.cnid</code> -- it already exists but is a string and is needed by the migration)</li>
+							<li><code>durl.durlid</code></li>
+							<li><code>embr.embrid</code></li>
+							<li><code>gnt.gntid</code></li>
+							<li><code>ig.igid</code></li>
+							<li><code>igm.igmid</code></li>
+							<li><code>im.imid</code></li>
+							<li><code>ipr.iprid_int</code> (NOT <code>ipr.iprid</code> -- it already exists but is a string and is needed by the migration)</li>
+							<li><code>lit.litid</code></li>
+							<li><code>mbr.mbrid</code></li>
+							<li><code>narr.narr_id</code></li>
+							<li><code>ped.pedid</code></li>
+							<li><code>pt.ptid</code></li>
+							<li><code>quar.quarid</code></li>
+							<li><code>smbr.smbrid</code></li>
+							<li><code>taut.tautid</code></li>
+							<li><code>uses.usesid</code></li>
+						</ul>
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='create_' />Create Migration Indexes</h3>
+					<p>
+						On the MySQL server which will be hosting the new Grin-Global database, create a database named '<code>gringlobal</code>'.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='create_new_db' />Create new Grin-Global database</h3>
+					<p>
+						On the MySQL server which will be hosting the new Grin-Global database, create a database named '<code>gringlobal</code>'.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='create_script' />Create the Migration Script</h3>
+					<p>
+						You will need to use both the <code>GrinGlobal.DatabaseCopier</code> tool and MySQL Query Browser for this step.
+					</p>
+					<p>
+						We will be using the <a href='http://mw25pi-grin-t1.visitor.iastate.edu/GrinGlobal/trunk/db_scripts/new_db_schema.csv'>new_db_schema.csv</a>
+						file to define our new Grin-Global schema and data migration paths for us.
+					</p>
+					<p>
+						Here's a screenshot of how to configure <code>GrinGlobal.DatabaseCopier</code> tool.  
+					</p>
+					<img src='generate_migration_script.jpg' border='0' />
+					<p>
+						Clicking 'Go' will cause a form to popup which contains the entire migration script.
+						<b>NOTE: DO NOT RUN THE SCRIPT IN ITS ENTIRETY</b><br />
+						We will be working our way down the script piece-by-piece to ensure we do things properly.<br />
+						Copy out the script contents and save them as a .sql file for future reference.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='create_tables' />Create New Tables</h3>	
+					<p>
+						Using the <a href='#create_script'>Migration Script</a> created earlier, we will now create the tables and indexes needed.
+					</p>
+					<p>
+						Copy all text between
+						<blockquote>/*************** Table Definitions *************/</blockquote>
+						<b>and</b>
+						<blockquote>/********* Insert Key Mapping Data *************/</blockquote>
+					</p>
+					<p>
+						Paste it into MySQL Query Browser.  Make sure MySQL Query Browser is connected to the '<code>gringlobal</code>' database.  Run the script.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='populate_field_mappings' />Populate Table and Field Mappings</h3>
+					<p>
+						You will need the GrinGlobal.DatabaseCopier tool for this step.
+					</p>
+					<p>
+						Now we must add data to various sec_* tables.  Configure the GrinGlobal.DatabaseCopier tool as shown:
+					</p>
+					<img src='generate_field_mappings.jpg' border='0' />
+					<p>
+						Clicking on 'Go' will write the necessary data to the '<code>gringlobal</code>' database.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='copy_keys_and_data' />Copy Primary Keys and Data From Current GRIN MySQL Database</h3>
+					<p>
+						Using the <a href='#create_script'>Migration Script</a> created earlier, we will now copy all the primary key values and data we need.
+					</p>
+					<p>
+						<b>Copy all text between</b>
+						<blockquote>/********* Insert Key Mapping Data *************/</blockquote>
+						<b>and</b>
+						<blockquote>/******** Converting tables to InnoDB **********/</blockquote>
+					</p>
+					<p>
+						Paste it into MySQL Query Browser.  Make sure MySQL Query Browser is connected to the '<code>gringlobal</code>' database.  Run the script.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='verify_migration' />Verify Migration</h3>
+					<p>
+						You can verify the migration several ways, but the easiest is to point the GrinGlobal web service at the new database 
+						and connect a client to the web service.  You can also simply spot-check table data using MySQL Query Browser.
+					</p>
+					<p>
+						The verification should be done before all the following steps because they are unrelated to the migration of the data.
+						While the following steps are very necessary, they are also very time consuming.  So verify your data before continuing.
+					</p>
+				</li>
+				<li><h3><a name='change_engines' />Change Tables To InnoDB</h3>
+					<p>
+						Using the <a href='#create_script'>Migration Script</a> created earlier, we will now alter most tables to use the InnoDB storage engine.
+					</p>
+					<p>
+						<b>Copy all text between</b>
+						<blockquote>/******** Converting tables to InnoDB **********/</blockquote>
+						<b>and</b>
+						<blockquote>/************ Adding Constraints ***************/</blockquote>
+					</p>
+					<p>
+						Paste it into MySQL Query Browser.  Make sure MySQL Query Browser is connected to the '<code>gringlobal</code>' database.  Run the script.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='create_constraints' />Create Constraints</h3>
+					<p>
+						Using the <a href='#create_script'>Migration Script</a> created earlier, we will now create referential constraints.
+					</p>
+					<p>
+						<b>Copy all text between</b>
+						<blockquote>/************ Adding Constraints ***************/</blockquote>
+						<b>and</b>
+						<blockquote>/*********** Migration Table Drops *************/</blockquote>
+					</p>
+					<p>
+						Paste it into MySQL Query Browser.  Make sure MySQL Query Browser is connected to the '<code>gringlobal</code>' database.  Run the script.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+				<li><h3><a name='drop_migration_tables' />Drop Migration Tables</h3>
+					<p>
+						Using the <a href='#create_script'>Migration Script</a> created earlier, we will now drop the migration tables (<code>__*</code>)  as they are no longer needed.
+					</p>
+					<p>
+						<b>Copy all text between</b>
+						<blockquote>/*********** Migration Table Drops *************/</blockquote>
+						<b>and the end of the file</b>
+					</p>
+					<p>
+						Paste it into MySQL Query Browser.  Make sure MySQL Query Browser is connected to the '<code>gringlobal</code>' database.  Run the script.
+					</p>
+					<p><a href='#overview'>Back to Overview</a></p>
+				</li>
+			</ol>
+		</p>
+	</body>
+</html>
+
+
+

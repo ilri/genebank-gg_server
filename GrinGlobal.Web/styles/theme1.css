@@ -1,0 +1,796 @@
+﻿body {
+  background: #9eb79a;
+  margin-top: 0px;
+  margin-left: 0px;
+  color:#2f571b;
+  font-family: Arial;
+  font-size: small;  
+  
+}   
+
+#outer-wrapper {
+  /* min-width: 800px; */
+  top: 0px; 
+  /* margin:0 auto; */
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: 50% 0px;
+  }
+ 
+ #container {
+	max-width: 1024px;
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	position: inherit;
+}
+
+#header-wrapper {
+  border-style: none;
+	border-color: red;
+	border-width: 0px;
+	height:200px;
+  background-image: url('/gringlobal/images/header.jpg');
+  	background-repeat: no-repeat;
+ 	padding-top: 0px;
+ 	padding-left: 0px;
+ 	position: inherit;
+ }
+ 
+#header-login 
+{
+    position: absolute;
+    padding-left: 12px;
+    padding-top: 5px;
+    z-index:3; 
+}
+
+#header-navwrapper 
+{
+    position: absolute;
+    padding-left: 1px;
+    top: 131px;
+    z-index:1; 
+} 
+ 
+#header-emailus
+{
+    position: absolute;
+    top: 205px;
+    padding-left: 600px;
+    height: 20px;
+    background: white;
+    font-weight: bold;
+} 
+
+#header-language 
+{
+    position: absolute;
+    top: 133px;
+    padding-left: 810px;
+    color: white;
+    font-weight: bold;
+}
+
+#header-register
+{
+    position: absolute;
+    top: 5px;
+    padding-left: 60px;
+    z-index:2; 
+}  
+
+#header-contact
+{
+    position: absolute;
+    top: 5px;
+    padding-left:850px; 
+}  
+
+#header-sitetitle 
+{
+    font-size: 280%;
+    color: #2f571b;
+    padding-left: 10px;
+    padding-top: 28px;
+    /*visibility: hidden;*/
+    /*font-weight: bold; */
+} 
+
+#header-cart 
+{
+    position: absolute;
+    padding-left: 710px;
+    z-index:1;
+} 
+ 
+#content-wrapper {
+position: absolute;
+background-color: #ffffff;
+width: 1024px;
+/* border-style: dotted; */
+border-color: #125a2d;
+border-width: 0px;
+top: 175px;
+}
+
+#footer
+{
+    background-color: #9eb79a; 
+    width: 1024px;
+}
+
+#content 
+{
+    padding-left: 20px;
+}
+
+#main-wrapper {
+/*  width: 100%; */
+  overflow: hidden;     /* fix for long non-text content breaking IE sidebar float */
+}
+
+#sidebar-wrapper {
+  width: 200px;
+  float: right;
+  overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+  padding:10px;  
+  border: 0px;
+  margin-right: 10px;
+}
+
+#sidebar-wrapper2 {
+  width: 205px;
+  float: right;
+  overflow: hidden;     
+  padding:50px;  
+  border: 00px;
+}
+
+textarea {
+    font-family: Arial;
+    font-size: small;
+}
+input[type=button], input[type=submit], button {
+    background-color:#2f571b;
+    border:1px solid #2f571b;
+    color:white;
+    cursor:pointer;
+}
+
+label, input[type=radio], input[type=checkbox], button
+{
+    cursor:pointer;
+}
+
+h1 {
+    font-family: Arial;
+    font-size: larger;
+}
+
+h2 
+{
+    font-size: large;
+}
+
+a  {
+    color:#2f571b;
+}
+
+h1 a {
+    font-family: Arial; 
+}
+
+a img {
+    cursor:pointer;
+    border:none;
+}
+
+a.jsanchor {
+    text-decoration:none;
+}
+
+a.jsanchor:hover {
+    text-decoration:underline;
+}
+
+.breadcrumb
+{
+    color: White;
+    font-weight: bold;
+}
+
+.breadcrumb a
+{
+    color: White;
+    font-weight: bold;
+}
+
+.tdspacer {
+    width: 25px;
+}
+
+.tdlabel {
+    width: 99px;
+    vertical-align: top;
+    font-weight:bold;
+    font-size: small;
+}
+
+.tddata {
+    text-align:left;
+}
+
+.nav {
+	border:0px solid gray;
+	background-color: #2f571b;
+	font-weight: bold;
+}
+.nav table td  {
+    padding:5px 5px 5px 5px;
+    text-align:center;
+}
+.nav table td:hover  {
+    background-color:#9eb79a;
+}
+
+.nav selected  {
+    background-color:#efefef; 
+    color:White; 
+}
+
+.nav a {
+    color:White;
+}
+
+.grid td a.system {
+    font-family: Arial;
+    font-weight:bold;
+}
+
+.grid {
+	/*margin:5px 5px 5px 5px;
+	padding:5px 5px 5px 5px;*/
+	margin:1px 1px 1px 1px;
+	padding:1px 1px 1px 1px;
+	border:1px solid white;
+}
+
+.grid tr.hilite:hover:not(.pager) {
+    background-color:#57843d;
+    color:White;
+}
+.grid tr.hilite:hover:not(.pager) a
+{
+    color:White;
+}
+
+.grid tr:hover:not(.pager) {
+    background-color:#e8f8df; /* light green */
+}
+
+.grid th, .detailviewhilite {
+    background-color:#c0c0c0;
+    padding:5px 5px 5px 5px;
+    font-family: Arial;
+    font-size: small;
+    font-weight: bold;
+}
+
+.grid td ul 
+{
+    margin:0px 0px 0px 0px;
+    padding:2px 2px 2px 2px;
+}
+.grid td ul li 
+{
+    margin:0px 0px 0px 0px;
+    padding:2px 2px 2px 2px;
+    list-style-type:none;
+}
+
+.grid td {
+    padding:3px 3px 3px 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+.grid td a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+.grid td a.jsanchor {
+    text-decoration:none;
+    font-family: Arial;
+    font-size: small;
+}
+
+.grid td a.jsanchor:hover {
+    text-decoration:underline;
+}
+
+.horiz tr th {
+    text-align:left;
+    vertical-align: top;
+    background-color: #ebe9e9;
+    width:175px;
+}
+
+.horiz2 tr th {
+    text-align:left;
+    vertical-align: top;
+    background-color: #ebe9e9;
+    width:190px;
+}
+
+
+.grid .footer 
+{
+    background-color:#efefef ;
+}
+
+
+.accessNameTable {
+    text-align:left;
+    width: 50%;
+}
+
+.altrow {
+    background-color:#efefef;
+}
+
+table.grid tr.currow 
+{
+    background-color:#57843d;
+    color:White;
+}
+table.grid tr.currow:hover 
+{
+    background-color:#57843d;
+    color:White;
+}
+
+.availability {
+    background-image: url(/gringlobal/images/bg-availability.gif); 
+    background-repeat: repeat-x;
+    width:200px;
+    border: 0px
+}
+
+.box {
+    border:1px solid #b2d79d;
+    padding:3px 3px 3px 3px;
+    margin:3px 3px 3px 3px;
+    font-family: Arial;
+    font-size: small;
+}
+
+.cart {
+    float:right;
+}
+
+.embeddedlist {
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    list-style:none;
+}
+
+.hilite {
+    background-color:#b2d79d; /* dark green */
+}
+
+.hide {
+    display:none;
+}
+
+.hidereserve 
+{
+    visibility:hidden;
+}
+
+.handle1, .handle2, .handle3, .handle4, .ignore {
+    /* DO NOT REMOVE ANY OF THE .handleX CLASSES!
+        Even though they have no styling associated with them,
+        they are used extensively to make elements easy to grab
+        within jquery 
+    */
+}
+
+.images {
+	font-family: Times New Roman;
+	text-align:center;
+	font-size:medium;
+}
+
+.images p {
+	font-size: small;
+	color:gray;
+}
+
+.left {
+    width:600px;
+    float:left;
+}
+
+.pager {
+    font-family: Arial;
+    font-size: small;
+}
+
+.menu {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:small;
+}
+
+.menu ul {
+	display:inline;
+	margin-left:0px;
+	margin-right:0px;
+}
+
+.menu ul li, .itemhilite {
+	list-style-type:none;
+	display:inline;
+	margin: 5px 2px 5px 2px;
+	padding: 2px 5px 2px 5px;
+		background-color:#ffffff;
+}
+
+.menu ul li a {
+	text-decoration:none;
+}
+
+.menu ul li:hover {
+	background-color:#efefef;
+}
+
+.menupopup
+{
+    background-color:Transparent;
+    padding:3px 3px 3px 3px;
+
+    /* the following is a hack to make popup menus from the builtin asp:Menu control
+       work properly under IE8 when compatibility mode is NOT enabled
+     */
+    z-index:1;   
+}
+
+.right {
+    float:right;
+}
+
+.skinnycolumn {
+    max-width:20px;
+    vertical-align:middle;
+}
+
+.detail 
+{
+    border:none;
+}
+
+.multiselect
+{
+    min-width:200;
+}
+
+.popup2
+{
+    position:absolute;
+    padding:15px 15px 15px 15px;
+    margin:5px 5px 5px 5px;
+    position:absolute;
+    display:none;
+    background-color:#e8f8df;
+    color:Black;
+    z-index:2;
+}
+
+iframe 
+{
+    width:100%;
+    height:100%;
+    overflow:visible;
+    border:none;
+}
+
+.treeList ul li
+{
+    list-style:none;
+    list-style-type:none;
+}
+
+/* BEGIN pivotView CLASSES */
+.ui-draggable 
+{
+    cursor:move;
+}
+.ui-droppable-active
+{
+    border:1px solid white;
+    font-weight:bold;
+}
+
+.ui-draggable-active
+{
+    padding:5px 5px 5px 5px;
+    background-color:#c0c0c0;
+    border:1px solid white;
+}
+.ui-droppable-hover
+{
+    background-color:White;
+}
+
+.columnEditor 
+{
+    border:1px solid white;
+    background-color:#e8f8df;
+    padding:10px 10px 10px 10px;
+    margin:10px 10px 10px 10px;
+    position:absolute;
+    left:300px;
+}
+.sortable, .sortable label, .removableSort, .removableSort label
+{
+    cursor:move;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:small;
+    list-style:none;
+	display:block;
+	margin-left:0px;
+	margin-right:0px;
+	padding-left:0px;
+	width:200px;
+}
+
+.sortable li, .remoableSort li {
+	display:block;
+	margin: 5px 2px 5px 2px;
+	padding: 2px 5px 2px 5px;
+	background-color:#ffffff;
+}
+.pivotViewwait 
+{
+    background-color:#2f571b;
+    position:absolute;
+    width:500px;
+    height:150px;
+    left:100px;
+    top:150px;
+    background-image:url(/gringlobal/images/wait.gif);
+    background-position:center;
+    background-repeat:no-repeat;    
+    opacity:0.5;
+    filter: alpha(opacity = 50);
+    color:White;
+    text-align:center;
+}
+
+.sortTarget, .sortSource 
+{
+    border:1px solid green;
+    list-style:none;
+    padding:3px 3px 3px 3px;
+}
+
+.pivotOptions 
+{
+    position:absolute;
+    left:50px;
+    background-color:#e8f8df;
+    padding:15px 15px 15px 15px;
+}
+.pivotOptions table td
+{
+    vertical-align:top;
+    padding:10px 10px 10px 10px;
+    margin:10px 10px 10px 10px;
+}
+
+.pivotOptions td 
+{
+    width:220px;
+}
+
+
+.columnSortPicker a img, .columnFilterPicker a img
+{
+}
+.sortTarget li, .sortSource li
+{
+    cursor:move;
+    border:1px solid #2f571b;
+    background-color:White;
+    padding:2px 2px 2px 2px;
+    margin:2px 2px 2px 2px;
+    height:20px;
+}
+.sortTarget li a img, .sortSource li a img 
+{
+    cursor:pointer;
+}
+
+.pivoterEmpty 
+{
+    padding:20px 20px 20px 20px;
+    border:1px solid white;
+    font-size:larger;
+}
+
+th:hover img.hidereserve
+{
+    visibility:visible;
+}
+
+.exporter
+{
+    padding:15px 15px 15px 15px;
+    margin:5px 5px 5px 5px;
+    position:absolute;
+    left:475px;
+    display:none;
+    background-color:#e8f8df;
+}
+
+.exporterTextArea
+{
+    display:none;
+}
+
+tr a.jsanchor.hover
+{
+    visibility:hidden;
+}
+tr:hover a.jsanchor.hover
+{
+    visibility:visible;
+}
+
+.popup
+{
+    display:none;
+}
+
+.pivotPopup
+{
+    position:absolute;
+    padding:15px 15px 15px 15px;
+    margin:5px 5px 5px 5px;
+    position:absolute;
+    display:none;
+    background-color:#e8f8df;
+    z-index:2;
+}
+.columnRowAdder
+{
+    margin-left:-140px;
+}
+.columnPref
+{
+    margin-left:-120px;
+}
+
+.show 
+{
+    display:block;
+}
+.ui-effects-transfer 
+{
+    border-width:1px;
+    border-style:dotted;
+    border-color:#2f571b;
+}
+
+
+.limitbox-1
+{
+    /* placeholder, do not remove */
+}
+.limitbox50
+{
+    max-height:50px;
+    overflow:auto;
+}
+.limitbox100
+{
+    max-height:100px;
+    overflow:auto;
+}
+.limitbox300
+{
+    max-height:300px;
+    overflow:auto;
+}
+.ac_results {
+	padding: 0px;
+	border: 1px solid WindowFrame;
+	background-color: Window;
+	overflow: hidden;
+	z-index:5;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results iframe {
+	display:none;/*sorry for IE5*/
+	display/**/:block;/*sorry for IE5*/
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+/*	filter:mask(); */
+	width:3000px;
+	height:3000px;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	font: menu;
+	font-size: 12px;
+	overflow: hidden;
+}
+
+.ac_loading {
+	background : Window url('./indicator.gif') right center no-repeat;
+}
+
+.ac_over {
+	background-color: Highlight;
+	color: HighlightText;
+}
+
+/* END pivotView CLASSES */
+.tbBorder {
+    border:1px solid lightgray;
+    margin:5px 5px 5px 5px;
+}
+
+.displayImage
+{
+  /* ratio of width to height is 10:7 */
+  width: 700px;
+  height: 490px;  
+}
+
+.thumbnail, .smallImage, .fullImage, .preview, .previewSmallImage, .previewFullImage {
+}
+
+#pivotViewWrapper
+{
+    width: 980px;
+    overflow: auto;
+}
+
+.blueInfor
+{
+	color: #0099CC;
+}
+
+.leftButton
+{
+	position:relative;
+	left:280px;
+}
+.middleButton
+{
+	position:relative;
+	left:360px;
+}
+.rightButton
+{
+	position:relative;
+	left:440px;
+}
+

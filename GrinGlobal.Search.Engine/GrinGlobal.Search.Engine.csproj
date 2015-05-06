@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3694B88F-8094-4497-AEC7-245EEF1CA8C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GrinGlobal.Search.Engine</RootNamespace>
+    <AssemblyName>GrinGlobal.Search.Engine</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUGTHREADING NO_DEBUGBPLUSTREE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BPlusInt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BPlusListInt.cs" />
+    <Compile Include="BPlusListLong.cs" />
+    <Compile Include="BPlusLong.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BPlusString.cs" />
+    <Compile Include="BPlusTreeT.cs" />
+    <Compile Include="Hosting\ServerSearchEngineRequest.cs" />
+    <Compile Include="Hosting\TcpSearchServer.cs" />
+    <Compile Include="Lib.cs" />
+    <Compile Include="SearchOptions.cs" />
+    <Compile Include="SqlSource.cs" />
+    <Compile Include="KeywordCompareMode.cs" />
+    <Compile Include="ResolverCacheMode.cs" />
+    <Compile Include="DataFileProcessor.cs" />
+    <Compile Include="DataLocation.cs" />
+    <Compile Include="Field.cs" />
+    <Compile Include="BPlusTreeIndexNodeT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BPlusTreeLeafNodeT.cs" />
+    <Compile Include="BPlusTreeNodeT.cs" />
+    <Compile Include="Hosting\DynamicFormatter.cs" />
+    <Compile Include="Hosting\DynamicFormatterTypeAttribute.cs" />
+    <Compile Include="Hosting\DynamicWebContentTypeMapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hosting\ServiceHostFactory2.cs" />
+    <Compile Include="Hosting\WebHttpBehavior2.cs" />
+    <Compile Include="Hosting\WebServiceHost2.cs" />
+    <Compile Include="IExternalSortable.cs" />
+    <Compile Include="IndexReport.cs" />
+    <Compile Include="IndexState.cs" />
+    <Compile Include="IPersistable.cs" />
+    <Compile Include="ISearchable.cs" />
+    <Compile Include="Hosting\ISearchHost.cs" />
+    <Compile Include="IService1.cs" />
+    <Compile Include="KeywordIDMapping.cs" />
+    <Compile Include="Index.cs" />
+    <Compile Include="Indexer.cs" />
+    <Compile Include="KeywordMatch.cs" />
+    <Compile Include="KeywordMatchMode.cs" />
+    <Compile Include="NodeSlot.cs" />
+    <Compile Include="PrecacheKeyword.cs" />
+    <Compile Include="ProgressEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Hit.cs" />
+    <Compile Include="HitField.cs" />
+    <Compile Include="ResolutionMethod.cs" />
+    <Compile Include="ResolvedHit.cs" />
+    <Compile Include="ResolvedHitData.cs" />
+    <Compile Include="ResolveIDMapping.cs" />
+    <Compile Include="ResolveKeywordMapping.cs" />
+    <Compile Include="Resolver.cs" />
+    <Compile Include="DataItem.cs" />
+    <Compile Include="ResolverReport.cs" />
+    <Compile Include="SearchAction.cs" />
+    <Compile Include="Hosting\SearchHost.cs" />
+    <Compile Include="SearchCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SearchCommandConstants.cs" />
+    <Compile Include="DatabasePassthruLevel.cs" />
+    <Compile Include="SearchCommandGroup.cs" />
+    <Compile Include="Service1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GrinGlobal.Core\GrinGlobal.Core.csproj">
+      <Project>{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}</Project>
+      <Name>GrinGlobal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.Interface\GrinGlobal.Interface.csproj">
+      <Project>{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}</Project>
+      <Name>GrinGlobal.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

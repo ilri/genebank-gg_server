@@ -1,0 +1,29 @@
+TEST CONNECTIONS
+==============================================================================
+Mysql:         Data Source=mw25pi-grin-t1.visitor.iastate.edu;Database=prod;user id=root;password=passw0rd!
+Sql Server:    Data Source=mw25pi-grin-t1.visitor.iastate.edu;Initial Catalog=prod;user id=sa;password=passw0rd!
+Oracle:        Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(PORT=1521)(HOST=129.186.187.178))(CONNECT_DATA=(SERVICE_NAME=XE)));User Id=PROD;password=passw0rd!
+
+
+OPTIONS (ROWS=1000)
+LOAD DATA
+INFILE 'D:\\test_db_creator\\aact.oracle'
+INTO TABLE AACT
+APPEND
+(
+AACTNO TERMINATED BY "&}^" DEFAULTIF AACTNO = "\\N",
+ACTION TERMINATED BY "&}^" NULLIF ACTION = "\\N" "COALESCE(:ACTION, '|')",
+OCCURRED DATE "YYYY-MM-DD HH24:MI:SS" TERMINATED BY "&}^" NULLIF OCCURRED = "\\N",
+FMTOCCURRED TERMINATED BY "&}^" NULLIF FMTOCCURRED = "\\N" "COALESCE(:FMTOCCURRED, '|')",
+COMPLETED DATE "YYYY-MM-DD HH24:MI:SS" TERMINATED BY "&}^" NULLIF COMPLETED = "\\N",
+FMTCOMPLETED TERMINATED BY "&}^" NULLIF FMTCOMPLETED = "\\N" "COALESCE(:FMTCOMPLETED, '|')",
+SHOWWEB TERMINATED BY "&}^" NULLIF SHOWWEB = "\\N" "COALESCE(:SHOWWEB, '|')",
+NARR TERMINATED BY "&}^" NULLIF NARR = "\\N" "COALESCE(:NARR, '|')",
+ACID TERMINATED BY "&}^" DEFAULTIF ACID = "\\N",
+CNO TERMINATED BY "&}^" DEFAULTIF CNO = "\\N",
+ENO TERMINATED BY "&}^" DEFAULTIF ENO = "\\N",
+USERID TERMINATED BY "&}^" NULLIF USERID = "\\N" "COALESCE(:USERID, '|')",
+CREATED DATE "YYYY-MM-DD HH24:MI:SS" TERMINATED BY "&}^" NULLIF CREATED = "\\N",
+MODIFIED DATE "YYYY-MM-DD HH24:MI:SS" TERMINATED BY "#^%
+" NULLIF MODIFIED = "\\N"
+)

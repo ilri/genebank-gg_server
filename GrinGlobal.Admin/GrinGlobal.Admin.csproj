@@ -1,0 +1,769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <UseHostCompilerIfAvailable>FALSE</UseHostCompilerIfAvailable>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17831C8B-28AB-439D-A48A-2A5D45500CCA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GrinGlobal.Admin</RootNamespace>
+    <AssemblyName>GrinGlobal.Admin</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>GrinGlobal.snk</AssemblyOriginatorKeyFile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ApplicationIcon>sysAT.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AdminInstaller.Designer.cs">
+      <DependentUpon>AdminInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmCodeGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmCodeGroups.Designer.cs">
+      <DependentUpon>frmCodeGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmCodeGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmCodeGroup.Designer.cs">
+      <DependentUpon>frmCodeGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmConnections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmConnections.Designer.cs">
+      <DependentUpon>frmConnections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmDataviews.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmDataviews.Designer.cs">
+      <DependentUpon>frmDataviews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmDataview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmDataview.Designer.cs">
+      <DependentUpon>frmDataview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmGroups.Designer.cs">
+      <DependentUpon>frmGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmGroup.Designer.cs">
+      <DependentUpon>frmGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmLaunchImportWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmLaunchImportWizard.Designer.cs">
+      <DependentUpon>frmLaunchImportWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmMaintenance.Designer.cs">
+      <DependentUpon>frmMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmSearchEngineIndexField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmSearchEngineIndexField.Designer.cs">
+      <DependentUpon>frmSearchEngineIndexField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\TableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChildForms\TableControl.Designer.cs">
+      <DependentUpon>TableControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMetaData.cs" />
+    <Compile Include="GuiExtended.cs" />
+    <Compile Include="GuiManager.cs" />
+    <Compile Include="MessageHelper.cs" />
+    <Compile Include="PopupForms\frmWebCooperator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmWebCooperator.Designer.cs">
+      <DependentUpon>frmWebCooperator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmChooseJoin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmChooseJoin.Designer.cs">
+      <DependentUpon>frmChooseJoin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmGeography.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmGeography.Designer.cs">
+      <DependentUpon>frmGeography.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmFindAndReplce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmFindAndReplce.Designer.cs">
+      <DependentUpon>frmFindAndReplce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmHelpDataviewName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmHelpDataviewName.Designer.cs">
+      <DependentUpon>frmHelpDataviewName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmElevatePrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmElevatePrompt.Designer.cs">
+      <DependentUpon>frmElevatePrompt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmImportDataTrigger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmImportDataTrigger.Designer.cs">
+      <DependentUpon>frmImportDataTrigger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmCodeValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmCodeValue.Designer.cs">
+      <DependentUpon>frmCodeValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmTableRelationship.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmTableRelationship.Designer.cs">
+      <DependentUpon>frmTableRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmCopyDataviewTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmCopyDataviewTo.Designer.cs">
+      <DependentUpon>frmCopyDataviewTo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmImportDataviews.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmImportDataviews.Designer.cs">
+      <DependentUpon>frmImportDataviews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmDataviewParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmDataviewParameters.Designer.cs">
+      <DependentUpon>frmDataviewParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmSearchEngineCalculationFormatHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmSearchEngineCalculationFormatHelper.Designer.cs">
+      <DependentUpon>frmSearchEngineCalculationFormatHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmAddSeparator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmAddSeparator.Designer.cs">
+      <DependentUpon>frmAddSeparator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmAddWord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmAddWord.Designer.cs">
+      <DependentUpon>frmAddWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmSearchEngineResolver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmSearchEngineResolver.Designer.cs">
+      <DependentUpon>frmSearchEngineResolver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmFile.Designer.cs">
+      <DependentUpon>frmFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmFiles.Designer.cs">
+      <DependentUpon>frmFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmWebApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmWebApplication.Designer.cs">
+      <DependentUpon>frmWebApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmFileGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmFileGroups.Designer.cs">
+      <DependentUpon>frmFileGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmDataTrigger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmDataTrigger.Designer.cs">
+      <DependentUpon>frmDataTrigger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmDataTriggers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmDataTriggers.Designer.cs">
+      <DependentUpon>frmDataTriggers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmFileGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmFileGroup.Designer.cs">
+      <DependentUpon>frmFileGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmTableMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmTableMapping.Designer.cs">
+      <DependentUpon>frmTableMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmSearchEngineIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmSearchEngineIndex.Designer.cs">
+      <DependentUpon>frmSearchEngineIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmSearchEngineIndexes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmSearchEngineIndexes.Designer.cs">
+      <DependentUpon>frmSearchEngineIndexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmPermissions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmPermissions.Designer.cs">
+      <DependentUpon>frmPermissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmBase.Designer.cs">
+      <DependentUpon>frmBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmPermission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmPermission.Designer.cs">
+      <DependentUpon>frmPermission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmTableMappings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmTableMappings.Designer.cs">
+      <DependentUpon>frmTableMappings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminHostProxy.cs" />
+    <Compile Include="DragDropObject.cs" />
+    <Compile Include="mdiParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mdiParent.Designer.cs">
+      <DependentUpon>mdiParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmAppSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmAppSetting.Designer.cs">
+      <DependentUpon>frmAppSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmTableFieldChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmTableFieldChooser.Designer.cs">
+      <DependentUpon>frmTableFieldChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmCooperator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmCooperator.Designer.cs">
+      <DependentUpon>frmCooperator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmOptions.Designer.cs">
+      <DependentUpon>frmOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmSetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmSetPassword.Designer.cs">
+      <DependentUpon>frmSetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmPermissionField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmPermissionField.Designer.cs">
+      <DependentUpon>frmPermissionField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildForms\frmTableMappingField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\frmTableMappingField.Designer.cs">
+      <DependentUpon>frmTableMappingField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmTableMappingInspectSchema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmTableMappingInspectSchema.Designer.cs">
+      <DependentUpon>frmTableMappingInspectSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupForms\frmVerifyDataviews.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupForms\frmVerifyDataviews.Designer.cs">
+      <DependentUpon>frmVerifyDataviews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminInstaller.resx">
+      <DependentUpon>AdminInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmCodeGroups.resx">
+      <DependentUpon>frmCodeGroups.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmCodeGroup.resx">
+      <DependentUpon>frmCodeGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmConnections.resx">
+      <DependentUpon>frmConnections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmDataviews.resx">
+      <DependentUpon>frmDataviews.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmDataview.resx">
+      <DependentUpon>frmDataview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmGroups.resx">
+      <DependentUpon>frmGroups.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmGroup.resx">
+      <DependentUpon>frmGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmLaunchImportWizard.resx">
+      <DependentUpon>frmLaunchImportWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmMaintenance.resx">
+      <DependentUpon>frmMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmSearchEngineIndexField.resx">
+      <DependentUpon>frmSearchEngineIndexField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmSearchEngineResolver.resx">
+      <DependentUpon>frmSearchEngineResolver.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmFile.resx">
+      <DependentUpon>frmFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmFiles.resx">
+      <DependentUpon>frmFiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmWebApplication.resx">
+      <DependentUpon>frmWebApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmFileGroups.resx">
+      <DependentUpon>frmFileGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmDataTrigger.resx">
+      <DependentUpon>frmDataTrigger.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmDataTriggers.resx">
+      <DependentUpon>frmDataTriggers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmFileGroup.resx">
+      <DependentUpon>frmFileGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmTableMapping.resx">
+      <DependentUpon>frmTableMapping.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmSearchEngineIndex.resx">
+      <DependentUpon>frmSearchEngineIndex.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmSearchEngineIndexes.resx">
+      <DependentUpon>frmSearchEngineIndexes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmBase.resx">
+      <DependentUpon>frmBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmPermission.resx">
+      <DependentUpon>frmPermission.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmPermissions.resx">
+      <DependentUpon>frmPermissions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmTableMappings.resx">
+      <DependentUpon>frmTableMappings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\TableControl.resx">
+      <DependentUpon>TableControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\test.resx">
+      <DependentUpon>test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mdiParent.resx">
+      <DependentUpon>mdiParent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmAppSetting.resx">
+      <DependentUpon>frmAppSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmWebCooperator.resx">
+      <DependentUpon>frmWebCooperator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmChooseJoin.resx">
+      <DependentUpon>frmChooseJoin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmGeography.resx">
+      <DependentUpon>frmGeography.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmFindAndReplce.resx">
+      <DependentUpon>frmFindAndReplce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmHelpDataviewName.resx">
+      <DependentUpon>frmHelpDataviewName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmElevatePrompt.resx">
+      <DependentUpon>frmElevatePrompt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmImportDataTrigger.resx">
+      <DependentUpon>frmImportDataTrigger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmCodeValue.resx">
+      <DependentUpon>frmCodeValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmTableRelationship.resx">
+      <DependentUpon>frmTableRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmCopyDataviewTo.resx">
+      <DependentUpon>frmCopyDataviewTo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmImportDataviews.resx">
+      <DependentUpon>frmImportDataviews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmDataviewParameters.resx">
+      <DependentUpon>frmDataviewParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmSearchEngineCalculationFormatHelper.resx">
+      <DependentUpon>frmSearchEngineCalculationFormatHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmAddSeparator.resx">
+      <DependentUpon>frmAddSeparator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmAddWord.resx">
+      <DependentUpon>frmAddWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmTableFieldChooser.resx">
+      <DependentUpon>frmTableFieldChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmCooperator.resx">
+      <DependentUpon>frmCooperator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmOptions.resx">
+      <DependentUpon>frmOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmSetPassword.resx">
+      <DependentUpon>frmSetPassword.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmPermissionField.resx">
+      <DependentUpon>frmPermissionField.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\frmTableMappingField.resx">
+      <DependentUpon>frmTableMappingField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmTableMappingInspectSchema.resx">
+      <DependentUpon>frmTableMappingInspectSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupForms\frmVerifyDataviews.resx">
+      <DependentUpon>frmVerifyDataviews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Web References\GUISvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GrinGlobal.Business\GrinGlobal.Business.csproj">
+      <Project>{B851EF11-4AB8-49A0-9500-3DA3CEBA26DA}</Project>
+      <Name>GrinGlobal.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.Core\GrinGlobal.Core.csproj">
+      <Project>{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}</Project>
+      <Name>GrinGlobal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.InstallHelper\GrinGlobal.InstallHelper.csproj">
+      <Project>{6994A3A3-F3CC-428F-A918-D058643EBC76}</Project>
+      <Name>GrinGlobal.InstallHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.Interface\GrinGlobal.Interface.csproj">
+      <Project>{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}</Project>
+      <Name>GrinGlobal.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GG_systray2.ico" />
+    <Content Include="GG_systray3.ico" />
+    <Content Include="Mono.Security.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MySql.Data.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Npgsql.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sysAT.ico" />
+    <None Include="GrinGlobal.Admin.exe.manifest" />
+    <None Include="GrinGlobal.snk" />
+    <None Include="Web References\GUISvc\GUI.disco" />
+    <None Include="Web References\GUISvc\GUI.wsdl" />
+    <None Include="Web References\GUISvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:2600/GrinGlobal/GUI.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\GUISvc\</RelPath>
+      <UpdateFromURL>http://localhost:2600/GrinGlobal/GUI.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>GrinGlobal_Admin_GUISvc_GUI</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+cd "$(TargetDir)"
+"\Program Files\Microsoft SDKs\Windows\v6.0a\bin\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
+
+cd "$(TargetDir)..\..\obj\$(ConfigurationName)"
+"\Program Files\Microsoft SDKs\Windows\v6.0a\bin\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
+
+REM echo RE-SIGNING ASSEMBLY...
+
+REM cd "$(TargetDir)"
+REM "\Program Files\Microsoft SDKs\Windows\v6.0a\bin\sn.exe" -q -Ra "$(TargetFileName)" "$(ProjectDir)GrinGlobal.snk"
+REM cd "$(TargetDir)..\..\obj\$(ConfigurationName)"
+REM "\Program Files\Microsoft SDKs\Windows\v6.0a\bin\sn.exe" -q -Ra "$(TargetFileName)" "$(ProjectDir)GrinGlobal.snk"
+
+REM echo ASSEMBLY RE-SIGNED
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

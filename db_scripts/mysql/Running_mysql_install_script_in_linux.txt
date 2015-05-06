@@ -1,0 +1,26 @@
+The following are required to get the GG database up and running in mysql on a linux machine:
+
+* mysql preinstalled
+* TCP/IP enabled for mysql, port 3306 opened to server the GG Web Application will be installed on (GG web app currently does not work under linux)
+* mysql_install_script.sql
+* raw_data_files folder, containing various .txt files (for importing required data)
+
+*** The mysql_install_script.sql needs to be manually edited before being run! ***
+
+The mysql script itself is OS-agnostic, but it does contain LOAD DATA INFILE statements.
+These require a full path to the .txt file being loaded since the path is relative to the mysqld process.
+
+1. Move all files to a folder mysqld has access to (such as /tmp):
+    mv gg_linux_mysql /tmp/gg_linux_mysql
+2. Switch to the new folder:
+    cd /tmp/gg_linux_mysql
+3. Grant 'install' file to be executable:
+    chmod +x install
+4. Grant all data files to be world-readable:
+    chmod a+r raw_data_files/
+    chmod a+r raw_data_files/*.*
+5. Run 'install' file (this will take a long time to complete):
+    ./install
+6. Test logins used by GG Web Application and GG Search Engine:
+    mysql -ugg_user -pgg_user_passw0rd! --database gringlobal -e 'select * from sys_lang;'
+    mysql -ugg_search -pgg_search_passw0rd! --database gringlobal -e 'select * from sys_lang;'

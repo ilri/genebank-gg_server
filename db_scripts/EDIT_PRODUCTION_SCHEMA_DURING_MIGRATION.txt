@@ -1,0 +1,45 @@
+Create the following primary, auto-increment keys if they do not exist:
+
+ag.agid
+cd.cdid
+cg.cgid_int (NOT cg.cgid, it won't do)
+cn.cnid_int (NOT cn.cnid, it won't do)
+durl.durlid
+embr.embrid
+gnt.gntid
+groups.groups_id (if table even exists)
+ig.igid
+igm.igmid
+im.imid
+ipr.iprid_int (NOT ipr.iprid, it won't do)
+lit.litid
+mbr.mbrid
+narr.narr_id
+ped.pedid
+pt.ptid
+quar.quarid
+smbr.smbrid
+taut.tautid
+uses.usesid
+
+
+Create all the sec_* tables
+
+
+
+Make sure all necessary indexes exist (otherwise migration will take forever)
+
+Add these specifically if they do not exist:
+1. index on an hitting acid, idrank
+2. index on *cit tables on abbr
+
+
+On the new schema:
+1. create new tables + indexes + migration tables (__*)
+2. map ids (fill migration tables)
+....The following will all take a long time for each step.....
+3. copy data
+4. convert new tables to innodb
+5. add constraints
+6. verify data!!!
+7. drop migration tables

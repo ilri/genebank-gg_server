@@ -1,0 +1,12 @@
+echo "Enter mysql root password: "
+read -s pw
+echo "Dropping existing gringlobal database, if any..."
+mysql -uroot -p$pw --force -e 'drop database gringlobal;'
+echo "Creating new gringlobal database..."
+mysql -uroot -p$pw --force -e 'create database gringlobal;'
+echo "Customizing database schema creation and data loading script..."
+sed 's!C:/projects/GrinGlobal_non-svn!'$(pwd)'!g' mysql_install_script.sql > my_db_script
+echo "Creating schema and loading data (this will take a long time)..."
+mysql -uroot -p$pw < my_db_script
+echo "Creating users..."
+mysql -uroot -p$pw --force < mysql_create_user_script.sql 

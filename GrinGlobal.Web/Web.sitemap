@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="default.aspx" title="Home"  description="GRIN-Global">
+      <!--
+      <siteMapNode url="~/downloads/default.aspx" title="Downloads"   description="Download the latest GRIN-Global Documentation and Software Installers" />
+      -->
+      <siteMapNode url="~/search.aspx?" title="Accessions"  description="Search for Accession">
+        <siteMapNode url="~/search.aspx" title="General"  description="Search GRIN-Global" />
+      </siteMapNode>
+
+      <siteMapNode url="~/descriptors.aspx?" title="Descriptors"  description="">
+        <siteMapNode url="~/descriptors.aspx" title="Descriptors"  description="Search GRIN-Global via Descriptors" />
+      </siteMapNode>
+
+      <siteMapNode url="~/taxonomybrowse.aspx" title="Taxonomy"  description="Search for Taxonomy">
+        <siteMapNode url="~/taxon/taxonomysearch.aspx" title="Advanced Query of Species Data" description="GRIN Taxonomy for Plants General Query" />
+        <siteMapNode url="~/taxon/taxonomysimple.aspx" title="Simple Query Species Data" description="GRIN Taxonomy for Plants Simple Query" />
+        <siteMapNode url="~/taxon/famgensearch.aspx" title="Families and Genera Query" description="GRIN Taxonomy for Plants Family/Genus Query" />
+        <siteMapNode url="~/taxon/taxonomysearcheco.aspx" title="World Economic Plants in GRIN" description="GRIN Taxonomy for Plants Economic Plants Query" />
+        <siteMapNode url="~/taxon/taxonomysearchcwr.aspx" title="Crop Wild Relative Data in GRIN" description="GRIN Taxonomy for Plants Crop Wild Relative Query" />
+        <!--<siteMapNode url="~/taxon/taxonomysimple.aspx?" title="&lt;hr&gt;" class="separator" description="separator"/>-->
+        <siteMapNode url="~/taxon/abouttaxonomy.aspx" title="About GRIN Taxonomy for Plants" description=""  target ="_blank" />
+      </siteMapNode>
+
+      <siteMapNode url="~/cartview.aspx" title="View Cart"  description="Build an order to request accessions" />
+      <!--
+      <siteMapNode url="~/gui.asmx" title="Web Service"  description="" />
+      -->
+
+      <siteMapNode url="~/query/query.aspx?" title="Reports" description="Queries and Reports">
+      </siteMapNode>
+      
+      <siteMapNode url="~/userinfor.aspx?action=menu" title="My Account"  description="Manage My Account">
+          <siteMapNode url="~/orderhistory.aspx" title="My Order History" description="Order History" />
+          <siteMapNode url="~/userpref.aspx" title="My Preference"  description="Manage My Preference" />
+          <siteMapNode url="~/useraddress.aspx" title="My Address Book" description="Manage My Address Book" />
+          <siteMapNode url="~/userfavorite.aspx" title="My Favorites" description="Display/Manage My Favoirtes" />
+      </siteMapNode>
+      
+      <siteMapNode url="~/admin/webquery.aspx?" title="Tools" description="">
+        <siteMapNode url="~/admin/webquery.aspx" title="Web Query" description="Web Query"></siteMapNode>
+        <siteMapNode url="~/admin/default.aspx" title="Create Query URL" description="Web Query Create Query URL"></siteMapNode>
+        <siteMapNode url="~/downloads/" title="Download Curator Tool" description="CT Download Site"></siteMapNode>
+      </siteMapNode>
+
+      <siteMapNode url="~/popuphelp.aspx?tag=Default.htm?" title="Help" description="" target ="_blank">
+        <siteMapNode url="~/popuphelp.aspx?tag=Default.htm" title="GRIN-Global Help" description="" target ="_blank" />
+        <siteMapNode url="~/popuphelp.aspx?tag=about" title="About GRIN-Global" description="" target ="_blank" />
+        <!--<siteMapNode url="~/popuphelp.aspx" title="About GRIN-Global"  description=""  target ="_blank" />-->
+      </siteMapNode>
+
+    </siteMapNode>
+</siteMap>

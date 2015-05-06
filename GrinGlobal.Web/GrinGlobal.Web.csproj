@@ -1,0 +1,1025 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{72F1F1B1-327C-42AD-A068-15A38D7265C5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GrinGlobal.Web</RootNamespace>
+    <AssemblyName>GrinGlobal.Web</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.7.1213, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="gui.asmx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="accessiondetail.aspx.cs">
+      <DependentUpon>accessiondetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accessiondetail.aspx.designer.cs">
+      <DependentUpon>accessiondetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="accessionobservation.aspx.cs">
+      <DependentUpon>accessionobservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accessionobservation.aspx.designer.cs">
+      <DependentUpon>accessionobservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\webquery.aspx.cs">
+      <DependentUpon>webquery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\webquery.aspx.designer.cs">
+      <DependentUpon>webquery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="browse.aspx.cs">
+      <DependentUpon>browse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="browse.aspx.designer.cs">
+      <DependentUpon>browse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.cs" />
+    <Compile Include="cartcontrol.ascx.cs">
+      <DependentUpon>cartcontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cartcontrol.ascx.designer.cs">
+      <DependentUpon>cartcontrol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CartItem.cs" />
+    <Compile Include="cartview.aspx.cs">
+      <DependentUpon>cartview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cartview.aspx.designer.cs">
+      <DependentUpon>cartview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client.aspx.cs">
+      <DependentUpon>client.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client.aspx.designer.cs">
+      <DependentUpon>client.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="contact.aspx.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contact.aspx.designer.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cooperator.aspx.cs">
+      <DependentUpon>cooperator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cooperator.aspx.designer.cs">
+      <DependentUpon>cooperator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="crop.aspx.cs">
+      <DependentUpon>crop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="crop.aspx.designer.cs">
+      <DependentUpon>crop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cropcitationaccession.aspx.cs">
+      <DependentUpon>cropcitationaccession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cropcitationaccession.aspx.designer.cs">
+      <DependentUpon>cropcitationaccession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cropdetail.aspx.cs">
+      <DependentUpon>cropdetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cropdetail.aspx.designer.cs">
+      <DependentUpon>cropdetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cropmarker.aspx.cs">
+      <DependentUpon>cropmarker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cropmarker.aspx.designer.cs">
+      <DependentUpon>cropmarker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cropmarkerview.aspx.cs">
+      <DependentUpon>cropmarkerview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cropmarkerview.aspx.designer.cs">
+      <DependentUpon>cropmarkerview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="descriptoraccession.aspx.cs">
+      <DependentUpon>descriptoraccession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="descriptoraccession.aspx.designer.cs">
+      <DependentUpon>descriptoraccession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="descriptordetail.aspx.cs">
+      <DependentUpon>descriptordetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="descriptordetail.aspx.designer.cs">
+      <DependentUpon>descriptordetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="descriptorexport.aspx.cs">
+      <DependentUpon>descriptorexport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="descriptorexport.aspx.designer.cs">
+      <DependentUpon>descriptorexport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="display.aspx.cs">
+      <DependentUpon>display.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="display.aspx.designer.cs">
+      <DependentUpon>display.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="method.aspx.cs">
+      <DependentUpon>method.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="method.aspx.designer.cs">
+      <DependentUpon>method.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="methodaccession.aspx.cs">
+      <DependentUpon>methodaccession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="methodaccession.aspx.designer.cs">
+      <DependentUpon>methodaccession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="disclaimer.aspx.cs">
+      <DependentUpon>disclaimer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="disclaimer.aspx.designer.cs">
+      <DependentUpon>disclaimer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Favorite.cs" />
+    <Compile Include="feedback\admin\manageforms.aspx.cs">
+      <DependentUpon>manageforms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\admin\manageforms.aspx.designer.cs">
+      <DependentUpon>manageforms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\admin\formeditor.aspx.cs">
+      <DependentUpon>formeditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\admin\formeditor.aspx.designer.cs">
+      <DependentUpon>formeditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\admin\manageprograms.aspx.cs">
+      <DependentUpon>manageprograms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\admin\manageprograms.aspx.designer.cs">
+      <DependentUpon>manageprograms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\admin\reporteditor.aspx.cs">
+      <DependentUpon>reporteditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\admin\reporteditor.aspx.designer.cs">
+      <DependentUpon>reporteditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\participantaccession.aspx.cs">
+      <DependentUpon>participantaccession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\participantaccession.aspx.designer.cs">
+      <DependentUpon>participantaccession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\participantdefault.aspx.cs">
+      <DependentUpon>participantdefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\participantdefault.aspx.designer.cs">
+      <DependentUpon>participantdefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\participantresult.aspx.cs">
+      <DependentUpon>participantresult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\participantresult.aspx.designer.cs">
+      <DependentUpon>participantresult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\participantorder.aspx.cs">
+      <DependentUpon>participantorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\participantorder.aspx.designer.cs">
+      <DependentUpon>participantorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\viewparticipantorders.aspx.cs">
+      <DependentUpon>viewparticipantorders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\viewparticipantorders.aspx.designer.cs">
+      <DependentUpon>viewparticipantorders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gg.asmx.cs">
+      <DependentUpon>gg.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="order.aspx.cs">
+      <DependentUpon>order.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="order.aspx.designer.cs">
+      <DependentUpon>order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="imagedisplay.aspx.cs">
+      <DependentUpon>imagedisplay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="imagedisplay.aspx.designer.cs">
+      <DependentUpon>imagedisplay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="imagecontrol.ascx.cs">
+      <DependentUpon>imagecontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="imagecontrol.ascx.designer.cs">
+      <DependentUpon>imagecontrol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="imagetester.aspx.cs">
+      <DependentUpon>imagetester.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="imagetester.aspx.designer.cs">
+      <DependentUpon>imagetester.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="literature.aspx.cs">
+      <DependentUpon>literature.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="literature.aspx.designer.cs">
+      <DependentUpon>literature.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="maps.aspx.cs">
+      <DependentUpon>maps.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="maps.aspx.designer.cs">
+      <DependentUpon>maps.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mapscontrol.ascx.cs">
+      <DependentUpon>mapscontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mapscontrol.ascx.designer.cs">
+      <DependentUpon>mapscontrol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="orderhistory.aspx.cs">
+      <DependentUpon>orderhistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="orderhistory.aspx.designer.cs">
+      <DependentUpon>orderhistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="orderhistorydetail.aspx.cs">
+      <DependentUpon>orderhistorydetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="orderhistorydetail.aspx.designer.cs">
+      <DependentUpon>orderhistorydetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pingsearchengine.aspx.cs">
+      <DependentUpon>pingsearchengine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pingsearchengine.aspx.designer.cs">
+      <DependentUpon>pingsearchengine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="popuphelp.aspx.cs">
+      <DependentUpon>popuphelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="popuphelp.aspx.designer.cs">
+      <DependentUpon>popuphelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="query\query.aspx.cs">
+      <DependentUpon>query.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="query\query.aspx.designer.cs">
+      <DependentUpon>query.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="query\summary.aspx.cs">
+      <DependentUpon>summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="query\summary.aspx.designer.cs">
+      <DependentUpon>summary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="query\weborderdetail.aspx.cs">
+      <DependentUpon>weborderdetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="query\weborderdetail.aspx.designer.cs">
+      <DependentUpon>weborderdetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Requestor.cs" />
+    <Compile Include="descriptors.aspx.cs">
+      <DependentUpon>descriptors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="descriptors.aspx.designer.cs">
+      <DependentUpon>descriptors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\feedback10yrsample.aspx.cs">
+      <DependentUpon>feedback10yrsample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\feedback10yrsample.aspx.designer.cs">
+      <DependentUpon>feedback10yrsample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="feedback\admin\programeditor.aspx.cs">
+      <DependentUpon>programeditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="feedback\admin\programeditor.aspx.designer.cs">
+      <DependentUpon>programeditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="searchcriteriacontrol.ascx.cs">
+      <DependentUpon>searchcriteriacontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="searchcriteriacontrol.ascx.designer.cs">
+      <DependentUpon>searchcriteriacontrol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="searchcriteriacontrol2.ascx.cs">
+      <DependentUpon>searchcriteriacontrol2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="searchcriteriacontrol2.ascx.designer.cs">
+      <DependentUpon>searchcriteriacontrol2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="site.aspx.cs">
+      <DependentUpon>site.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="site.aspx.designer.cs">
+      <DependentUpon>site.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site2.Master.cs">
+      <DependentUpon>Site2.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site2.Master.designer.cs">
+      <DependentUpon>Site2.Master</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\abouttaxonomy.aspx.cs">
+      <DependentUpon>abouttaxonomy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\abouttaxonomy.aspx.designer.cs">
+      <DependentUpon>abouttaxonomy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\cwrgeneticcontrol.ascx.cs">
+      <DependentUpon>cwrgeneticcontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\cwrgeneticcontrol.ascx.designer.cs">
+      <DependentUpon>cwrgeneticcontrol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\ecoclasscontrol.ascx.cs">
+      <DependentUpon>ecoclasscontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\ecoclasscontrol.ascx.designer.cs">
+      <DependentUpon>ecoclasscontrol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\taxonomyliterature.aspx.cs">
+      <DependentUpon>taxonomyliterature.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\taxonomyliterature.aspx.designer.cs">
+      <DependentUpon>taxonomyliterature.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\taxonomysearchcwr.aspx.cs">
+      <DependentUpon>taxonomysearchcwr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\taxonomysearchcwr.aspx.designer.cs">
+      <DependentUpon>taxonomysearchcwr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\taxonomysearcheco.aspx.cs">
+      <DependentUpon>taxonomysearcheco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\taxonomysearcheco.aspx.designer.cs">
+      <DependentUpon>taxonomysearcheco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\famgensearch.aspx.cs">
+      <DependentUpon>famgensearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\famgensearch.aspx.designer.cs">
+      <DependentUpon>famgensearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\taxonomyquery.aspx.cs">
+      <DependentUpon>taxonomyquery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\taxonomyquery.aspx.designer.cs">
+      <DependentUpon>taxonomyquery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\taxonomysearch.aspx.cs">
+      <DependentUpon>taxonomysearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\taxonomysearch.aspx.designer.cs">
+      <DependentUpon>taxonomysearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\taxonomysimple.aspx.cs">
+      <DependentUpon>taxonomysimple.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxon\taxonomysimple.aspx.designer.cs">
+      <DependentUpon>taxonomysimple.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxon\TaxonUtil.cs" />
+    <Compile Include="uploader.ascx.cs">
+      <DependentUpon>uploader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="uploader.ascx.designer.cs">
+      <DependentUpon>uploader.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="useracct.aspx.cs">
+      <DependentUpon>useracct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useracct.aspx.designer.cs">
+      <DependentUpon>useracct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="useraddress.aspx.cs">
+      <DependentUpon>useraddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useraddress.aspx.designer.cs">
+      <DependentUpon>useraddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userfavorite.aspx.cs">
+      <DependentUpon>userfavorite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userfavorite.aspx.designer.cs">
+      <DependentUpon>userfavorite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userinfor.aspx.cs">
+      <DependentUpon>userinfor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userinfor.aspx.designer.cs">
+      <DependentUpon>userinfor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="documents\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="documents\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="downloads\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="downloads\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pivotajax.aspx.cs">
+      <DependentUpon>pivotajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pivotajax.aspx.designer.cs">
+      <DependentUpon>pivotajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pivotviewcontrol.ascx.cs">
+      <DependentUpon>pivotviewcontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pivotviewcontrol.ascx.designer.cs">
+      <DependentUpon>pivotviewcontrol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="pivotviewhelper.aspx.cs">
+      <DependentUpon>pivotviewhelper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pivotviewhelper.aspx.designer.cs">
+      <DependentUpon>pivotviewhelper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleTemplateItem.cs" />
+    <Compile Include="streamlogin.aspx.cs">
+      <DependentUpon>streamlogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="streamlogin.aspx.designer.cs">
+      <DependentUpon>streamlogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="styles\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="styles\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxonomybrowse.aspx.cs">
+      <DependentUpon>taxonomybrowse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxonomybrowse.aspx.designer.cs">
+      <DependentUpon>taxonomybrowse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxonomydetail.aspx.cs">
+      <DependentUpon>taxonomydetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxonomydetail.aspx.designer.cs">
+      <DependentUpon>taxonomydetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxonomyfamily.aspx.cs">
+      <DependentUpon>taxonomyfamily.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxonomyfamily.aspx.designer.cs">
+      <DependentUpon>taxonomyfamily.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxonomygenus.aspx.cs">
+      <DependentUpon>taxonomygenus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxonomygenus.aspx.designer.cs">
+      <DependentUpon>taxonomygenus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="taxonomylist.aspx.cs">
+      <DependentUpon>taxonomylist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="taxonomylist.aspx.designer.cs">
+      <DependentUpon>taxonomylist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="trustedsite.aspx.cs">
+      <DependentUpon>trustedsite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="trustedsite.aspx.designer.cs">
+      <DependentUpon>trustedsite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="trustedsitegenerator.aspx.cs">
+      <DependentUpon>trustedsitegenerator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="trustedsitegenerator.aspx.designer.cs">
+      <DependentUpon>trustedsitegenerator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadedFileInfo.cs" />
+    <Compile Include="UserManager.cs" />
+    <Compile Include="DatabaseRoleProvider.cs" />
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gui.asmx.cs">
+      <DependentUpon>gui.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DatabaseMembershipProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="streamdata.aspx.cs">
+      <DependentUpon>streamdata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="streamdata.aspx.designer.cs">
+      <DependentUpon>streamdata.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userpref.aspx.cs">
+      <DependentUpon>userpref.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userpref.aspx.designer.cs">
+      <DependentUpon>userpref.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils.cs" />
+    <Compile Include="view.aspx.cs">
+      <DependentUpon>view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view.aspx.designer.cs">
+      <DependentUpon>view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view2.aspx.cs">
+      <DependentUpon>view2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view2.aspx.designer.cs">
+      <DependentUpon>view2.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GrinGlobal.Business\GrinGlobal.Business.csproj">
+      <Project>{B851EF11-4AB8-49A0-9500-3DA3CEBA26DA}</Project>
+      <Name>GrinGlobal.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.Core\GrinGlobal.Core.csproj">
+      <Project>{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}</Project>
+      <Name>GrinGlobal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.DatabaseInspector\GrinGlobal.DatabaseInspector.csproj">
+      <Project>{E3BBBA2E-D42B-4683-922C-57B2A01A4598}</Project>
+      <Name>GrinGlobal.DatabaseInspector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.InstallHelper\GrinGlobal.InstallHelper.csproj">
+      <Project>{6994A3A3-F3CC-428F-A918-D058643EBC76}</Project>
+      <Name>GrinGlobal.InstallHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.Interface\GrinGlobal.Interface.csproj">
+      <Project>{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}</Project>
+      <Name>GrinGlobal.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="client.aspx" />
+    <Content Include="default.aspx" />
+    <Content Include="Site1.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\MySql.Data.dll" />
+    <Content Include="Global.asax" />
+    <Content Include="login.aspx" />
+    <Content Include="streamdata.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\default.aspx" />
+    <Content Include="admin\webquery.aspx" />
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\AjaxMin.dll" />
+    <Content Include="cooperator.aspx" />
+    <Content Include="crop.aspx" />
+    <Content Include="cropcitationaccession.aspx" />
+    <Content Include="cropdetail.aspx" />
+    <Content Include="cropmarker.aspx" />
+    <Content Include="cropmarkerview.aspx" />
+    <Content Include="descriptoraccession.aspx" />
+    <Content Include="descriptordetail.aspx" />
+    <Content Include="descriptorexport.aspx" />
+    <Content Include="display.aspx" />
+    <Content Include="images\help.ico" />
+    <Content Include="images\search.ico" />
+    <Content Include="images\printer.ico" />
+    <Content Include="method.aspx" />
+    <Content Include="methodaccession.aspx" />
+    <Content Include="disclaimer.aspx" />
+    <Content Include="feedback\admin\manageforms.aspx" />
+    <Content Include="feedback\admin\formeditor.aspx" />
+    <Content Include="feedback\admin\manageprograms.aspx" />
+    <Content Include="feedback\admin\reporteditor.aspx" />
+    <Content Include="feedback\participantaccession.aspx" />
+    <Content Include="feedback\participantdefault.aspx" />
+    <Content Include="feedback\participantresult.aspx" />
+    <Content Include="feedback\participantorder.aspx" />
+    <Content Include="feedback\viewparticipantorders.aspx" />
+    <Content Include="GRIN-Global Website.url" />
+    <Content Include="accessiondetail.aspx" />
+    <Content Include="accessionobservation.aspx" />
+    <Content Include="bin\GrinGlobal.AdditionalDataTriggers.dll" />
+    <Content Include="bin\GrinGlobal.Business.dll" />
+    <Content Include="bin\GrinGlobal.Business.pdb" />
+    <Content Include="bin\GrinGlobal.Core.dll" />
+    <Content Include="bin\GrinGlobal.Core.pdb" />
+    <Content Include="bin\GrinGlobal.DatabaseInspector.dll" />
+    <Content Include="bin\GrinGlobal.DatabaseInspector.pdb" />
+    <Content Include="bin\GrinGlobal.InstallHelper.dll" />
+    <Content Include="bin\GrinGlobal.InstallHelper.pdb" />
+    <Content Include="bin\GrinGlobal.Interface.dll" />
+    <Content Include="bin\GrinGlobal.Interface.pdb" />
+    <Content Include="bin\GrinGlobal.NPGSDataTriggers.dll" />
+    <Content Include="bin\Interop.WindowsInstaller.dll" />
+    <Content Include="browse.aspx" />
+    <Content Include="cartcontrol.ascx" />
+    <Content Include="cartview.aspx" />
+    <Content Include="contact.aspx" />
+    <Content Include="gg.asmx" />
+    <Content Include="images\ARS.png" />
+    <Content Include="images\attachment.png" />
+    <Content Include="images\bg-header-abseed.gif" />
+    <Content Include="images\Bioversity.png" />
+    <Content Include="images\btn_background.png" />
+    <Content Include="images\btn_removefromfavs.gif" />
+    <Content Include="images\btn_shade.png" />
+    <Content Include="images\GCDT.png" />
+    <Content Include="images\GG_systray3.ico" />
+    <Content Include="images\header-mockup4.png" />
+    <Content Include="images\header.jpg" />
+    <Content Include="images\Information.ico" />
+    <Content Include="images\line-vertical.gif" />
+    <Content Include="images\minus.ico" />
+    <Content Include="images\nav_bg.png" />
+    <Content Include="images\note.ico" />
+    <Content Include="images\plus.ico" />
+    <Content Include="images\sysBlank.ico" />
+    <Content Include="images\USDA.png" />
+    <Content Include="order.aspx" />
+    <Content Include="imagedisplay.aspx" />
+    <Content Include="imagecontrol.ascx" />
+    <Content Include="images\arrow.png" />
+    <Content Include="images\close.gif" />
+    <Content Include="images\computer.png" />
+    <Content Include="images\dataview.gif" />
+    <Content Include="images\dll.gif" />
+    <Content Include="images\exe.gif" />
+    <Content Include="images\export.png" />
+    <Content Include="images\file.png" />
+    <Content Include="images\files.png" />
+    <Content Include="images\folder.png" />
+    <Content Include="images\gif.gif" />
+    <Content Include="images\IconShadow.png" />
+    <Content Include="images\jpg.gif" />
+    <Content Include="images\locked.png" />
+    <Content Include="images\mm_20_blue.png" />
+    <Content Include="images\mm_20_orange.png" />
+    <Content Include="images\mm_20_purple.png" />
+    <Content Include="images\mm_20_red.png" />
+    <Content Include="images\mm_20_yellow.png" />
+    <Content Include="images\msi.png" />
+    <Content Include="images\open.gif" />
+    <Content Include="images\setting.png" />
+    <Content Include="images\table.jpg" />
+    <Content Include="images\template.png" />
+    <Content Include="images\test.png" />
+    <Content Include="images\undo.gif" />
+    <Content Include="images\user.gif" />
+    <Content Include="images\users.png" />
+    <Content Include="images\web.gif" />
+    <Content Include="imagetester.aspx" />
+    <Content Include="literature.aspx" />
+    <Content Include="maps.aspx" />
+    <Content Include="mapscontrol.ascx" />
+    <Content Include="Mono.Security.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MySql.Data.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Npgsql.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="orderhistory.aspx" />
+    <Content Include="orderhistorydetail.aspx" />
+    <Content Include="pingsearchengine.aspx" />
+    <Content Include="popuphelp.aspx" />
+    <Content Include="query\query.aspx" />
+    <Content Include="query\summary.aspx" />
+    <Content Include="query\weborderdetail.aspx" />
+    <Content Include="scripts\jquery.autocomplete-1.0.2.js" />
+    <Content Include="scripts\jquery.cookie.js" />
+    <Content Include="scripts\pivoter.js" />
+    <Content Include="search.aspx" />
+    <Content Include="searchcriteriacontrol.ascx" />
+    <Content Include="searchcriteriacontrol2.ascx" />
+    <Content Include="site.aspx" />
+    <Content Include="Site2.Master" />
+    <Content Include="styles\print.css" />
+    <Content Include="descriptors.aspx" />
+    <Content Include="styles\theme1.css" />
+    <Content Include="feedback\feedback10yrsample.aspx" />
+    <Content Include="feedback\admin\programeditor.aspx" />
+    <Content Include="styles\theme2.css" />
+    <Content Include="taxon\abouttaxonomy.aspx" />
+    <Content Include="taxon\cwrgeneticcontrol.ascx" />
+    <Content Include="taxon\ecoclasscontrol.ascx" />
+    <Content Include="taxon\taxonomyliterature.aspx" />
+    <Content Include="taxon\taxonomysearchcwr.aspx" />
+    <Content Include="taxon\taxonomysearcheco.aspx" />
+    <Content Include="taxon\famgensearch.aspx" />
+    <Content Include="taxon\taxonomyquery.aspx" />
+    <Content Include="taxon\taxonomysearch.aspx" />
+    <Content Include="taxon\taxonomysimple.aspx" />
+    <Content Include="uploader.ascx" />
+    <Content Include="uploads\dataviews\placeholder.txt" />
+    <Content Include="uploads\feedback\reportattachments\placeholder.txt" />
+    <Content Include="uploads\feedback\placeholder.txt" />
+    <Content Include="uploads\feedback\resultattachments\placeholder.txt" />
+    <Content Include="uploads\imports\placeholder.txt" />
+    <Content Include="useracct.aspx" />
+    <Content Include="useraddress.aspx" />
+    <Content Include="userfavorite.aspx" />
+    <Content Include="userinfor.aspx" />
+    <Content Include="documents\default.aspx" />
+    <Content Include="downloads\default.aspx" />
+    <Content Include="error.aspx" />
+    <Content Include="images\actions_addtofavs.gif" />
+    <Content Include="images\actions_addtoorder.gif" />
+    <Content Include="images\actions_removefromresults.gif" />
+    <Content Include="images\add.gif" />
+    <Content Include="images\copy.png" />
+    <Content Include="images\filter.gif" />
+    <Content Include="images\remove.gif" />
+    <Content Include="images\down.gif" />
+    <Content Include="images\prefs.gif" />
+    <Content Include="images\rename.gif" />
+    <Content Include="images\save.gif" />
+    <Content Include="images\search.gif" />
+    <Content Include="images\up.gif" />
+    <Content Include="images\bg-availability.gif" />
+    <Content Include="images\bg-content.gif" />
+    <Content Include="images\bg-header4.png" />
+    <Content Include="images\bg-page.gif" />
+    <Content Include="images\btn_actions.gif" />
+    <Content Include="images\btn_addremovecolumns.gif" />
+    <Content Include="images\btn_addtomyfavs.gif" />
+    <Content Include="images\btn_addtoorder.gif" />
+    <Content Include="images\btn_checkout.gif" />
+    <Content Include="images\btn_delete.gif" />
+    <Content Include="images\btn_exportdata.gif" />
+    <Content Include="images\btn_prevpage.gif" />
+    <Content Include="images\btn_saveresults.gif" />
+    <Content Include="images\btn_searchaccessions.gif" />
+    <Content Include="images\btn_viewcart.gif" />
+    <Content Include="images\fav_off.png" />
+    <Content Include="images\fav_on.png" />
+    <Content Include="images\unchecked.gif" />
+    <Content Include="images\checked.gif" />
+    <Content Include="images\fav_off.gif" />
+    <Content Include="images\fav_on.gif" />
+    <Content Include="images\img-placeholder.gif" />
+    <Content Include="images\voucher_tn_test1.jpg" />
+    <Content Include="images\wait.gif" />
+    <Content Include="pivotajax.aspx" />
+    <Content Include="pivotviewcontrol.ascx" />
+    <Content Include="pivotviewhelper.aspx" />
+    <Content Include="scripts\jquery-1.3.2.min.js" />
+    <Content Include="scripts\jquery-ui-1.7.2.custom.min.js" />
+    <Content Include="scripts\jquery.autocomplete.js" />
+    <Content Include="streamlogin.aspx" />
+    <Content Include="styles\ugly.css" />
+    <Content Include="styles\default.aspx" />
+    <Content Include="taxonomybrowse.aspx" />
+    <Content Include="taxonomydetail.aspx" />
+    <Content Include="taxonomyfamily.aspx" />
+    <Content Include="taxonomygenus.aspx" />
+    <Content Include="taxonomylist.aspx" />
+    <Content Include="trustedsite.aspx" />
+    <Content Include="trustedsitegenerator.aspx" />
+    <Content Include="uploads\documents\placeholder.txt" />
+    <Content Include="uploads\exports\placeholder.txt" />
+    <Content Include="uploads\images\placeholder.txt" />
+    <Content Include="uploads\installers\placeholder.txt" />
+    <Content Include="uploads\logs\placeholder.txt" />
+    <Content Include="userpref.aspx" />
+    <Content Include="view.aspx" />
+    <Content Include="view2.aspx" />
+    <Content Include="Web.sitemap">
+    </Content>
+    <Content Include="bin\Mono.Security.dll" />
+    <Content Include="bin\Npgsql.dll" />
+    <Content Include="styles\default.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="help\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>2600</DevelopmentServerPort>
+          <DevelopmentServerVPath>/GrinGlobal</DevelopmentServerVPath>
+          <IISUrl>http://localhost/gringlobal_oracle</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>REM copy ..\ThirdParty\*.dll</PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,26 @@
+===================================================================================================
+Search for 'b73' in crop_trait_observation index returning Accessions using REST and JSON
+===================================================================================================
+
+HTTP Request
+===================================================================================================
+POST /SearchHost/rest/Search HTTP/1.1
+Accept-Encoding: identity
+Content-Length: 185
+Host: localhost:2011
+Content-Type: application/json
+Connection: close
+User-Agent: Python-urllib/2.6
+
+{"searchString": "b73", "resolverName": "Accessions", "ignoreCase": "true", "autoAndConsecutiveLiterals": "false", "offset": 0, "limit": 10000, "indexNames": ["crop_trait_observation"]}
+
+HTTP Response
+===================================================================================================
+HTTP/1.1 200 OK
+Content-Length: 39
+Content-Type: application/json; charset=utf-8
+Server: Microsoft-HTTPAPI/2.0
+Date: Sun, 17 May 2009 13:33:35 GMT
+Connection: close
+
+{"SearchResult":[388376,388384,400103]}

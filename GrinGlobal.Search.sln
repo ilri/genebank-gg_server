@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.Search.Engine.Tester", "GrinGlobal.Search.Engine.Tester\GrinGlobal.Search.Engine.Tester.csproj", "{6049656B-0908-45B1-95F7-E3ABEF651769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.Core", "GrinGlobal.Core\GrinGlobal.Core.csproj", "{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.Search.Engine.Service", "GrinGlobal.Search.Engine.Service\GrinGlobal.Search.Engine.Service.csproj", "{BF0F35D2-39DB-44A5-AB0C-A522B12F04D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.Search.Engine", "GrinGlobal.Search.Engine\GrinGlobal.Search.Engine.csproj", "{3694B88F-8094-4497-AEC7-245EEF1CA8C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.InstallHelper", "GrinGlobal.InstallHelper\GrinGlobal.InstallHelper.csproj", "{6994A3A3-F3CC-428F-A918-D058643EBC76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.Interface", "GrinGlobal.Interface\GrinGlobal.Interface.csproj", "{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6049656B-0908-45B1-95F7-E3ABEF651769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6049656B-0908-45B1-95F7-E3ABEF651769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6049656B-0908-45B1-95F7-E3ABEF651769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6049656B-0908-45B1-95F7-E3ABEF651769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF0F35D2-39DB-44A5-AB0C-A522B12F04D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF0F35D2-39DB-44A5-AB0C-A522B12F04D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF0F35D2-39DB-44A5-AB0C-A522B12F04D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF0F35D2-39DB-44A5-AB0C-A522B12F04D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3694B88F-8094-4497-AEC7-245EEF1CA8C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3694B88F-8094-4497-AEC7-245EEF1CA8C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3694B88F-8094-4497-AEC7-245EEF1CA8C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3694B88F-8094-4497-AEC7-245EEF1CA8C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6994A3A3-F3CC-428F-A918-D058643EBC76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6994A3A3-F3CC-428F-A918-D058643EBC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6994A3A3-F3CC-428F-A918-D058643EBC76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6994A3A3-F3CC-428F-A918-D058643EBC76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

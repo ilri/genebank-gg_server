@@ -1,0 +1,83 @@
+Legend
+==================================
+CT = Curator Tool
+SSMS = SQL Server Management Studio
+
+
+Cannot login from CT to localhost
+==================================
+1. Attempt to view the local website.  http://localhost/gringlobal/
+2. If you get a 404 error, an application besides IIS is probably using port 80.
+3. Close that application
+4. Restart the web server. To restart the web server:
+     a. Open GRIN-Global Admin
+     b. On the localhost connection (by default this is localhost\SQLExpress), right-click the Web Application node 
+     c. Select Restart
+5. In the CT, attempt to login again
+6. Restart your application if need be
+
+
+No rights to IIS Metabase
+==================================
+This occurs if the IIS user does not have appropriate rights to files that IIS requires.
+Open a command prompt (with Administrator privileges on Vista / Windows 7) and execute the following statements:
+
+cd c:\windows\microsoft.net\framework\v2.0.50727\
+aspnet_regiis.exe -i
+aspnet_regiis.exe -ga ASPNET
+
+
+Cannot install database / database install does not seem to work
+==================================
+Open SSMS, if it throws an error with gringlobal.mdf (or something similar), the master database thinks a gringlobal database exists and it doesn't.  Fix:
+
+1. Open SSMS, ignore error.  
+2. Create a New Query, execute following SQL:
+     drop database gringlobal
+3. In GRIN-Global Updater, click Download / Install again and it should work.
+
+Cannot install search engine - Service already exists
+==================================
+Previous uninstall of search engine failed at some point, even though it no longer reports being installed.
+We need to manually delete the service before the installer to create a new one.
+Open a command prompt (with Administrator privileges on Vista / Windows 7) and execute the following:
+
+sc delete ggse
+
+Cannot uninstall search engine - Invalid Parameter or Service does not exist
+==================================
+For some reason the Search Engine reports being installed, but the service itself does not exist.
+We need to create a 'dummy' service so the uninstaller can find it and uninstall it.
+Open a command prompt (with Administrator privileges on Vista / Windows 7) and execute the following -- EXACTLY as shown below (yes, that's a space after the equals sign):
+
+sc create ggse binPath= C:\windows\notepad.exe
+
+
+Updater does not seem to actually install anything when clicking Download / Install
+==================================
+The Updater may be incorrectly detecting the end of installations, and report them as completed (or wait for completion indefinitely).
+In GRIN-Global Updater:
+1.  Go to Tools | Options
+2.  Go to Download Cache
+3.  Click the blue link near the bottom of the form -- this will load Windows Explorer pointing to where the actual installer files are located.
+4.  Open the "Server" or "Client" folder, whichever is appropriate.
+5.  Navigate down the folders until you find the application you wish to install. NOTE: install in the same order they are displayed in GRIN-Global Updater for everything to install properly
+6.  Run the .exe -- do NOT run the .msi directly.  The .exe prepares the environment the .msi requires to operate properly.
+
+
+Cannot connect to server in Updater
+==================================
+You may need to use an HTTP proxy server.  To Configure this:
+In GRIN-Global Updater:
+1.  Go to Tools | Options
+2.  Place a check next to "Use HTTP Proxy"
+3.  Try connecting again.  If it fails, you may need to specify a custom http proxy.
+4.  Also, you may need to specify "Ignore 417 errors" for some downlevel http proxy servers to function properly
+
+
+
+Enable Save Changes that Affect Tables in SSMS
+==================================
+Go to: Tools | Options | Designers
+Uncheck "Prevent saving changes that require table re-creation"
+Click OK

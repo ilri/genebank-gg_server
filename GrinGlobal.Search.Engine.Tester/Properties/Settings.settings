@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrinGlobal.Search.Engine.Tester.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GrinGlobal_Search_Engine_Tester_guitest_GUI" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:2600/GrinGlobal/GUI.asmx</Value>
+    </Setting>
+    <Setting Name="GrinGlobal_Search_Engine_Tester_ggtest_gg" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:2600/GrinGlobal/gg.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

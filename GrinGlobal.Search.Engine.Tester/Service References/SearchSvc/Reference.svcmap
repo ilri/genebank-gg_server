@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="11bbb293-be5f-4a53-81d9-1b9a58e1b67d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2011/SearchHost" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SearchHost.xsd" MetadataType="Schema" ID="321a943d-50a7-4cb7-94b3-bdb9078ed4f0" SourceId="1" SourceUrl="http://localhost:2011/SearchHost?xsd=xsd1" />
+    <MetadataFile FileName="SearchHost1.xsd" MetadataType="Schema" ID="ae8276f3-93fb-428f-b6f7-2ac97035929e" SourceId="1" SourceUrl="http://localhost:2011/SearchHost?xsd=xsd0" />
+    <MetadataFile FileName="SearchHost.wsdl" MetadataType="Wsdl" ID="5aaab0d0-a5cf-46f2-9149-7666abbcfa17" SourceId="1" SourceUrl="http://localhost:2011/SearchHost?wsdl" />
+    <MetadataFile FileName="SearchHost2.xsd" MetadataType="Schema" ID="a80f306e-0d24-447b-978b-5f345f75b421" SourceId="1" SourceUrl="http://localhost:2011/SearchHost?xsd=xsd2" />
+    <MetadataFile FileName="SearchHost3.xsd" MetadataType="Schema" ID="9ec892ca-b93c-4d6e-86bc-aa8e06e83dfd" SourceId="1" SourceUrl="http://localhost:2011/SearchHost?xsd=xsd3" />
+    <MetadataFile FileName="SearchHost.disco" MetadataType="Disco" ID="db673e55-1a7b-4e00-83a2-13293081c816" SourceId="1" SourceUrl="http://localhost:2011/SearchHost?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

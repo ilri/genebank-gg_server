@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+</head>
+<body>
+
+    <span class="Apple-style-span" 
+        style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
+    <span class="Apple-style-span" style="font-family: arial; font-size: small; ">
+    <div>
+        <span class="Apple-style-span" style="font-size: xx-large; ">MSI-specific</span></div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Runs as SYSTEM</span></div>
+    <div>
+        Regardless of how you launch an msi (via setup.exe bootstrapper, msiexec.exe 
+        command line, or double-clicking .msi file), the actual installation process 
+        runs under the SYSTEM user, not the currently logged in user. &nbsp;This is because 
+        the msi file is simply handed off to the Windows Installer service. &nbsp;This also 
+        means there is no way to cleanly wait for the msiexec.exe process to end, as it 
+        returns immediately after handing off the msi to the service.&nbsp;&nbsp;</div>
+    <div>
+        <ol>
+            <li>Poll all processes, find which one has the current msi name in the command line</li>
+            <li>Wait for that process to finish</li>
+            <li>There&#39;s a slim window where we may have checked for the process and it hadn&#39;t 
+                yet handed it off to the service. &nbsp;There&#39;s a 5 second delay in the code to 
+                minimize the chances of that happening.</li>
+            <li>See GrinGlobal.Updater.frmProgress.waitForMsiToFinish().</li>
+        </ol>
+        <div>
+            <span class="Apple-style-span" style="font-size: large; ">Custom Actions Don&#39;t 
+            Have Access to Logged In User</span></div>
+    </div>
+    <div>
+        It also means any code called by Custom Actions defined in the msi are also 
+        running under the context of SYSTEM. &nbsp;Custom Action code cannot rely on 
+        user-specific directories / registry keys / etc.&nbsp;</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Custom Actions Need 
+        Elevation on Vista and Windows 7</span></div>
+    <div>
+        We shell out to other programs to perform some of the setup steps. &nbsp;Even though 
+        the installer service runs with elevated privileges, we still have to manually 
+        elevate any processes we create. &nbsp;GrinGlobal.UAC (gguac.exe) is used for this. 
+        &nbsp;On XP, gguac.exe effectively does nothing but just launch the given app.</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Uninstall Code For 
+        Previous Versions is Not Run By Default</span></div>
+    <div>
+        In VS.NET 2008, the default for msi generation changed from uninstalling the 
+        previous installation of your app to NOT uninstalling it. &nbsp;There is no built-in 
+        way to do this within VS.NET 2008, so we have to run a post-build event to tweak 
+        the msi file itself after it is built.</div>
+    <div>
+        <a href="http://stackoverflow.com/questions/617409/script-to-change-action-sequence-records-in-an-msi">
+        http://stackoverflow.com/questions/617409/script-to-change-action-sequence-records-in-an-msi</a></div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Cannot Include a 
+        64-bit binary in a 32-bit MSI</span></div>
+    <div>
+        An msi must be targeted as a 32-bit or 64-bit build. &nbsp;Since we are avoiding 
+        having separate 32-bit and 64-bit builds for each msi (as .NET lets you target 
+        &#39;AnyCPU&#39; for the actual dll&#39;s and exe&#39;s), we must have the msi target the lowest 
+        common denominator, 32-bit. &nbsp;However, there is one small exe we must have that 
+        explicitly targets 64-bit for installs to work on 64-bit operating systems. 
+        &nbsp;VS.NET won&#39;t let you add a 64-bit binary in a 32-bit msi -- even if it has a 
+        different file extension. &nbsp;So I basically bundled the exe into a cab file and 
+        distribute the cab file. &nbsp;A custom action runs which expands the cab file at 
+        install time, meaning we can effectively distribute 64-bit code in a 32-bit msi.</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Our MSI&#39;s Run Under 
+        The 32-bit Subsystem on 64-bit Operating Systems</span></div>
+    <div>
+        Since our msi&#39;s do target 32-bit, a 64-bit operating system sees this and runs 
+        the msi under the 32-bit subsystem of the windows installer service. &nbsp;This means 
+        registry redirection happens, and any code in custom actions will see only the 
+        32-bit registry keys. &nbsp;Registry reflection is supposed to ensure everything 
+        appears in the 32-bit registry keys as it does in the 64-bit keys. &nbsp;However, 
+        this isn&#39;t true for SQL Server 2008 Express. &nbsp;Some vital keys do not show up in 
+        the 32-bit section of the registry (under Wow6432Node). &nbsp;This means our 32-bit 
+        code in the custom action cannot see them. &nbsp;The 64-bit exe I mentioned earlier 
+        is used to see the 64-bit version of the registry. &nbsp;Since the exe is explicitly 
+        targeted to run under 64-bit, the 64-bit version of the .NET framework is used 
+        to load the portable executable (PE) image, and we end up with a full-fledged 
+        64-bit executable that can see the 64-bit version of the registry keys. &nbsp;This is 
+        handled implicitly by GrinGlobal.Core.Toolkit.GetRegSetting(), assuming it can 
+        find the 64-bit exe (GrinGlobal.Utility64 namespace, in other words 
+        ggutil64.exe).</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Assemblies called by 
+        Custom Actions Don&#39;t Work Well With Strong Names</span></div>
+    <div>
+        When trying to call a strongly-named assembly from a custom action, a versioning 
+        error almost always happens -- but not always. &nbsp;I never did figure out why this 
+        happens. &nbsp;None of our custom actions point to strongly-named assemblies now and 
+        I no longer get versioning errors. &nbsp;Go figure.</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Temp Path Isn&#39;t 
+        Reliable</span></div>
+    <divUsing the environment variable &quot;TEMP&quot; or &quot;TMP&quot; to get the temporary path does 
+        always return a valid temporary path. &nbsp;However, some of the Microsoft tools we 
+        use to do installation tasks (such as sysocmgr.exe) do not work with paths that 
+        have spaces (even in the 8.3 format) or are not rooted on the C:\ drive. &nbsp;So 
+        GrinGlobal.InstallHelper.Utility.GetTempDirectory() returns a hardcoded value of 
+        C:\temp\gginst. &nbsp;This folder is created as needed.</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large;">Web Application MSI&#39;s 
+        Do Not Call Custom Actions On Web Application Assembliesn Assemblies</span></div>
+    <div>
+        I do not know why (nor does anybody on google), but custom actions defined in 
+        web application assemblies are never called. &nbsp;The code for the custom action 
+        must be located in a &#39;normal&#39; assembly that is not part of a web application. 
+        &nbsp;The custom action code for our web app is located at 
+        GrinGlobal.InstallHelper.WebInstaller.cs</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: xx-large; ">Updater</span></div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Can&#39;t Update Itself 
+        While Running</span></div>
+    <div>
+        When the updater updates itself, it actually downloads the msi then creates a 
+        batch file to call msiexec.exe to do the uninstall / install. &nbsp;There is some 
+        interesting timing issues there, as the executable must exit before the msi 
+        tries to uninstall it. &nbsp;Luckily, the msi waits for the user to click &#39;Next&#39; 
+        before it tries to remove it, and that typically provides plenty of time for the 
+        Updater exe to exit.</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Uses COM Interop to 
+        Pull Version Info From an MSI File Itself</span></div>
+    <div>
+        To compare what versions are currently installed (which is gotten from the 
+        registry&#39;s Uninstall key) to what all is available on the server, I had to use 
+        COM Interop to call the WindowsInstaller.Installer COM object. Of course, when 
+        you touch COM via Interop all kinds of fun things happen. &nbsp;I ended up having to 
+        actually call the following 3 lines of code to prevent file locking (I still 
+        don&#39;t know exactly why it requires all 3 lines, but together they do the trick). 
+        &nbsp;See GrinGlobal.InstallHelper.Utility.GetProductVersion() to see what I mean.</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <div>
+            <font class="Apple-style-span" face="'courier new', monospace">
+            Marshal.FinalReleaseComObject(view);</font></div>
+        <div>
+            <font class="Apple-style-span" face="'courier new', monospace">GC.Collect();</font></div>
+        <div>
+            <font class="Apple-style-span" face="'courier new', monospace">
+            GC.WaitForPendingFinalizers();</font></div>
+    </div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Must Check Multiple 
+        Registry Paths For Installed Apps</span></div>
+    <div>
+        Thanks to our 32-bit / 64-bit issues, Updater must check not only the &#39;normal&#39; 
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall key for 
+        the list of installed apps, it must also check the corresponding 32-bit node on 
+        64-bit operating systems 
+        (HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall) 
+        or installed apps are not detected properly. &nbsp;See 
+        GrinGlobal.InstallHelper.Utility.fillInstalledApps().</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: xx-large; ">UAC</span></div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">GrinGlobal.UAC Must 
+        Have a Manifest File</span></div>
+    <div>
+        The manifest file is what tells Vista / Windows 7 to require administrative 
+        privileges for the executable to launch. &nbsp;The SDK tool mt.exe is used to apply 
+        the manifest file to the exe at build time. &nbsp;See the post-build event for 
+        GrinGlobal.UAC.</div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">
+        <br />
+        </span>
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">GrinGlobal.UAC Must Be 
+        Strong Named</span></div>
+    <div>
+        Applying a manifest to an exe requires that exe to have a strong name</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Applying A Manifest To 
+        An Executable Invalidates The Strong Name</span></div>
+    <div>
+        So yes, you have to strong name it, apply the manifest, then strong name it 
+        again. &nbsp;Makes perfect sense, right?</div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">
+        <br />
+        </span>
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">Upgrading a Service Does Not Work Properly</span></div>
+    <div>
+        Services cannot be upgraded without a reboot using a VS.NET 2008-generated installer msi.
+		This is because the files are attempted to be replaced before the service is shutdown (meaning the files are locked).
+		To circumvent this, Updater manually stops the GRIN-Global Search Engine service (ggse) before attempting to reinstall the Search Engine application.
+		This work fine, but if the user runs the Search Engine's .msi or .exe, it will require a reboot before operating properly (but the installer does not prompt them to reboot, only informs them they should).
+		</div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: xx-large; ">IIS</span></div>
+    <div>
+        <br />
+    </div>
+    <div>
+        <span class="Apple-style-span" style="font-size: large; ">XP</span>&nbsp;</div>
+    <div>
+        Install requires windows CD, nothing we can do about it. &nbsp;Home edition does not 
+        support IIS.</div>
+    <div>
+        Uses sysocmgr.exe and an answer file to auto-select appropriate components.</div>
+    <div>
+        <div>
+            <a href="http://www.microsoft.com/technet/prodtechnol/WindowsServer2003/Library/IIS/efefcb53-b86e-4cac-9b4b-fcf5f1145aa9.mspx?mfr=true">
+            http://www.microsoft.com/technet/prodtechnol/WindowsServer2003/Library/IIS/efefcb53-b86e-4cac-9b4b-fcf5f1145aa9.mspx?mfr=true</a></div>
+        <div>
+            <a href="http://geekswithblogs.net/sdorman/archive/2007/03/01/107732.aspx">
+            http://geekswithblogs.net/sdorman/archive/2007/03/01/107732.aspx</a></div>
+        <div>
+            <br />
+        </div>
+        <div>
+            <a href="http://geekswithblogs.net/sdorman/archive/2007/03/01/107732.aspx"></a>
+            <span class="Apple-style-span" style="font-size: large; ">Vista and Windows 7</span></div>
+        <div>
+            Install doesn&#39;t require CD. &nbsp;All versions support IIS components necessary for 
+            GrinGlobal middle tier.</div>
+        <div>
+            Uses pkgmgr.exe and an unattended install file to auto-select appropriate 
+            components</div>
+        <div>
+            Note that Home version requires different xml in the unattended file than the 
+            other versions do.</div>
+        <div>
+            <a href="http://learn.iis.net/page.aspx/133/using-unattend-setup-to-install-iis-7/">
+            http://learn.iis.net/page.aspx/133/using-unattend-setup-to-install-iis-7/</a></div>
+        <div>
+            <span class="Apple-style-span" style="font-size: large; ">
+            <span class="Apple-style-span" style="font-size: small; ">
+            <br />
+            </span></span>
+        </div>
+    </div>
+    <div>
+        <a href="http://mw25pi-grin-t1.visitor.iastate.edu:8080/svn/GrinGlobal/trunk/Documentation/installer_info.html">
+        </a><span class="Apple-style-span" style="font-size: xx-large; ">SQL Server 
+        Express 2008</span><br clear="all" />
+        No prerequisite for VS.NET 2008 for SQL Server Express 2008 that includes the 
+        management tools</div>
+    <div>
+        Requires Windows Installer 4.5 and Powershell 1.0</div>
+    <div>
+        We gave up on trying to automate its installation on all platforms, we now use 
+        Web Platform Installer (WPI) to do the heavy lifting</div>
+    <div>
+        Updater contains a registry check to see if it&#39;s installed, if not a form with 
+        the following link is provided (so they can use WPI to install it):</div>
+    <div>
+        <a href="http://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=SQLExpressTools;SQLExpressTools">
+        http://www.microsoft.com/web/gallery/install.aspx?appsxml=&amp;appid=SQLExpressTools;SQLExpressTools</a></div>
+    <div>
+        <br />
+    </div>
+    </span></span>
+    <br class="Apple-interchange-newline" />
+
+</body>
+</html>

@@ -1,0 +1,1832 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#     * Rearrange models' order
+#     * Make sure each model has one field with primary_key=True
+# Feel free to rename the models, but don't rename db_table values or field names.
+#
+# Also note: You'll have to insert the output of 'django-admin.py sqlcustom [appname]'
+# into your database.
+
+from django.db import models
+
+class MainAllGqueryCol(models.Model):
+    owner = models.CharField(max_length=30)
+    table_name = models.CharField(max_length=30)
+    column_name = models.CharField(max_length=30)
+    data_type = models.CharField(max_length=9, blank=True)
+    data_length = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    nullable = models.CharField(max_length=1, blank=True)
+    full_col = models.CharField(max_length=128, blank=True)
+    defn = models.CharField(max_length=128, blank=True)
+    pk = models.CharField(max_length=32, blank=True)
+    class Meta:
+        db_table = u'MAIN.ALL_GQUERY_COL'
+
+class MainArsregion(models.Model):
+    arsno = models.DecimalField(max_digits=2, decimal_places=0)
+    region = models.CharField(max_length=30)
+    code = models.CharField(max_length=3)
+    state = models.CharField(max_length=20, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'MAIN.ARSREGION'
+
+class MainCodeColumn(models.Model):
+    owner = models.CharField(max_length=30)
+    table_name = models.CharField(max_length=30)
+    column_name = models.CharField(max_length=30)
+    code_no = models.DecimalField(max_digits=5, decimal_places=0)
+    site = models.CharField(max_length=8)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    master = models.CharField(max_length=1, blank=True)
+    form_name = models.CharField(max_length=30, blank=True)
+    class Meta:
+        db_table = u'MAIN.CODE_COLUMN'
+
+class MainCodeRule(models.Model):
+    owner = models.CharField(max_length=30)
+    table_name = models.CharField(max_length=30)
+    column_name = models.CharField(max_length=30)
+    code_no = models.DecimalField(max_digits=5, decimal_places=0)
+    site = models.CharField(max_length=8)
+    maxlen = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    function = models.CharField(max_length=7, blank=True)
+    std = models.CharField(max_length=1, blank=True)
+    cat_flag = models.CharField(max_length=1, blank=True)
+    cat_no = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    cat_cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    form_name = models.CharField(max_length=30, blank=True)
+    class Meta:
+        db_table = u'MAIN.CODE_RULE'
+
+class MainCodeValue(models.Model):
+    code_no = models.DecimalField(max_digits=5, decimal_places=0)
+    code = models.CharField(max_length=10)
+    site = models.CharField(max_length=8)
+    std = models.CharField(max_length=1, blank=True)
+    cat = models.CharField(max_length=10, blank=True)
+    def_field = models.CharField(max_length=40, db_column='def', blank=True) # Field renamed because it was a Python reserved word.
+    cmt = models.CharField(max_length=4000, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'MAIN.CODE_VALUE'
+
+class MainDatabase(models.Model):
+    name = models.CharField(max_length=10, blank=True)
+    env = models.CharField(max_length=12, blank=True)
+    date_format = models.CharField(max_length=12, blank=True)
+    svalbard = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    class Meta:
+        db_table = u'MAIN.DATABASE'
+
+class MainDbmuFormApplication(models.Model):
+    owner = models.CharField(max_length=30)
+    form_name = models.CharField(max_length=30)
+    title = models.CharField(max_length=80, blank=True)
+    validation_unit = models.CharField(max_length=6, blank=True)
+    mouse = models.CharField(max_length=6, blank=True)
+    menu = models.CharField(max_length=30, blank=True)
+    menu_name = models.CharField(max_length=30, blank=True)
+    menu_group = models.CharField(max_length=30, blank=True)
+    class Meta:
+        db_table = u'MAIN.DBMU_FORM_APPLICATION'
+
+class MainDbmuFormBlock(models.Model):
+    owner = models.CharField(max_length=30)
+    form_name = models.CharField(max_length=30)
+    block_name = models.CharField(max_length=30)
+    description = models.CharField(max_length=60, blank=True)
+    hide = models.CharField(max_length=1, blank=True)
+    block_seq = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    unique_key = models.CharField(max_length=1, blank=True)
+    db_table = models.CharField(max_length=1, blank=True)
+    db_constraint = models.CharField(max_length=1, blank=True)
+    table_owner = models.CharField(max_length=30, blank=True)
+    table_name = models.CharField(max_length=30, blank=True)
+    no_records = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    no_buffers = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    base_line = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    no_lines = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    array_size = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    text_id = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    class Meta:
+        db_table = u'MAIN.DBMU_FORM_BLOCK'
+
+class MainDbmuFormField(models.Model):
+    owner = models.CharField(max_length=30)
+    form_name = models.CharField(max_length=30)
+    block_name = models.CharField(max_length=30)
+    field_name = models.CharField(max_length=30)
+    field_seq = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    field_type = models.CharField(max_length=8, blank=True)
+    field_length = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    display_length = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    query_length = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    db_table = models.CharField(max_length=1, blank=True)
+    db_key = models.CharField(max_length=1, blank=True)
+    copy_block = models.CharField(max_length=30, blank=True)
+    copy_field = models.CharField(max_length=30, blank=True)
+    default_value = models.CharField(max_length=80, blank=True)
+    display_field = models.CharField(max_length=1, blank=True)
+    page_location = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    line_location = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    column_location = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    field_prompt = models.CharField(max_length=80, blank=True)
+    above_prompt = models.CharField(max_length=1, blank=True)
+    left_prompt = models.CharField(max_length=1, blank=True)
+    enterable = models.CharField(max_length=1, blank=True)
+    queriable = models.CharField(max_length=1, blank=True)
+    updateable = models.CharField(max_length=1, blank=True)
+    update_null = models.CharField(max_length=1, blank=True)
+    manditory = models.CharField(max_length=1, blank=True)
+    fixed_length = models.CharField(max_length=1, blank=True)
+    skip_field = models.CharField(max_length=1, blank=True)
+    hide_field = models.CharField(max_length=1, blank=True)
+    display_help = models.CharField(max_length=1, blank=True)
+    upper_field = models.CharField(max_length=1, blank=True)
+    lov_field = models.CharField(max_length=60, blank=True)
+    text_id = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    lov_x = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    lov_y = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    low_value = models.CharField(max_length=30, blank=True)
+    high_value = models.CharField(max_length=30, blank=True)
+    validation_pattern = models.CharField(max_length=80, blank=True)
+    display_mask = models.CharField(max_length=80, blank=True)
+    help_text = models.CharField(max_length=80, blank=True)
+    edit_x = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    edit_y = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    word_wrap = models.CharField(max_length=1, blank=True)
+    edit_title = models.CharField(max_length=255, blank=True)
+    edit_title_b = models.CharField(max_length=255, blank=True)
+    class Meta:
+        db_table = u'MAIN.DBMU_FORM_FIELD'
+
+class MainDdLink(models.Model):
+    rec_id = models.DecimalField(max_digits=7, decimal_places=0)
+    obj_id = models.DecimalField(max_digits=7, decimal_places=0)
+    join_id = models.DecimalField(max_digits=7, decimal_places=0)
+    type = models.CharField(max_length=10)
+    crt_user = models.CharField(max_length=30)
+    crt_date = models.DateTimeField()
+    mod_user = models.CharField(max_length=30, blank=True)
+    mod_date = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'MAIN.DD_LINK'
+
+class MainDdObject(models.Model):
+    dd_obj_no = models.DecimalField(max_digits=7, decimal_places=0)
+    parent_obj = models.DecimalField(max_digits=7, decimal_places=0)
+    parent = models.CharField(max_length=1, blank=True)
+    owner = models.CharField(max_length=30, blank=True)
+    type = models.CharField(max_length=10, blank=True)
+    object_1 = models.CharField(max_length=30, blank=True)
+    object_2 = models.CharField(max_length=30, blank=True)
+    object_3 = models.CharField(max_length=30, blank=True)
+    printed_dd = models.CharField(max_length=1, blank=True)
+    long_name = models.CharField(max_length=60, blank=True)
+    short_name = models.CharField(max_length=30, blank=True)
+    db_area = models.CharField(max_length=10, blank=True)
+    min_value = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    max_value = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    col_format = models.CharField(max_length=30, blank=True)
+    lov = models.CharField(max_length=1, blank=True)
+    coded = models.CharField(max_length=1, blank=True)
+    std = models.CharField(max_length=1, blank=True)
+    supplied = models.CharField(max_length=1, blank=True)
+    dflt_flag = models.CharField(max_length=1, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'MAIN.DD_OBJECT'
+
+class MainDdRtfCont(models.Model):
+    seq = models.DecimalField(max_digits=7, decimal_places=0)
+    user_id = models.CharField(max_length=30)
+    type = models.CharField(max_length=3)
+    pg_no = models.DecimalField(max_digits=4, decimal_places=0)
+    itm = models.CharField(max_length=30)
+    itm_name = models.CharField(max_length=100)
+    tbl = models.CharField(max_length=30, blank=True)
+    tbl_name = models.CharField(max_length=100, blank=True)
+    area_name = models.CharField(max_length=100, blank=True)
+    class Meta:
+        db_table = u'MAIN.DD_RTF_CONT'
+
+class MainDdRtfDoc(models.Model):
+    seq = models.DecimalField(max_digits=7, decimal_places=0)
+    user_id = models.CharField(max_length=30)
+    txt = models.TextField() # This field type is a guess.
+    class Meta:
+        db_table = u'MAIN.DD_RTF_DOC'
+
+class MainDdRtfIndex(models.Model):
+    user_id = models.CharField(max_length=30)
+    type = models.CharField(max_length=3)
+    pg_no = models.DecimalField(max_digits=4, decimal_places=0)
+    itm_name = models.CharField(max_length=100)
+    prnt_name = models.CharField(max_length=100, blank=True)
+    class Meta:
+        db_table = u'MAIN.DD_RTF_INDEX'
+
+class MainDdText(models.Model):
+    text_id = models.DecimalField(max_digits=7, decimal_places=0)
+    line_no = models.DecimalField(max_digits=3, decimal_places=0)
+    eol_nl = models.CharField(max_length=1, blank=True)
+    text = models.CharField(max_length=60, blank=True)
+    class Meta:
+        db_table = u'MAIN.DD_TEXT'
+
+class MainDdType(models.Model):
+    dd_obj_no = models.DecimalField(max_digits=7, decimal_places=0)
+    text_type = models.CharField(max_length=10)
+    review = models.CharField(max_length=1, blank=True)
+    text_id = models.DecimalField(null=True, max_digits=7, decimal_places=0, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    item_text = models.CharField(max_length=4000, blank=True)
+    dd_type_id = models.DecimalField(max_digits=7, decimal_places=0)
+    class Meta:
+        db_table = u'MAIN.DD_TYPE'
+
+class MainGqueryJoin(models.Model):
+    table_name = models.CharField(max_length=30, blank=True)
+    column_name = models.CharField(max_length=30, blank=True)
+    acid_join = models.CharField(max_length=512, blank=True)
+    acid_set = models.CharField(max_length=10, blank=True)
+    ivid_join = models.CharField(max_length=512, blank=True)
+    ivid_set = models.CharField(max_length=10, blank=True)
+    table_from = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'MAIN.GQUERY_JOIN'
+
+class MainHintLines(models.Model):
+    view_name = models.CharField(max_length=7, blank=True)
+    table_name = models.CharField(max_length=10, blank=True)
+    column_nam = models.CharField(max_length=10, blank=True)
+    hint_line = models.CharField(max_length=150, blank=True)
+    class Meta:
+        db_table = u'MAIN.HINT_LINES'
+
+class MainIddDefaults(models.Model):
+    userid = models.CharField(max_length=10)
+    options = models.CharField(max_length=255, blank=True)
+    class Meta:
+        db_table = u'MAIN.IDD_DEFAULTS'
+
+class MainImagedir(models.Model):
+    dir = models.CharField(max_length=200, blank=True)
+    site = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'MAIN.IMAGEDIR'
+
+class MainPqDefaults(models.Model):
+    userid = models.CharField(max_length=10)
+    option_name = models.CharField(max_length=30, blank=True)
+    delete_printed = models.CharField(max_length=1, blank=True)
+    shift_text = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'MAIN.PQ_DEFAULTS'
+
+class MainPqFiles(models.Model):
+    file_name = models.CharField(max_length=30)
+    report_name = models.CharField(max_length=30, blank=True)
+    pq_path = models.CharField(max_length=80, blank=True)
+    width = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    lines = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'MAIN.PQ_FILES'
+
+class MainPqOptions(models.Model):
+    option_name = models.CharField(max_length=30)
+    set_option = models.CharField(max_length=255, blank=True)
+    reset_option = models.CharField(max_length=255, blank=True)
+    max_width = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    max_lines = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    description = models.CharField(max_length=2000, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'MAIN.PQ_OPTIONS'
+
+class MainSite(models.Model):
+    site = models.CharField(max_length=8)
+    sitename = models.CharField(max_length=60, blank=True)
+    arsregion = models.CharField(max_length=3, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    distribute = models.CharField(max_length=1, blank=True)
+    clonal = models.CharField(max_length=1, blank=True)
+    instcode = models.CharField(max_length=20, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'MAIN.SITE'
+
+class MainSiteuser(models.Model):
+    siteuser = models.CharField(max_length=10)
+    site = models.CharField(max_length=8)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'MAIN.SITEUSER'
+
+class MainTimesroman(models.Model):
+    letdec = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    letter = models.CharField(max_length=1, blank=True)
+    factor = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    xfac = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    tfac = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'MAIN.TIMESROMAN'
+
+class ProdAact(models.Model):
+    aactno = models.DecimalField(max_digits=8, decimal_places=0)
+    action = models.CharField(max_length=10)
+    occurred = models.DateTimeField(null=True, blank=True)
+    fmtoccurred = models.CharField(max_length=10, blank=True)
+    completed = models.DateTimeField(null=True, blank=True)
+    fmtcompleted = models.CharField(max_length=10, blank=True)
+    showweb = models.CharField(max_length=1, blank=True)
+    narr = models.CharField(max_length=2000, blank=True)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    eno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.AACT'
+
+class ProdAcc(models.Model):
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    acp = models.CharField(max_length=4)
+    acno = models.DecimalField(max_digits=7, decimal_places=0)
+    acs = models.CharField(max_length=4, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    whynull = models.CharField(max_length=10, blank=True)
+    core = models.CharField(max_length=1, blank=True)
+    backup = models.CharField(max_length=1, blank=True)
+    lifeform = models.CharField(max_length=10, blank=True)
+    acimpt = models.CharField(max_length=10, blank=True)
+    uniform = models.CharField(max_length=10, blank=True)
+    acform = models.CharField(max_length=2, blank=True)
+    received = models.DateTimeField()
+    datefmt = models.CharField(max_length=10, blank=True)
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    pivol = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.ACC'
+
+class ProdAcit(models.Model):
+    citno = models.DecimalField(max_digits=8, decimal_places=0)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    abbr = models.CharField(max_length=20, blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.DecimalField(null=True, max_digits=4, decimal_places=0, blank=True)
+    citref = models.CharField(max_length=60, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.ACIT'
+
+class ProdAg(models.Model):
+    agname = models.CharField(max_length=20)
+    cmt = models.CharField(max_length=240, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    url = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.AG'
+
+class ProdAl(models.Model):
+    alno = models.DecimalField(max_digits=8, decimal_places=0)
+    action = models.CharField(max_length=10)
+    acted = models.DateTimeField()
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    site = models.CharField(max_length=8, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    ivid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    orno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    oldtaxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    newtaxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.AL'
+
+class ProdAn(models.Model):
+    anno = models.DecimalField(max_digits=8, decimal_places=0)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    idtype = models.CharField(max_length=10)
+    idrank = models.DecimalField(null=True, max_digits=4, decimal_places=0, blank=True)
+    topname = models.CharField(max_length=1, blank=True)
+    plantid = models.CharField(max_length=40)
+    searchid = models.CharField(max_length=40, blank=True)
+    agname = models.CharField(max_length=20, blank=True)
+    ivid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.AN'
+
+class ProdCd(models.Model):
+    dno = models.DecimalField(max_digits=8, decimal_places=0)
+    code = models.CharField(max_length=30)
+    def_field = models.CharField(max_length=240, db_column='def', blank=True) # Field renamed because it was a Python reserved word.
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.CD'
+
+class ProdCg(models.Model):
+    cgid = models.CharField(max_length=20)
+    cgname = models.CharField(max_length=60, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    historical = models.CharField(max_length=1, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.CG'
+
+class ProdCn(models.Model):
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    cname = models.CharField(max_length=50)
+    source = models.CharField(max_length=20, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    cnid = models.CharField(max_length=50, blank=True)
+    class Meta:
+        db_table = u'PROD.CN'
+
+class ProdCoop(models.Model):
+    cno = models.DecimalField(max_digits=8, decimal_places=0)
+    validcno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    lname = models.CharField(max_length=40, blank=True)
+    title = models.CharField(max_length=5, blank=True)
+    fname = models.CharField(max_length=30, blank=True)
+    job = models.CharField(max_length=40, blank=True)
+    org = models.CharField(max_length=60, blank=True)
+    orgid = models.CharField(max_length=10, blank=True)
+    add1 = models.CharField(max_length=60, blank=True)
+    add2 = models.CharField(max_length=60, blank=True)
+    add3 = models.CharField(max_length=60, blank=True)
+    city = models.CharField(max_length=20, blank=True)
+    zip = models.CharField(max_length=10, blank=True)
+    geono = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    phone1 = models.CharField(max_length=30, blank=True)
+    phone2 = models.CharField(max_length=30, blank=True)
+    fax = models.CharField(max_length=30, blank=True)
+    email = models.CharField(max_length=100, blank=True)
+    active = models.CharField(max_length=1, blank=True)
+    cat = models.CharField(max_length=4, blank=True)
+    arsregion = models.CharField(max_length=3, blank=True)
+    discipline = models.CharField(max_length=10, blank=True)
+    initials = models.CharField(max_length=6, blank=True)
+    coop = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.COOP'
+
+class ProdCotiv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    gchar4 = models.CharField(max_length=4, blank=True)
+    gchar6 = models.CharField(max_length=6, blank=True)
+    gchar8 = models.CharField(max_length=8, blank=True)
+    gchar10 = models.CharField(max_length=10, blank=True)
+    gchar12 = models.CharField(max_length=12, blank=True)
+    gchar20 = models.CharField(max_length=20, blank=True)
+    gnum = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.COTIV'
+
+class ProdCrop(models.Model):
+    cropno = models.DecimalField(max_digits=8, decimal_places=0)
+    crop = models.CharField(max_length=20)
+    cmt = models.CharField(max_length=2000, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.CROP'
+
+class ProdCsr(models.Model):
+    csrid = models.CharField(max_length=10)
+    print_cnt = models.DecimalField(max_digits=3, decimal_places=0)
+    citno = models.DecimalField(null=True, max_digits=10, decimal_places=0, blank=True)
+    type = models.CharField(max_length=3)
+    printed = models.CharField(max_length=1)
+    complete = models.CharField(max_length=1)
+    crop = models.CharField(max_length=60)
+    first_no = models.DecimalField(max_digits=10, decimal_places=0)
+    last_no = models.DecimalField(null=True, max_digits=10, decimal_places=0, blank=True)
+    no_text = models.CharField(max_length=80)
+    issued = models.DateTimeField(null=True, blank=True)
+    src_type = models.CharField(max_length=10)
+    csr_title = models.CharField(max_length=80, blank=True)
+    year = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    volume = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    part = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    page = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    manuscript_no = models.CharField(max_length=20, blank=True)
+    accepted = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.CSR'
+
+class ProdCsrAcid(models.Model):
+    csrid = models.CharField(max_length=10)
+    acno = models.DecimalField(max_digits=10, decimal_places=0)
+    crop = models.CharField(max_length=60)
+    type = models.CharField(max_length=2)
+    num = models.DecimalField(max_digits=5, decimal_places=0)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    acp = models.CharField(max_length=4, blank=True)
+    acs = models.CharField(max_length=4, blank=True)
+    manuscript_no = models.CharField(max_length=20, blank=True)
+    class Meta:
+        db_table = u'PROD.CSR_ACID'
+
+class ProdCsrAcp(models.Model):
+    csrid = models.CharField(max_length=10)
+    acp = models.CharField(max_length=4)
+    first_acno = models.DecimalField(max_digits=10, decimal_places=0)
+    last_acno = models.DecimalField(null=True, max_digits=10, decimal_places=0, blank=True)
+    acno = models.DecimalField(max_digits=10, decimal_places=0)
+    acs = models.CharField(max_length=4, blank=True)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    manuscript_no = models.CharField(max_length=20, blank=True)
+    class Meta:
+        db_table = u'PROD.CSR_ACP'
+
+class ProdCsrCoop(models.Model):
+    csrid = models.CharField(max_length=10)
+    coop = models.CharField(max_length=100)
+    assignee = models.CharField(max_length=1, blank=True)
+    cno = models.DecimalField(max_digits=8, decimal_places=0)
+    geono = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    srcno = models.DecimalField(max_digits=8, decimal_places=0)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    manuscript_no = models.CharField(max_length=20, blank=True)
+    class Meta:
+        db_table = u'PROD.CSR_COOP'
+
+class ProdCsrDetail(models.Model):
+    iprcrop = models.CharField(max_length=60, blank=True)
+    cv_iprid_2 = models.CharField(max_length=4, blank=True)
+    cv_plantid = models.CharField(max_length=10, blank=True)
+    gp_iprid_2 = models.CharField(max_length=4, blank=True)
+    gp_plantid = models.CharField(max_length=10, blank=True)
+    gs_iprid_2 = models.CharField(max_length=4, blank=True)
+    gs_plantid = models.CharField(max_length=10, blank=True)
+    mp_iprid_2 = models.CharField(max_length=4, blank=True)
+    mp_plantid = models.CharField(max_length=10, blank=True)
+    pl_iprid_2 = models.CharField(max_length=4, blank=True)
+    pl_plantid = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'PROD.CSR_DETAIL'
+
+class ProdCsrInst(models.Model):
+    csrid = models.CharField(max_length=10)
+    csr_inst = models.CharField(max_length=80)
+    print_cnt = models.DecimalField(max_digits=5, decimal_places=0)
+    seq_inst = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    manuscript_no = models.CharField(max_length=20, blank=True)
+    total_print = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.CSR_INST'
+
+class ProdCsrMaster(models.Model):
+    acid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    iprtype = models.CharField(max_length=10, blank=True)
+    iprid = models.CharField(max_length=40, blank=True)
+    iprid_1 = models.CharField(max_length=2, blank=True)
+    iprid_2 = models.CharField(max_length=37, blank=True)
+    iprno = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    iprcrop = models.CharField(max_length=60, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    citno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.CSR_MASTER'
+
+class ProdDelLog(models.Model):
+    del_id = models.DecimalField(max_digits=0, decimal_places=-127)
+    owner_table = models.CharField(max_length=30, blank=True)
+    table_col = models.CharField(max_length=400, blank=True)
+    table_val = models.CharField(max_length=2000, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    date_stamp = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.DEL_LOG'
+
+class ProdDist(models.Model):
+    distno = models.DecimalField(max_digits=8, decimal_places=0)
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    geono = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.DIST'
+
+class ProdDsc(models.Model):
+    dno = models.DecimalField(max_digits=8, decimal_places=0)
+    dqname = models.CharField(max_length=10)
+    dname = models.CharField(max_length=30, blank=True)
+    cac = models.CharField(max_length=1)
+    dcat = models.CharField(max_length=10, blank=True)
+    obtype = models.CharField(max_length=10)
+    usecode = models.CharField(max_length=1, blank=True)
+    obmaxlen = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    obformat = models.CharField(max_length=15, blank=True)
+    obmax = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    obmin = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    orgtype = models.CharField(max_length=10, blank=True)
+    orgformat = models.CharField(max_length=15, blank=True)
+    cropno = models.DecimalField(max_digits=8, decimal_places=0)
+    site = models.CharField(max_length=8, blank=True)
+    def_field = models.CharField(max_length=240, db_column='def', blank=True) # Field renamed because it was a Python reserved word.
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.DSC'
+
+class ProdDurl(models.Model):
+    urltype = models.CharField(max_length=10)
+    seqno = models.DecimalField(max_digits=8, decimal_places=0)
+    cropno = models.DecimalField(max_digits=8, decimal_places=0)
+    dno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    code = models.CharField(max_length=30, blank=True)
+    caption = models.CharField(max_length=60, blank=True)
+    url = models.CharField(max_length=100)
+    site = models.CharField(max_length=8)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    eno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.DURL'
+
+class ProdEcit(models.Model):
+    citno = models.DecimalField(max_digits=8, decimal_places=0)
+    eno = models.DecimalField(max_digits=8, decimal_places=0)
+    abbr = models.CharField(max_length=20, blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.DecimalField(null=True, max_digits=4, decimal_places=0, blank=True)
+    citref = models.CharField(max_length=240, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.ECIT'
+
+class ProdEmbr(models.Model):
+    cno = models.DecimalField(max_digits=8, decimal_places=0)
+    eno = models.DecimalField(max_digits=8, decimal_places=0)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.EMBR'
+
+class ProdEval(models.Model):
+    eno = models.DecimalField(max_digits=8, decimal_places=0)
+    ename = models.CharField(max_length=100)
+    site = models.CharField(max_length=8, blank=True)
+    geono = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    methods = models.CharField(max_length=4000, blank=True)
+    studytype = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'PROD.EVAL'
+
+class ProdExacc(models.Model):
+    collid = models.CharField(max_length=40, blank=True)
+    explid = models.CharField(max_length=10, blank=True)
+    taxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    acid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    acform1 = models.CharField(max_length=2, blank=True)
+    acform2 = models.CharField(max_length=2, blank=True)
+    acform3 = models.CharField(max_length=2, blank=True)
+    acform4 = models.CharField(max_length=2, blank=True)
+    geono = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    county = models.CharField(max_length=30, blank=True)
+    latd = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    latm = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    lats = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    lath = models.CharField(max_length=1, blank=True)
+    lond = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    lonm = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    lons = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    lonh = models.CharField(max_length=1, blank=True)
+    elev = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    gctype = models.CharField(max_length=10, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    validtaxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    eunit = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'PROD.EXACC'
+
+class ProdExmbr(models.Model):
+    explid = models.CharField(max_length=10, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.EXMBR'
+
+class ProdExpl(models.Model):
+    explid = models.CharField(max_length=10)
+    title = models.CharField(max_length=240, blank=True)
+    began = models.DateTimeField(null=True, blank=True)
+    finished = models.DateTimeField(null=True, blank=True)
+    fundsrc = models.CharField(max_length=60, blank=True)
+    fundamt = models.DecimalField(null=True, max_digits=8, decimal_places=2, blank=True)
+    target = models.CharField(max_length=40, blank=True)
+    permits = models.CharField(max_length=240, blank=True)
+    restrict = models.CharField(max_length=10, blank=True)
+    erosion = models.CharField(max_length=3, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    fy = models.DecimalField(null=True, max_digits=4, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.EXPL'
+
+class ProdExprpt(models.Model):
+    seqno = models.DecimalField(max_digits=7, decimal_places=0)
+    text = models.CharField(max_length=255, blank=True)
+    explid = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'PROD.EXPRPT'
+
+class ProdFam(models.Model):
+    famno = models.DecimalField(max_digits=8, decimal_places=0)
+    validfamno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    family = models.CharField(max_length=25)
+    famauthor = models.CharField(max_length=100, blank=True)
+    altfamily = models.CharField(max_length=25, blank=True)
+    subfamily = models.CharField(max_length=25, blank=True)
+    tribe = models.CharField(max_length=25, blank=True)
+    subtribe = models.CharField(max_length=25, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.FAM'
+
+class ProdGa(models.Model):
+    gano = models.DecimalField(max_digits=0, decimal_places=-127)
+    mrkno = models.DecimalField(max_digits=8, decimal_places=0)
+    eno = models.DecimalField(max_digits=0, decimal_places=-127)
+    method = models.CharField(max_length=2000, blank=True)
+    scoring_method = models.CharField(max_length=1000, blank=True)
+    control_values = models.CharField(max_length=1000, blank=True)
+    no_obs_alleles = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    max_gob_alleles = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    size_alleles = models.CharField(max_length=100, blank=True)
+    unusual_alleles = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=4000, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.GA'
+
+class ProdGcit(models.Model):
+    citno = models.DecimalField(max_digits=8, decimal_places=0)
+    gno = models.DecimalField(max_digits=8, decimal_places=0)
+    abbr = models.CharField(max_length=20, blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.DecimalField(null=True, max_digits=4, decimal_places=0, blank=True)
+    citref = models.CharField(max_length=60, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.GCIT'
+
+class ProdGeneralConfig(models.Model):
+    config = models.CharField(max_length=1024, blank=True)
+    label = models.CharField(max_length=64, blank=True)
+    userid = models.CharField(max_length=32, blank=True)
+    class Meta:
+        db_table = u'PROD.GENERAL_CONFIG'
+
+class ProdGeniv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    rest = models.CharField(max_length=4, blank=True)
+    flower = models.CharField(max_length=2, blank=True)
+    trueness = models.CharField(max_length=2, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.GENIV'
+
+class ProdGeo(models.Model):
+    geono = models.DecimalField(max_digits=8, decimal_places=0)
+    validgeono = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    country = models.CharField(max_length=30)
+    state = models.CharField(max_length=20, blank=True)
+    isofull = models.CharField(max_length=100, blank=True)
+    isoshort = models.CharField(max_length=60, blank=True)
+    statefull = models.CharField(max_length=60, blank=True)
+    iso3 = models.CharField(max_length=3, blank=True)
+    iso2 = models.CharField(max_length=2, blank=True)
+    st = models.CharField(max_length=3, blank=True)
+    cflag = models.CharField(max_length=1)
+    lath = models.CharField(max_length=1, blank=True)
+    lonh = models.CharField(max_length=1, blank=True)
+    regno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    changed = models.DateTimeField(null=True, blank=True)
+    oldname = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.GEO'
+
+class ProdGermrule(models.Model):
+    ruleno = models.DecimalField(max_digits=8, decimal_places=0)
+    substrata = models.CharField(max_length=70, blank=True)
+    temp = models.CharField(max_length=30, blank=True)
+    requirements = models.CharField(max_length=500, blank=True)
+    author = models.CharField(max_length=20, blank=True)
+    category = models.CharField(max_length=10, blank=True)
+    days = models.CharField(max_length=20, blank=True)
+    taxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.GERMRULE'
+
+class ProdGn(models.Model):
+    gno = models.DecimalField(max_digits=8, decimal_places=0)
+    validgno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    qual = models.CharField(max_length=2, blank=True)
+    ghybrid = models.CharField(max_length=1, blank=True)
+    genus = models.CharField(max_length=30)
+    gauthor = models.CharField(max_length=100, blank=True)
+    subgenus = models.CharField(max_length=30, blank=True)
+    section = models.CharField(max_length=30, blank=True)
+    series = models.CharField(max_length=30, blank=True)
+    subseries = models.CharField(max_length=30, blank=True)
+    famno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    othfamily = models.CharField(max_length=100, blank=True)
+    cname = models.CharField(max_length=30, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    subsection = models.CharField(max_length=30, blank=True)
+    class Meta:
+        db_table = u'PROD.GN'
+
+class ProdGnt(models.Model):
+    gno = models.DecimalField(max_digits=8, decimal_places=0)
+    famno = models.DecimalField(max_digits=8, decimal_places=0)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.GNT'
+
+class ProdGob(models.Model):
+    gobno = models.DecimalField(max_digits=0, decimal_places=-127)
+    gano = models.DecimalField(max_digits=0, decimal_places=-127)
+    ivid = models.DecimalField(max_digits=0, decimal_places=-127)
+    indiv = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    gob = models.CharField(max_length=1000)
+    genbank_link = models.CharField(max_length=200, blank=True)
+    image_link = models.CharField(max_length=200, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.GOB'
+
+class ProdGrinwinIni(models.Model):
+    type = models.CharField(max_length=32, blank=True)
+    label = models.CharField(max_length=32, blank=True)
+    value = models.CharField(max_length=64, blank=True)
+    class Meta:
+        db_table = u'PROD.GRINWIN_INI'
+
+class ProdGspiiv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    qt = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    qcode = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    age = models.CharField(max_length=14, blank=True)
+    ivhswt = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    incloc = models.CharField(max_length=10, blank=True)
+    incyr = models.CharField(max_length=4, blank=True)
+    lottype = models.CharField(max_length=1, blank=True)
+    pollvec = models.CharField(max_length=2, blank=True)
+    pollenvir = models.CharField(max_length=10, blank=True)
+    pollproc = models.CharField(max_length=4, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    splitivid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    plot = models.CharField(max_length=14, blank=True)
+    class Meta:
+        db_table = u'PROD.GSPIIV'
+
+class ProdHab(models.Model):
+    srcno = models.DecimalField(max_digits=8, decimal_places=0)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    latd = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    latm = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    lats = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    lath = models.CharField(max_length=1, blank=True)
+    lond = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    lonm = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    lons = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    lonh = models.CharField(max_length=1, blank=True)
+    elev = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    quant = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    units = models.CharField(max_length=2, blank=True)
+    cform = models.CharField(max_length=2, blank=True)
+    plants = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    locality = models.CharField(max_length=240, blank=True)
+    habitat = models.CharField(max_length=240, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    gctype = models.CharField(max_length=10, blank=True)
+    gstype = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'PROD.HAB'
+
+class ProdIact(models.Model):
+    iactno = models.DecimalField(max_digits=8, decimal_places=0)
+    action = models.CharField(max_length=10)
+    occurred = models.DateTimeField(null=True, blank=True)
+    datefmt = models.CharField(max_length=10, blank=True)
+    quant = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    units = models.CharField(max_length=2, blank=True)
+    iform = models.CharField(max_length=2, blank=True)
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    eno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    iactqual = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'PROD.IACT'
+
+class ProdIg(models.Model):
+    igname = models.CharField(max_length=100)
+    site = models.CharField(max_length=8)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.IG'
+
+class ProdIgm(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    igname = models.CharField(max_length=100)
+    site = models.CharField(max_length=8)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.IGM'
+
+class ProdIm(models.Model):
+    imname = models.CharField(max_length=20)
+    site = models.CharField(max_length=8)
+    ivt = models.CharField(max_length=2)
+    munits = models.CharField(max_length=2, blank=True)
+    debit = models.CharField(max_length=1)
+    dform = models.CharField(max_length=2)
+    dquant = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    dunits = models.CharField(max_length=2, blank=True)
+    dcritical = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    rcritical = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    regen = models.CharField(max_length=10, blank=True)
+    ptests = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.IM'
+
+class ProdIpr(models.Model):
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    iprtype = models.CharField(max_length=10)
+    iprid = models.CharField(max_length=40, blank=True)
+    iprno = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    iprcrop = models.CharField(max_length=60, blank=True)
+    iprname = models.CharField(max_length=240, blank=True)
+    issued = models.DateTimeField(null=True, blank=True)
+    expired = models.DateTimeField(null=True, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    citno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    accepted = models.DateTimeField(null=True, blank=True)
+    expected = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.IPR'
+
+class ProdIv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    ivp = models.CharField(max_length=4)
+    ivno = models.DecimalField(max_digits=7, decimal_places=0)
+    ivs = models.CharField(max_length=8, blank=True)
+    ivt = models.CharField(max_length=2)
+    imname = models.CharField(max_length=20, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    distribute = models.CharField(max_length=1, blank=True)
+    loc1 = models.CharField(max_length=10, blank=True)
+    loc2 = models.CharField(max_length=10, blank=True)
+    loc3 = models.CharField(max_length=10, blank=True)
+    loc4 = models.CharField(max_length=10, blank=True)
+    onhand = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    munits = models.CharField(max_length=2, blank=True)
+    debit = models.CharField(max_length=1, blank=True)
+    dform = models.CharField(max_length=2, blank=True)
+    dquant = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    dunits = models.CharField(max_length=2, blank=True)
+    dcritical = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    rcritical = models.DecimalField(null=True, max_digits=9, decimal_places=0, blank=True)
+    pstatus = models.CharField(max_length=10, blank=True)
+    status = models.CharField(max_length=10, blank=True)
+    statcmt = models.CharField(max_length=60, blank=True)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    parent = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    backupiv = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.IV'
+
+class ProdLit(models.Model):
+    abbr = models.CharField(max_length=20)
+    stdabbr = models.CharField(max_length=240, blank=True)
+    reftitle = models.CharField(max_length=240, blank=True)
+    editor = models.CharField(max_length=240, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.LIT'
+
+class ProdMbr(models.Model):
+    cno = models.DecimalField(max_digits=8, decimal_places=0)
+    cgid = models.CharField(max_length=20)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    localid = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'PROD.MBR'
+
+class ProdMcit(models.Model):
+    citno = models.DecimalField(max_digits=8, decimal_places=0)
+    mrkno = models.DecimalField(max_digits=8, decimal_places=0)
+    abbr = models.CharField(max_length=20, blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.DecimalField(null=True, max_digits=4, decimal_places=0, blank=True)
+    citref = models.CharField(max_length=60, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.MCIT'
+
+class ProdMenuItem(models.Model):
+    menu_id = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    seqno = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    type = models.CharField(max_length=32, blank=True)
+    module = models.CharField(max_length=64, blank=True)
+    path = models.CharField(max_length=64, blank=True)
+    item = models.CharField(max_length=64, blank=True)
+    hint = models.CharField(max_length=64, blank=True)
+    arg = models.CharField(max_length=254, blank=True)
+    class Meta:
+        db_table = u'PROD.MENU_ITEM'
+
+class ProdMenuName(models.Model):
+    menu_id = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    menu_name = models.CharField(max_length=32, blank=True)
+    user_id = models.CharField(max_length=32, blank=True)
+    parent = models.CharField(max_length=32, blank=True)
+    title = models.CharField(max_length=64, blank=True)
+    class Meta:
+        db_table = u'PROD.MENU_NAME'
+
+class ProdMrk(models.Model):
+    mrkno = models.DecimalField(max_digits=0, decimal_places=-127)
+    cropno = models.DecimalField(max_digits=0, decimal_places=-127)
+    site = models.CharField(max_length=10)
+    marker = models.CharField(max_length=100)
+    synonyms = models.CharField(max_length=200, blank=True)
+    repeat_motif = models.CharField(max_length=100, blank=True)
+    primers = models.CharField(max_length=200, blank=True)
+    assay_conditions = models.CharField(max_length=4000, blank=True)
+    range_products = models.CharField(max_length=60, blank=True)
+    known_standards = models.CharField(max_length=300, blank=True)
+    genbank_no = models.CharField(max_length=20, blank=True)
+    map_location = models.CharField(max_length=100, blank=True)
+    position = models.CharField(max_length=1000, blank=True)
+    cmt = models.CharField(max_length=4000, blank=True)
+    poly_type = models.CharField(max_length=10, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.MRK'
+
+class ProdNaiv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    plantsex = models.CharField(max_length=1, blank=True)
+    habit = models.CharField(max_length=2, blank=True)
+    grid = models.CharField(max_length=3, blank=True)
+    vneeded = models.CharField(max_length=2, blank=True)
+    checked = models.DateTimeField(null=True, blank=True)
+    checkby = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    checknote = models.CharField(max_length=25, blank=True)
+    cmt = models.CharField(max_length=60, blank=True)
+    class Meta:
+        db_table = u'PROD.NAIV'
+
+class ProdNarr(models.Model):
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    ntype = models.CharField(max_length=1)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    narr = models.CharField(max_length=4000)
+    class Meta:
+        db_table = u'PROD.NARR'
+
+class ProdNc7Iv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    ivhswt = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    ivpoll = models.CharField(max_length=10, blank=True)
+    oldinvid = models.CharField(max_length=22, blank=True)
+    farmfield = models.CharField(max_length=10, blank=True)
+    loctype = models.CharField(max_length=10, blank=True)
+    loclow = models.CharField(max_length=10, blank=True)
+    lochigh = models.CharField(max_length=10, blank=True)
+    sloctype = models.CharField(max_length=10, blank=True)
+    sloclow = models.CharField(max_length=10, blank=True)
+    slochigh = models.CharField(max_length=10, blank=True)
+    cmt = models.CharField(max_length=4000, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    datum = models.CharField(max_length=10, blank=True)
+    coorappl = models.CharField(max_length=10, blank=True)
+    coorcomm = models.CharField(max_length=240, blank=True)
+    coorvouch = models.CharField(max_length=500, blank=True)
+    locirreg = models.CharField(max_length=500, blank=True)
+    success = models.CharField(max_length=1, blank=True)
+    unsuccess1 = models.CharField(max_length=10, blank=True)
+    unsuccess2 = models.CharField(max_length=10, blank=True)
+    unsuccess3 = models.CharField(max_length=10, blank=True)
+    unsucccmt = models.CharField(max_length=240, blank=True)
+    latdec1 = models.DecimalField(null=True, max_digits=11, decimal_places=7, blank=True)
+    londec1 = models.DecimalField(null=True, max_digits=12, decimal_places=7, blank=True)
+    precision1 = models.DecimalField(null=True, max_digits=1, decimal_places=0, blank=True)
+    latdec2 = models.DecimalField(null=True, max_digits=11, decimal_places=7, blank=True)
+    londec2 = models.DecimalField(null=True, max_digits=12, decimal_places=7, blank=True)
+    precision2 = models.DecimalField(null=True, max_digits=1, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.NC7IV'
+
+class ProdNe9Iv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    lottype = models.CharField(max_length=1, blank=True)
+    ivuse = models.CharField(max_length=6, blank=True)
+    pollproc = models.CharField(max_length=4, blank=True)
+    pollvec = models.CharField(max_length=2, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    ivhswt = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    pollenv = models.CharField(max_length=10, blank=True)
+    parent2 = models.CharField(max_length=25, blank=True)
+    parent3 = models.CharField(max_length=25, blank=True)
+    parent4 = models.CharField(max_length=25, blank=True)
+    parent5 = models.CharField(max_length=25, blank=True)
+    class Meta:
+        db_table = u'PROD.NE9IV'
+
+class ProdNpgsSumItem(models.Model):
+    site = models.CharField(max_length=8)
+    site_name = models.CharField(max_length=60, blank=True)
+    order_id = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    uars = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    ufed = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    sta = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    ucom = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    upru = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    uind = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    uaid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    int = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    fgen = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    fcom = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    fpru = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    find = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    total = models.DecimalField(null=True, max_digits=10, decimal_places=0, blank=True)
+    percent = models.DecimalField(null=True, max_digits=5, decimal_places=2, blank=True)
+    class Meta:
+        db_table = u'PROD.NPGS_SUM_ITEM'
+
+class ProdNr6Iv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    gchar20 = models.CharField(max_length=20, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.NR6IV'
+
+class ProdNssliv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    gchar4 = models.CharField(max_length=4, blank=True)
+    gchar6 = models.CharField(max_length=6, blank=True)
+    gchar8 = models.CharField(max_length=8, blank=True)
+    gchar10 = models.CharField(max_length=10, blank=True)
+    gchar12 = models.CharField(max_length=12, blank=True)
+    gchar20 = models.CharField(max_length=20, blank=True)
+    gnum = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    ivhswt = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    moist = models.DecimalField(null=True, max_digits=4, decimal_places=1, blank=True)
+    mtype = models.CharField(max_length=1, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.NSSLIV'
+
+class ProdOact(models.Model):
+    oactno = models.DecimalField(max_digits=8, decimal_places=0)
+    action = models.CharField(max_length=10)
+    acted = models.DateTimeField()
+    actid = models.CharField(max_length=40, blank=True)
+    orno = models.DecimalField(max_digits=8, decimal_places=0)
+    site = models.CharField(max_length=8, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    coop = models.CharField(max_length=100, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    completed = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.OACT'
+
+class ProdOb(models.Model):
+    dno = models.DecimalField(max_digits=8, decimal_places=0)
+    ob = models.CharField(max_length=30)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    eno = models.DecimalField(max_digits=8, decimal_places=0)
+    qno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    ivid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    orgvalue = models.CharField(max_length=30, blank=True)
+    freq = models.DecimalField(null=True, max_digits=4, decimal_places=1, blank=True)
+    mean = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    high = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    low = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    sdev = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    ssize = models.DecimalField(null=True, max_digits=7, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=500, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    obno = models.DecimalField(max_digits=9, decimal_places=0)
+    rank = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.OB'
+
+class ProdOi(models.Model):
+    orno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    oino = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    item = models.CharField(max_length=40, blank=True)
+    quant = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    units = models.CharField(max_length=2, blank=True)
+    dform = models.CharField(max_length=2, blank=True)
+    rest = models.CharField(max_length=10, blank=True)
+    status = models.CharField(max_length=10, blank=True)
+    acted = models.DateTimeField(null=True, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    ivid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    acid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    taxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    taxon = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    itno = models.DecimalField(max_digits=8, decimal_places=0)
+    class Meta:
+        db_table = u'PROD.OI'
+
+class ProdOistat(models.Model):
+    site = models.CharField(max_length=8, blank=True)
+    shipped = models.DateTimeField(null=True, blank=True)
+    cat = models.CharField(max_length=4, blank=True)
+    geono = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    gno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    oi_count = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    class Meta:
+        db_table = u'PROD.OISTAT'
+
+class ProdOpgciv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    ivfswt = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    ivloc = models.CharField(max_length=128, blank=True)
+    loctype = models.CharField(max_length=32, blank=True)
+    oldinvid = models.CharField(max_length=22, blank=True)
+    farmfield = models.CharField(max_length=10, blank=True)
+    cage_gh = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    ivtech = models.CharField(max_length=32, blank=True)
+    ivpoll = models.CharField(max_length=32, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.OPGCIV'
+
+class ProdOrd(models.Model):
+    orno = models.DecimalField(max_digits=8, decimal_places=0)
+    origno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    localno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    ortype = models.CharField(max_length=2, blank=True)
+    ordered = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=10, blank=True)
+    done = models.CharField(max_length=1, blank=True)
+    acted = models.DateTimeField(null=True, blank=True)
+    source = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    orderer = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    shipto = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    final = models.DecimalField(max_digits=8, decimal_places=0)
+    reqref = models.CharField(max_length=10, blank=True)
+    supplylow = models.CharField(max_length=1, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    request = models.CharField(max_length=900, blank=True)
+    class Meta:
+        db_table = u'PROD.ORD'
+
+class ProdOrigin(models.Model):
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    geono = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    acid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.ORIGIN'
+
+class ProdParliv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    qt = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    qcode = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    age = models.CharField(max_length=14, blank=True)
+    ivhswt = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    incloc = models.CharField(max_length=10, blank=True)
+    incyr = models.CharField(max_length=4, blank=True)
+    lottype = models.CharField(max_length=1, blank=True)
+    pollvec = models.CharField(max_length=2, blank=True)
+    pollenvir = models.CharField(max_length=10, blank=True)
+    pollproc = models.CharField(max_length=4, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    plot = models.CharField(max_length=14, blank=True)
+    class Meta:
+        db_table = u'PROD.PARLIV'
+
+class ProdPed(models.Model):
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    released = models.DateTimeField(null=True, blank=True)
+    datefmt = models.CharField(max_length=10, blank=True)
+    citno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    pedigree = models.CharField(max_length=2000, blank=True)
+    class Meta:
+        db_table = u'PROD.PED'
+
+class ProdPi(models.Model):
+    pivol = models.DecimalField(max_digits=3, decimal_places=0)
+    piyear = models.DecimalField(max_digits=4, decimal_places=0)
+    lowpi = models.DecimalField(max_digits=7, decimal_places=0)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.PI'
+
+class ProdPt(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    pttype = models.CharField(max_length=10)
+    ptcode = models.CharField(max_length=10)
+    began = models.DateTimeField(null=True, blank=True)
+    finished = models.DateTimeField(null=True, blank=True)
+    results = models.CharField(max_length=10, blank=True)
+    needed = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    started = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    completed = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.PT'
+
+class ProdQual(models.Model):
+    qno = models.DecimalField(max_digits=8, decimal_places=0)
+    qual = models.CharField(max_length=30)
+    dno = models.DecimalField(max_digits=8, decimal_places=0)
+    def_field = models.CharField(max_length=240, db_column='def', blank=True) # Field renamed because it was a Python reserved word.
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.QUAL'
+
+class ProdQuar(models.Model):
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    qtype = models.CharField(max_length=10)
+    status = models.CharField(max_length=10, blank=True)
+    cno = models.DecimalField(max_digits=8, decimal_places=0)
+    entered = models.DateTimeField(null=True, blank=True)
+    establish = models.DateTimeField(null=True, blank=True)
+    expected = models.DateTimeField(null=True, blank=True)
+    released = models.DateTimeField(null=True, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.QUAR'
+
+class ProdReg(models.Model):
+    regno = models.DecimalField(max_digits=8, decimal_places=0)
+    area = models.CharField(max_length=20)
+    region = models.CharField(max_length=30, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.REG'
+
+class ProdS9Iv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    incrloc = models.CharField(max_length=4, blank=True)
+    plotno = models.CharField(max_length=10, blank=True)
+    ivhswt = models.DecimalField(null=True, max_digits=11, decimal_places=3, blank=True)
+    pollen = models.CharField(max_length=10, blank=True)
+    virusstat = models.CharField(max_length=10, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.S9IV'
+
+class ProdSmbr(models.Model):
+    srcno = models.DecimalField(max_digits=8, decimal_places=0)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    cno = models.DecimalField(max_digits=8, decimal_places=0)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.SMBR'
+
+class ProdSoyiv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    gchar4 = models.CharField(max_length=4, blank=True)
+    ge_plot = models.CharField(max_length=6, blank=True)
+    gchar8 = models.CharField(max_length=8, blank=True)
+    futr_ss = models.CharField(max_length=10, blank=True)
+    curr_ss = models.CharField(max_length=12, blank=True)
+    prev_ss = models.CharField(max_length=20, blank=True)
+    pl_plnts = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.SOYIV'
+
+class ProdSqlOperators(models.Model):
+    oper = models.CharField(max_length=12, blank=True)
+    seqno = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.SQL_OPERATORS'
+
+class ProdSrc(models.Model):
+    srcno = models.DecimalField(max_digits=8, decimal_places=0)
+    srctype = models.CharField(max_length=10)
+    srcdate = models.DateTimeField(null=True, blank=True)
+    datefmt = models.CharField(max_length=10, blank=True)
+    origin = models.CharField(max_length=1, blank=True)
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    geono = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    srcqual = models.CharField(max_length=10, blank=True)
+    class Meta:
+        db_table = u'PROD.SRC'
+
+class ProdStats(models.Model):
+    site = models.CharField(max_length=8, blank=True)
+    taxon = models.CharField(max_length=100, blank=True)
+    genus = models.CharField(max_length=30, blank=True)
+    family = models.CharField(max_length=25, blank=True)
+    country = models.CharField(max_length=30, blank=True)
+    acc_count = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'PROD.STATS'
+
+class ProdTaut(models.Model):
+    shortaut = models.CharField(max_length=30)
+    longaut = models.CharField(max_length=100, blank=True)
+    smarkaut = models.CharField(max_length=30, blank=True)
+    lmarkaut = models.CharField(max_length=100, blank=True)
+    shexpaut = models.CharField(max_length=30, blank=True)
+    lgexpaut = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.TAUT'
+
+class ProdTax(models.Model):
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    validtaxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    shybrid = models.CharField(max_length=1, blank=True)
+    species = models.CharField(max_length=30)
+    sauthor = models.CharField(max_length=100, blank=True)
+    ssphybrid = models.CharField(max_length=1, blank=True)
+    subsp = models.CharField(max_length=30, blank=True)
+    sspauthor = models.CharField(max_length=100, blank=True)
+    varhybrid = models.CharField(max_length=1, blank=True)
+    var = models.CharField(max_length=30, blank=True)
+    varauthor = models.CharField(max_length=100, blank=True)
+    svhybrid = models.CharField(max_length=1, blank=True)
+    subvar = models.CharField(max_length=30, blank=True)
+    svauthor = models.CharField(max_length=100, blank=True)
+    fhybrid = models.CharField(max_length=1, blank=True)
+    forma = models.CharField(max_length=30, blank=True)
+    fauthor = models.CharField(max_length=100, blank=True)
+    gno = models.DecimalField(max_digits=8, decimal_places=0)
+    cropno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    psite1 = models.CharField(max_length=8, blank=True)
+    psite2 = models.CharField(max_length=8, blank=True)
+    rest = models.CharField(max_length=10, blank=True)
+    lifeform = models.CharField(max_length=10, blank=True)
+    fert = models.CharField(max_length=10, blank=True)
+    pending = models.CharField(max_length=1, blank=True)
+    qual = models.CharField(max_length=6, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    verified = models.DateTimeField(null=True, blank=True)
+    taxon = models.CharField(max_length=100, blank=True)
+    taxauthor = models.CharField(max_length=100, blank=True)
+    protologue = models.CharField(max_length=240, blank=True)
+    taxcmt = models.CharField(max_length=2000, blank=True)
+    sitecmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    othname = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.TAX'
+
+class ProdTaxtoim(models.Model):
+    taxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    taxon = models.CharField(max_length=100, blank=True)
+    genus = models.CharField(max_length=30)
+    imname = models.CharField(max_length=20, blank=True)
+    site = models.CharField(max_length=8, blank=True)
+    class Meta:
+        db_table = u'PROD.TAXTOIM'
+
+class ProdTaxtoobs(models.Model):
+    taxon = models.CharField(max_length=100, blank=True)
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    acc_count = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    cropno = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    crop = models.CharField(max_length=20, blank=True)
+    class Meta:
+        db_table = u'PROD.TAXTOOBS'
+
+class ProdTaxtorc(models.Model):
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    dno = models.DecimalField(max_digits=8, decimal_places=0)
+    ct = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    taxon = models.CharField(max_length=70, blank=True)
+    crop = models.CharField(max_length=20, blank=True)
+    cropno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    genus = models.CharField(max_length=30, blank=True)
+    class Meta:
+        db_table = u'PROD.TAXTORC'
+
+class ProdTcit(models.Model):
+    citno = models.DecimalField(max_digits=8, decimal_places=0)
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    abbr = models.CharField(max_length=20, blank=True)
+    cittitle = models.CharField(max_length=240, blank=True)
+    author = models.CharField(max_length=240, blank=True)
+    cityr = models.DecimalField(null=True, max_digits=4, decimal_places=0, blank=True)
+    citref = models.CharField(max_length=60, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.TCIT'
+
+class ProdTobiv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    classtype = models.CharField(max_length=4, blank=True)
+    voucherno = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    gchar4 = models.CharField(max_length=4, blank=True)
+    gchar6 = models.CharField(max_length=6, blank=True)
+    gchar8 = models.CharField(max_length=8, blank=True)
+    gchar10 = models.CharField(max_length=10, blank=True)
+    gchar12 = models.CharField(max_length=12, blank=True)
+    gchar20 = models.CharField(max_length=20, blank=True)
+    gnum = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    class Meta:
+        db_table = u'PROD.TOBIV'
+
+class ProdTurl(models.Model):
+    turlno = models.DecimalField(max_digits=8, decimal_places=0)
+    urltype = models.CharField(max_length=10)
+    famno = models.DecimalField(max_digits=8, decimal_places=0)
+    gno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    taxno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    caption = models.CharField(max_length=240, blank=True)
+    url = models.CharField(max_length=100)
+    site = models.CharField(max_length=8)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10)
+    created = models.DateTimeField()
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.TURL'
+
+class ProdUses(models.Model):
+    taxno = models.DecimalField(max_digits=8, decimal_places=0)
+    taxuse = models.CharField(max_length=10)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    usetype = models.CharField(max_length=250, blank=True)
+    class Meta:
+        db_table = u'PROD.USES'
+
+class ProdVia(models.Model):
+    viano = models.DecimalField(max_digits=8, decimal_places=0)
+    tested = models.DateTimeField()
+    datefmt = models.CharField(max_length=10, blank=True)
+    norm = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    abnorm = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    dormant = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    viable = models.DecimalField(null=True, max_digits=3, decimal_places=0, blank=True)
+    vigor = models.CharField(max_length=10, blank=True)
+    sample = models.DecimalField(null=True, max_digits=5, decimal_places=0, blank=True)
+    reps = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    eno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    class Meta:
+        db_table = u'PROD.VIA'
+
+class ProdVou(models.Model):
+    acid = models.DecimalField(max_digits=8, decimal_places=0)
+    vtype = models.CharField(max_length=10)
+    ivid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    cno = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    vouchered = models.DateTimeField(null=True, blank=True)
+    datefmt = models.CharField(max_length=10, blank=True)
+    collid = models.CharField(max_length=40, blank=True)
+    vloc = models.CharField(max_length=500)
+    vcontent = models.CharField(max_length=100, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    userid = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
+    thumbnail = models.CharField(max_length=500, blank=True)
+    vno = models.DecimalField(max_digits=8, decimal_places=0)
+    class Meta:
+        db_table = u'PROD.VOU'
+
+class ProdW6Iv(models.Model):
+    ivid = models.DecimalField(max_digits=8, decimal_places=0)
+    qt = models.DecimalField(null=True, max_digits=2, decimal_places=0, blank=True)
+    qcode = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    age = models.CharField(max_length=14, blank=True)
+    ivhswt = models.DecimalField(null=True, max_digits=0, decimal_places=-127, blank=True)
+    incloc = models.CharField(max_length=10, blank=True)
+    incyr = models.CharField(max_length=4, blank=True)
+    lottype = models.CharField(max_length=1, blank=True)
+    pollvec = models.CharField(max_length=2, blank=True)
+    pollenvir = models.CharField(max_length=10, blank=True)
+    pollproc = models.CharField(max_length=4, blank=True)
+    cmt = models.CharField(max_length=240, blank=True)
+    splitivid = models.DecimalField(null=True, max_digits=8, decimal_places=0, blank=True)
+    plot = models.CharField(max_length=14, blank=True)
+    class Meta:
+        db_table = u'PROD.W6IV'
+

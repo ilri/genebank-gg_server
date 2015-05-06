@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.Updater", "GrinGlobal.Updater\GrinGlobal.Updater.csproj", "{FB594604-F83A-498E-A05B-B6716BF17C0F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GrinGlobal.Updater.Setup", "GrinGlobal.Updater.Setup\GrinGlobal.Updater.Setup.vdproj", "{02509E91-CEAC-426F-8105-EB82A8D7D1D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB594604-F83A-498E-A05B-B6716BF17C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB594604-F83A-498E-A05B-B6716BF17C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB594604-F83A-498E-A05B-B6716BF17C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB594604-F83A-498E-A05B-B6716BF17C0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02509E91-CEAC-426F-8105-EB82A8D7D1D0}.Debug|Any CPU.ActiveCfg = Debug
+		{02509E91-CEAC-426F-8105-EB82A8D7D1D0}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

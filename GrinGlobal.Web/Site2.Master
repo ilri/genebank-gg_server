@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site2.master.cs" Inherits="GrinGlobal.Web.Site2" %>
+<%@ Register TagPrefix="gg" Src="~/cartcontrol.ascx" TagName="Cart" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <link rel='shortcut icon' href='/gringlobal/images/sysblank.ico' />
+    <link runat='server' id='lnkTheme' rel='stylesheet' media='screen'/>
+    <link href="/gringlobal/styles/print.css" rel="stylesheet" type="text/css" media="print" />
+    <title></title>
+    <script type="text/javascript" src='<%= AppRoot %>scripts/jquery-1.3.2.min.js'></script>
+    <script type="text/javascript" src='<%= AppRoot %>scripts/jquery.cookie.js'></script>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            $('._blurme').blur();
+            $('.btn').each(function() {
+                var htmlStr = $(this).html();
+                if (htmlStr.indexOf("<i>") == -1) {
+                    $(this).append('<i>').append('<span>').wrapInner(document.createElement("SPAN")).prepend('<i>');
+                }
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+</head>
+<body>
+
+    <form id="form1" runat="server">
+    <div id='outer-wrapper'>
+        <div id='container'>
+                <div id='header-wrapper' class="menu">
+                <div id='header-login'><b><asp:LoginStatus ID="loginStatus" runat="server" LoginText="Login" LogoutText="Logout" onloggingout="loginStatus_LoggingOut">
+                </asp:LoginStatus>  </b>
+                                </div> 
+                <div id="header-register">
+                    <asp:Panel ID="pnlRegister" runat="server">for returning member. Don't have an online account? <b><a href='<%= AppRoot %>useracct.aspx'><%= Page.DisplayText("htmlRegisterNow", "Register Now")%></a></b></asp:Panel> 
+                </div>
+                 <div id='header-cart' class='hide'><gg:Cart ID="ggCart" runat="server"></gg:Cart></div>
+                <div id='header-contact'><a href="javascript: Contact Us" onclick="javascript:window.open('<%= AppRoot %>contact.aspx','','scrollbars=yes,titlebar=no,width=570,height=380')"><b><u><%= Page.DisplayText("htmlContactUs", "Contact Us")%></u></b></a></div>
+
+                <div id='header-sitetitle'><%= GeneBankName %></div>
+                
+                <div id='header-navwrapper' class='hide'>
+                    <asp:SiteMapDataSource ID="siteMapDataSource1" runat="server" ShowStartingNode="false"  />
+                    <asp:Menu ID="mnuMain" runat="server" DataSourceID="siteMapDataSource1" CssClass="nav" Orientation="Horizontal" EnableViewState="false"  >
+                        <DynamicMenuStyle CssClass="menupopup" />
+                    </asp:Menu>
+                    <asp:SiteMapPath runat="server" ID="smp" CssClass="breadcrumb" ></asp:SiteMapPath>
+                    <br />
+                    <br />
+                </div><!-- end header_navwrapper -->
+                <div id='header-language' class='hide'>
+                    <asp:Label ID="lblChoose" runat="server" Text="" ><%= Page.DisplayText("htmlChooseLanguage", "Choose language:") %></asp:Label>&nbsp;<asp:DropDownList runat="server" ID="ddlLanguage" AutoPostBack="true" DataTextField="title" DataValueField="sys_lang_id"  CssClass='_blurme'
+                        onselectedindexchanged="ddlLanguage_SelectedIndexChanged"></asp:DropDownList></div>
+                </div><!-- end header-wrapper -->
+
+                <div id='content-wrapper'>
+                    <div id='content'>
+                    
+                    <asp:Label ID="lblMessage" runat="server" BorderColor="Green" BorderWidth="1" BorderStyle="Solid" ForeColor="Green" BackColor="White" Text="" EnableViewState="false" Visible="false"></asp:Label> 
+                    <asp:Label ID="lblError" runat="server" BorderColor="Red" BorderWidth="1" BorderStyle="Solid" ForeColor="Red" BackColor="White" Text="" EnableViewState="false" Visible="false"></asp:Label> 
+                    <br />
+                       <asp:ContentPlaceHolder ID="cphBody" runat="server">
+                        This is default content in the master page
+                        </asp:ContentPlaceHolder>
+                    </div> <!-- end content -->
+                    <div id='footer'>
+                    <%--<br />--%>
+                    <table width="1024">
+                        <tr valign="top">
+                        <td width="200"></td>
+                        <td align="center"><a href="http://www.croptrust.org/main/"  title="Global Crop Diversity Trust"><img alt="Global Crop Diversity Trust" src="/gringlobal/images/GCDT.png" border="0" /></a></td>
+                        <td width="100" align="center"> <a href="http://www.bioversityinternational.org/" title="Bioversity International"><img alt="Bioversity International" src="/gringlobal/images/Bioversity.png"  border="0" /></a></td> 
+                        <td align="center" width="100"> <a href="http://www.ars.usda.gov"  title="Agriculture Research Service"><img alt="Agriculture Research Service" src="/gringlobal/images/ARS.png"  border="0" /></a></td>
+                        <td align="center" width="100"> <a href="http://www.usda.gov" title="United States Department of Agriculture"><img alt="United States Department of Agriculture" src="/gringlobal/images/USDA.png" border="0" /></a></td>
+                        <td width="200" align="center"  valign="middle"><a href="javascript: Disclaimer" onclick="javascript:window.open('/gringlobal/disclaimer.aspx','','scrollbars=yes,titlebar=no,width=600,height=480')"><%= Page.DisplayText("htmlViewDisclaimer", "View disclaimer")%></a></td>
+                        <td width="200"></td>
+                        </tr>
+                    </table>
+                    <br /><br />
+                    </div> 
+
+                </div> <!-- end content-wrapper -->
+         </div> <!-- end container -->
+     </div><!-- end outer-wrapper -->
+
+    </form>
+    <script type='text/javascript'>
+        setTimeout(hideFlashes, 20000);
+
+        function hideFlashes() {
+            var el = document.getElementById('<%=lblMessage.ClientID %>');
+            if (el) { el.style.display = 'none'; }
+        }
+    </script>
+</body>
+</html>

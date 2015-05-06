@@ -1,0 +1,87 @@
+GRIN-Global Ad-hoc Filters
+
+The GRIN-Global Middle Tier supports a plugin type of extensibility with its concept of a filter.
+
+There are 4 types of filters:
+=============================================================================================
+* Dataview-level read filter
+* Dataview-level save filter
+* Table-level read filter
+* Table-level save filter
+
+A Dataview-level filter is run only when that particular dataview is used.
+A table-level filter is run any time a dataview pulls from or writes to that table.  (all fields in each dataview coming from that table must be mapped to it to work properly)
+
+A read filter allows you to run .NET code just after data is read from the database via GetData().
+A save filter allows you to run .NET code just before or after data is written to the database via SaveData().
+
+To create an ad-hoc filter:
+=============================================================================================
+1. create a new .NET project with an output type of Class Library (Windows Class Library).
+2. Add a reference to the GrinGlobal.Interface.dll assembly.
+3. Create a class in your new project
+4. Have that class extend one or more of the following interfaces exposed by GrinGlobal.Interface.dll:
+    a. GrinGlobal.Interface.Filters.IDataViewReadFilter
+	b. GrinGlobal.Interface.Filters.IDataViewSaveFilter
+	c. GrinGlobal.Interface.Filters.ITableReadFilter
+	d. GrinGlobal.Interface.Filters.ITableSaveFilter
+5. Add custom code to one or more of the methods exposed by the interface(s)
+6. Compile your project
+7. Copy the .dll to the web site's ~/uploads/codefilters/ folder.
+8. Insert a record into the sec_filter table pointing at your .dll.
+9. Start the web site
+
+
+Real World Example Project
+=============================================================================================
+The GrinGlobal.NPGSFilters project is a good place to start to see real-world filter implementations.
+
+As of 2010-03-08, the only class implemented in this assembly is CooperatorFilter.  This enforces *some* of the business
+logic that exists in the existing GRIN system.  Since it is not a core part of GRIN-Global, it is currently implemented
+as an ad-hoc filter -- i.e. not every genebank in the world will want the business logic contained in the filter.
+Being an ad-hoc filter, it must have a mapping in the sec_filter table in order for its code to be executed.
+
+To add this record to your database, you could use the Admin Tool.  
+You can also run the following INSERT SQL Server statement directly (do this for now):
+
+insert into sec_filter values (null, 
+(select sec_table_id from sec_table where table_name = 'cooperator')
+, '~/uploads/codefilters/GrinGlobal.NPGSFilters.dll', 'GrinGlobal.NPGSFilters', 'GrinGlobal.NPGSFilters.CooperatorFilter', 'Y', 'N', 0, GETUTCDATE(), 48, null, null, GETUTCDATE(), 48);
+
+
+Debugging
+=============================================================================================
+The GrinGlobal.NPGSFilters project is configured to compile to the proper directory (..\GrinGlobal.Web\uploads\codefilters\) so
+debugging it does not require you to copy any files anywhere.
+
+So you should be able to:
+ 1. Open the GrinGlobal.sln file in VS.NET 2008, 
+ 2. Set GrinGlobal.Web as your startup project (right click it, Set As Start Up)
+ 3. Set a breakpoint on the first line in the GrinGlobal.NPGSFilters.CooperatorFilter.TableRowSaving method (hit F9 on "var row = args.RowToSave;").
+ 4. Hit F5 to start debugging.
+ 5. If your CT's WebServiceURL.txt does not contain an entry for localhost2600:
+     Manually add "localhost2600    http://localhost:2600/gringlobal/gui.asmx" to your WebServiceURL.txt file
+ 6. Start the CT, point it at a local2600 instance 
+ 7. Add the get_cooperator as a dataview
+ 8. Search for some cooperators, add them to one of your lists.
+ 9. Go into edit mode in CT
+10. Edit some cooperator data.  Change the email address to be all caps (biz logic says it must be all lower, we want to verify it's working)
+11. Click Save
+12. Your breakpoint should be hit and VS.NET stops execution before any changes are made.
+13. Step through things to see what it's doing, inspect variable values, etc.
+14. Let it continue running to update the database.  The CT will show the updated data, with your business logic applied (email is now lowercase).
+15. Notice the following:
+    a. You can cancel the update at any time if business rules do not pass
+	b. You can easily detect if it's an update or an insert (args.SaveMode property)
+	c. You can issue other database calls easily from this code (see the "var dtGeo =" line)
+	d. current_cooperator_id is not set until the TableRowSaved method, which is called after the data is saved
+	e. Notice you can get the 'new' pk value from args.NewPrimaryKeyID in TableRowSaved
+	f. You're not constrained to just doing database stuff -- you could log to a file, send an email, etc.
+
+Note that web requests default to a 1 minute timeout, so you may get some timeout errors in the CT during debugging if you take more than 1 minute
+
+
+To disable the filter (in case it is blowing up or otherwise causing errors), you can either delete the sec_filter record or set its is_enabled flag to 'N':
+update sec_filter set is_enabled = 'N' where sec_filter_id = <put filter id here>
+
+You will need to clear your web caches for the middle tier to see this change.  You can do this by changing the web.config file or restarting the debugger.

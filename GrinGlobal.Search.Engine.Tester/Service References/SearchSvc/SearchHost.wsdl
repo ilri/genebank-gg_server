@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://tempuri.org/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="SearchHost" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetNamedPipeBinding_ISearchHost_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ISearchHost_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:2011/SearchHost?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:2011/SearchHost?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:2011/SearchHost?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:2011/SearchHost?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/GrinGlobal.Search.Engine" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISearchHost_Search_InputMessage">
+    <wsdl:part name="parameters" element="tns:Search" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_Search_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_RotateIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:RotateIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_RotateIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RotateIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ListIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ListIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_GetLatestMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestMessages" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_GetLatestMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_VerifyIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_VerifyIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_CreateIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_CreateIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_EnableIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_EnableIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_DisableIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_DisableIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ReloadIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReloadIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ReloadIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReloadIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ReportOnIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportOnIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ReportOnIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportOnIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISearchHost">
+    <wsdl:operation name="Search">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/Search" message="tns:ISearchHost_Search_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/SearchResponse" message="tns:ISearchHost_Search_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RotateIndexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/RotateIndexes" message="tns:ISearchHost_RotateIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/RotateIndexesResponse" message="tns:ISearchHost_RotateIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListIndexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/ListIndexes" message="tns:ISearchHost_ListIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/ListIndexesResponse" message="tns:ISearchHost_ListIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/GetLatestMessages" message="tns:ISearchHost_GetLatestMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/GetLatestMessagesResponse" message="tns:ISearchHost_GetLatestMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyIndexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/VerifyIndexes" message="tns:ISearchHost_VerifyIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/VerifyIndexesResponse" message="tns:ISearchHost_VerifyIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateIndexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/CreateIndexes" message="tns:ISearchHost_CreateIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/CreateIndexesResponse" message="tns:ISearchHost_CreateIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableIndexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/EnableIndexes" message="tns:ISearchHost_EnableIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/EnableIndexesResponse" message="tns:ISearchHost_EnableIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableIndexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/DisableIndexes" message="tns:ISearchHost_DisableIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/DisableIndexesResponse" message="tns:ISearchHost_DisableIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReloadIndexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/ReloadIndexes" message="tns:ISearchHost_ReloadIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/ReloadIndexesResponse" message="tns:ISearchHost_ReloadIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportOnIndexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/ReportOnIndexes" message="tns:ISearchHost_ReportOnIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/ReportOnIndexesResponse" message="tns:ISearchHost_ReportOnIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchHost/Ping" message="tns:ISearchHost_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchHost/PingResponse" message="tns:ISearchHost_Ping_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetNamedPipeBinding_ISearchHost" type="tns:ISearchHost">
+    <wsp:PolicyReference URI="#NetNamedPipeBinding_ISearchHost_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/named-pipe" />
+    <wsdl:operation name="Search">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/Search" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RotateIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/RotateIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/ListIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestMessages">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/GetLatestMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/VerifyIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/CreateIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/EnableIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/DisableIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/ReloadIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportOnIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/ReportOnIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ISearchHost" type="tns:ISearchHost">
+    <wsp:PolicyReference URI="#NetTcpBinding_ISearchHost_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Search">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/Search" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RotateIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/RotateIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/ListIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestMessages">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/GetLatestMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/VerifyIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/CreateIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/EnableIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/DisableIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/ReloadIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportOnIndexes">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/ReportOnIndexes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://tempuri.org/ISearchHost/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ISearchHost" type="tns:ISearchHost">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Search">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RotateIndexes">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/RotateIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListIndexes">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/ListIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestMessages">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/GetLatestMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyIndexes">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/VerifyIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateIndexes">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/CreateIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableIndexes">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/EnableIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableIndexes">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/DisableIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReloadIndexes">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/ReloadIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportOnIndexes">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/ReportOnIndexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://tempuri.org/ISearchHost/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SearchHost">
+    <wsdl:port name="NetNamedPipeBinding_ISearchHost" binding="tns:NetNamedPipeBinding_ISearchHost">
+      <soap12:address location="net.pipe://localhost/SearchHost" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.pipe://localhost/SearchHost</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>circa1\brock</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ISearchHost" binding="tns:NetTcpBinding_ISearchHost">
+      <soap12:address location="net.tcp://localhost:2012/SearchHost" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:2012/SearchHost</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>circa1\brock</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ISearchHost" binding="tns:BasicHttpBinding_ISearchHost">
+      <soap:address location="http://localhost:2011/SearchHost" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

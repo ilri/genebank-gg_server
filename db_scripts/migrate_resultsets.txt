@@ -1,0 +1,169 @@
+---------------------------------------------------------------------------------------------
+-- copy user item list
+---------------------------------------------------------------------------------------------
+
+insert into gringlobal2.app_user_item_list
+(cooperator_id, tab_name, list_name, id_number, id_type, friendly_name, created_date, created_by, modified_date, modified_by, owned_date, owned_by)
+select
+  cooperator_id,
+  tab_name,
+  group_name,
+  id_number,
+  id_type,
+  friendly_name,
+  created_date,
+  1,
+  modified_date,
+  1,
+  owned_date,
+  1
+from
+  gringlobal.user_item_list;
+
+
+
+---------------------------------------------------------------------------------------------
+-- copy custom resultsets
+---------------------------------------------------------------------------------------------
+
+
+insert into gringlobal2.sec_rs
+(rs_name, sql_statement, is_enabled, is_updateable, description, is_system, is_property_suppressed, is_user_visible, created_date, created_by, modified_date, modified_by, owned_date, owned_by)
+select
+  lower(rs_name),
+  sql_statement,
+  is_enabled,
+  is_updateable,
+  description,
+  is_system,
+  suppress_properties,
+  is_user_visible,
+  created_date,
+  1,
+  modified_date,
+  1,
+  owned_date,
+  1
+from
+  gringlobal.sec_rs
+where
+  sql_statement is not null
+  and rs_name in
+  ('getresources', 'getinventory', 'getgroups', 'getcooperators', 'getaccessions', 'getusersettings', 'getresultsetmappings',
+   'validate_login', 'nc7_order_items', 'nc7_orders', 'nc7_accessions', 'pete_accessions', 'lisa_accessions', 'taxonomy_lookup', 'accession_name_lookup',
+  'cooperator_lookup', 'inventory_maintenance_lookup')
+
+
+
+---------------------------------------------------------------------------------------------
+-- copy custom resultset parameters
+---------------------------------------------------------------------------------------------
+
+
+insert into gringlobal2.sec_rs_param
+(sec_rs_id, param_name, param_type, sort_order, description, created_date, created_by, modified_date, modified_by, owned_date, owned_by)
+select
+  (select sr_new.sec_rs_id from gringlobal2.sec_rs sr_new where sr.rs_name = sr_new.rs_name) as new_sec_rs_id,
+  srp.param_name,
+  srp.param_type,
+  srp.sort_order,
+  srp.description,
+  srp.created_date,
+  1,
+  srp.modified_date,
+  1,
+  srp.owned_date,
+  1
+from
+  gringlobal.sec_rs_param srp inner join gringlobal.sec_rs sr
+  on srp.sec_rs_id = sr.sec_rs_id
+where
+  sr.rs_name in
+  ('getresources', 'getinventory', 'getgroups', 'getcooperators', 'getaccessions', 'getusersettings', 'getresultsetmappings',
+   'validate_login', 'nc7_order_items', 'nc7_orders', 'nc7_accessions', 'pete_accessions', 'lisa_accessions', 'taxonomy_lookup', 'accession_name_lookup',
+  'cooperator_lookup', 'inventory_maintenance_lookup')
+
+
+
+---------------------------------------------------------------------------------------------
+-- copy custom resultset fields
+---------------------------------------------------------------------------------------------
+
+
+insert into gringlobal2.sec_rs_field
+  (sec_rs_id, field_name, sec_table_field_id, is_updateable, sort_order, foreign_key_resultset_name, description, created_date, created_by, modified_date, modified_by, owned_date, owned_by)
+select
+  (select sr_new.sec_rs_id from gringlobal2.sec_rs sr_new where sr.rs_name = sr_new.rs_name) as new_sec_rs_id,
+  case srf.field_name
+      when 'GROUP_NAME' then 'list_name'
+      when 'ORIGINAL_ORDER_ENTRY_ID' then 'original_order_request_id'
+      when 'ORDER_ENTRY_ID' then 'order_request_id'
+      when 'ORDER_ITEM_ID' then 'order_request_item_id'
+      else lower(srf.field_name) end as sec_rs_field_name,
+  (select stf_new2.sec_table_field_id from gringlobal2.sec_table_field stf_new2
+    inner join gringlobal2.sec_table st_new2 on stf_new2.sec_table_id = st_new2.sec_table_id
+    where stf_new2.field_name = stf.field_name
+      and st_new2.table_name = case st.table_name
+        when 'order_entry' then 'order_request'
+        when 'user_item_list' then 'app_user_item_list'
+        when 'order_item' then 'order_request_item'
+        else lower(st.table_name) end) as new_sec_table_field_id,
+  srf.is_updateable,
+  srf.sort_order,
+  srf.foreign_key_resultset_name,
+  srf.description,
+  srf.created_date,
+  1,
+  srf.modified_date,
+  case when srf.modified_date is null then null else 1 end,
+  srf.owned_date,
+  1
+from
+  gringlobal.sec_rs_field srf inner join gringlobal.sec_rs sr
+    on srf.sec_rs_id = sr.sec_rs_id
+  left join gringlobal.sec_table_field stf
+    on srf.sec_table_field_id = stf.sec_table_field_id
+  left join gringlobal.sec_table st
+    on stf.sec_table_id = st.sec_table_id
+where
+  sr.rs_name in
+  ('getresources', 'getinventory', 'getgroups', 'getcooperators', 'getaccessions', 'getusersettings', 'getresultsetmappings',
+   'validate_login', 'nc7_order_items', 'nc7_orders', 'nc7_accessions', 'pete_accessions', 'lisa_accessions', 'taxonomy_lookup', 'accession_name_lookup',
+  'cooperator_lookup', 'inventory_maintenance_lookup')
+order by 1, 2, 3
+
+
+---------------------------------------------------------------------------------------------
+-- copy custom resultset field language-specific info
+---------------------------------------------------------------------------------------------
+
+
+insert into gringlobal2.sec_rs_field_lang
+(sec_rs_field_id, sec_lang_id, name, description, created_date, created_by, modified_date, modified_by, owned_date, owned_by)
+select
+  (select srf_new.sec_rs_field_id from gringlobal2.sec_rs_field srf_new inner join gringlobal2.sec_rs sr_new
+    on srf_new.sec_rs_id = sr_new.sec_rs_id
+    where
+      sr_new.rs_name = sr.rs_name
+      and srf_new.field_name =
+        case srf.field_name
+          when 'GROUP_NAME' then 'list_name'
+          when 'ORIGINAL_ORDER_ENTRY_ID' then 'original_order_request_id'
+          when 'ORDER_ENTRY_ID' then 'order_request_id'
+          when 'ORDER_ITEM_ID' then 'order_request_item_id'
+          else lower(srf.field_name) end) as new_sec_rs_field_id,
+  srff.sec_lang_id,
+  srff.friendly_field_name,
+  null,
+  srff.created_date,
+  1,
+  srff.modified_date,
+  case when srff.modified_date is null then null else 1 end,
+  srff.owned_date,
+  1
+from
+  gringlobal.sec_rs_field_friendly srff inner join gringlobal.sec_rs_field srf
+    on srf.sec_rs_field_id = srff.sec_rs_field_id
+  inner join gringlobal.sec_rs sr
+    on srf.sec_rs_id = sr.sec_rs_id
+

@@ -1,0 +1,29 @@
+For a build box, the following must be in installed:
+============================================================================================================================================================================
+VS.NET 2008 SP1                                              - for compiling
+SQL Server 2008 SP1                                          - for pulling the schema and data
+IIS                                                          - for hosting the build outputs after they are created
+Windows SDK                                                  - for altering the GrinGlobal_Updater_Setup.exe to hardcode the absolute URL to the final destination server
+CAB SDK (unzipped to C:\projects\GrinGlobal_non-svn\cabsdk)  - for packaging up 64-bit binaries, additional data, etc.
+Tortoise SVN                                                 - for pulling code from the repo
+SyncToy 2.0+                                                 - for pulling the latest CT build from another server (since latest CT code is not in the repo)
+
+Additional resources are also needed:
+============================================================================================================================================================================
+Additional Prerequisite folders (WindowsInstaller4_5, DotNETFX35SP1 -- copied to C:\Program Files\Microsoft SDKs\Windows\v6.0A\Bootstrapper\Packages)
+Custom Prerequisite folders I created (SqlServer2008WithTools, Powershell1_0 -- again, copied to C:\Program Files\Microsoft SDKs\Windows\v6.0A\Bootstrapper\Packages)
+GrinGlobal database created and filled in local SQL Server
+/gringlobal virtual directory created in IIS, marked as an application, scripts enabled.  Also, /gringlobal/uploads must be given Write access
+
+Required local paths:
+============================================================================================================================================================================
+C:\projects\GrinGlobal is where SVN Check Out should occur
+C:\projects\GrinGlobal_non-svn is where all files will be put after building / compressing / etc
+
+To Build:
+============================================================================================================================================================================
+To actually perform a build, follow the directions in the file "How_to_build_and_release.html".  This is located at C:\projects\GrinGlobal\Documentation\Release\How_to_build_and_release.html
+or directly from the SVN repo at http://luke.ars-grin.gov/svn/GrinGlobal/trunk/Documentation/Release/How_to_build_and_release.html
+
+
+

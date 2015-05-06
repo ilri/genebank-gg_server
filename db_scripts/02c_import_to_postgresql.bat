@@ -1,0 +1,2 @@
+\projects\GrinGlobal\GrinGlobal.DatabaseCopier\bin\Debug\GrinGlobal.DatabaseCopier.exe /import "C:\temp\dev1dump" postgresql "Server=localhost;Port=5432;Database=gringlobal;User Id=postgres;password=passw0rd!;" gringlobal
+pause

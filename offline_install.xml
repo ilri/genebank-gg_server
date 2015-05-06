@@ -1,0 +1,28 @@
+<?xml version='1.0' ?>
+<Groups WebRelativePath="~/uploads/installers/latest/">
+	<Group Name='GRIN-Global CD' Version='RC2'>
+		<File DisplayName='CD' RelativePath='~/GrinGlobal_CD.cab' />
+	</Group>
+	<Group Name='GRIN-Global Server Full' Version='RC2'>
+		<File DisplayName='GRIN-Global Admin' RelativePath='~/GrinGlobal_Admin_Setup.exe' />
+		<File DisplayName='GRIN-Global Admin' RelativePath='~/GrinGlobal_Admin_Setup.msi'/>
+		<File DisplayName='GRIN-Global Database' RelativePath='~/GrinGlobal_Database_Setup.exe' />
+		<File DisplayName='GRIN-Global Database' RelativePath='~/GrinGlobal_Database_Setup.msi' />
+		<File DisplayName='GRIN-Global Web Application' RelativePath='~/GrinGlobal_Web_Setup.exe' />
+		<File DisplayName='GRIN-Global Web Application' RelativePath='~/GrinGlobal_Web_Setup.msi' />
+	</Group>
+	<Group Name='GRIN-Global Client' Version='RC2'>
+		<File DisplayName='GRIN-Global Curator Tool' RelativePath='~/GrinGlobal_Client_Installer.exe' />
+		<File DisplayName='GRIN-Global Curator Tool' RelativePath='~/GrinGlobal_Client_Installer.msi' />
+	</Group>
+	<Group Name='GRIN-Global Data Files' Version='RC2'>
+		<File DisplayName='Accession Data' RelativePath='~/accession_data.cab' />
+		<File DisplayName='Observation Data' RelativePath='~/observation_data.cab' />
+		<File DisplayName='Order Data' RelativePath='~/order_data.cab' />
+		<File DisplayName='Taxonomy Data' RelativePath='~/taxonomy_data.cab' />
+	</Group>
+	<Group Name='GRIN-Global Updater' Version='RC2'>
+		<File DisplayName='GRIN-Global Updater' RelativePath='~/GrinGlobal_Updater_Setup.exe' />
+		<File DisplayName='GRIN-Global Updater' RelativePath='~/GrinGlobal_Updater_Setup.msi' />
+	</Group>
+</Groups>

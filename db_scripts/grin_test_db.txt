@@ -1,0 +1,259 @@
+-- MySQL dump 10.13  Distrib 5.1.24-rc, for apple-darwin9.0.0b5 (i686)
+--
+-- Host: localhost    Database: grin_test_db
+-- ------------------------------------------------------
+-- Server version	5.1.24-rc-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `sec_perm`
+--
+
+DROP TABLE IF EXISTS `sec_perm`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sec_perm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(50) NOT NULL,
+  `sec_perm_template_id` int(11) DEFAULT NULL,
+  `enabled` char(1) NOT NULL DEFAULT 'N',
+  `create_perm` char(1) DEFAULT NULL,
+  `read_perm` char(1) DEFAULT NULL,
+  `update_perm` char(1) DEFAULT NULL,
+  `delete_perm` char(1) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `sec_perm`
+--
+
+LOCK TABLES `sec_perm` WRITE;
+/*!40000 ALTER TABLE `sec_perm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sec_perm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sec_perm_field`
+--
+
+DROP TABLE IF EXISTS `sec_perm_field`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sec_perm_field` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sec_perm_id` int(11) NOT NULL,
+  `field_name` varchar(50) NOT NULL,
+  `field_type` varchar(20) NOT NULL,
+  `compare_operator` varchar(20) NOT NULL,
+  `compare_value` varchar(100) DEFAULT NULL,
+  `compare_field_name` varchar(150) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `sec_perm_field`
+--
+
+LOCK TABLES `sec_perm_field` WRITE;
+/*!40000 ALTER TABLE `sec_perm_field` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sec_perm_field` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sec_perm_template`
+--
+
+DROP TABLE IF EXISTS `sec_perm_template`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sec_perm_template` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `template_name` varchar(100) NOT NULL,
+  `enabled` char(1) NOT NULL DEFAULT 'N',
+  `created_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `sec_perm_template`
+--
+
+LOCK TABLES `sec_perm_template` WRITE;
+/*!40000 ALTER TABLE `sec_perm_template` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sec_perm_template` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sec_perm_template_map`
+--
+
+DROP TABLE IF EXISTS `sec_perm_template_map`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sec_perm_template_map` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sec_perm_template_id` int(11) NOT NULL,
+  `sec_perm_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `newcolumn` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `sec_perm_template_map`
+--
+
+LOCK TABLES `sec_perm_template_map` WRITE;
+/*!40000 ALTER TABLE `sec_perm_template_map` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sec_perm_template_map` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `sec_table_map`
+--
+
+DROP TABLE IF EXISTS `sec_table_map`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sec_table_map` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(50) NOT NULL,
+  `primary_key_field` varchar(50) NOT NULL,
+  `sort_order` int(11) NOT NULL,
+  `user_name_audit_field` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `sec_table_map`
+--
+
+LOCK TABLES `sec_table_map` WRITE;
+/*!40000 ALTER TABLE `sec_table_map` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sec_table_map` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sec_user`
+--
+
+DROP TABLE IF EXISTS `sec_user`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sec_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `enabled` char(1) DEFAULT 'N',
+  `created_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_user_name` (`user_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `sec_user`
+--
+
+LOCK TABLES `sec_user` WRITE;
+/*!40000 ALTER TABLE `sec_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sec_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sec_user_profile`
+--
+
+DROP TABLE IF EXISTS `sec_user_profile`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sec_user_profile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sec_user_id` int(11) NOT NULL,
+  `sec_user_cno` int(11) NOT NULL,
+  `enabled` char(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `sec_user_profile`
+--
+
+LOCK TABLES `sec_user_profile` WRITE;
+/*!40000 ALTER TABLE `sec_user_profile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sec_user_profile` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sec_user_profile_perm`
+--
+
+DROP TABLE IF EXISTS `sec_user_profile_perm`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sec_user_profile_perm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sec_user_profile_id` int(11) NOT NULL,
+  `sec_perm_id` int(11) NOT NULL,
+  `enabled` char(1) NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `sec_user_profile_perm`
+--
+
+LOCK TABLES `sec_user_profile_perm` WRITE;
+/*!40000 ALTER TABLE `sec_user_profile_perm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sec_user_profile_perm` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2008-07-17 20:19:13

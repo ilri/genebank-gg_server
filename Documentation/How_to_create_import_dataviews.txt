@@ -1,0 +1,38 @@
+The Import Wizard is driven by dataviews marked as a category code of "Import Wizard".  The rules for dataview definitions are considerably different than dataviews defined for the CT, ST, or SE:
+
+ 1. All fields must be mapped to a table
+ 2. No primary key fields can be included
+ 3. No foreign key fields can be included
+ 4. All required fields for a table that do not have a valid default value MUST be included
+ 5. All fields which comprise the 'alternate unique key' for a table MUST be included
+ 6. If the alternate unique key includes a foreign key, the table to which the foreign key points must be included.  Same rules above apply for that table as well.
+
+Rule #6 is where most import dataviews get very large due to the 'trickle down' effect of highly hierarchical tables.  For instance, to create an import dataview for taxonomy_species, 
+taxonomy_genus must be included because taxonomy_genus_id is a required field in taxonomy_species.  However, taxonomy_genus has taxonomy_family_id as a required field, so taxonomy_family 
+must also be included.
+
+
+When creating dataviews which must write values for self-referential data (such as an inventory record where it has a parent inventory record), the alternate unique key must be included
+for that table once for itself and once for each self-referential link.  So in this example, the following fields will exist twice (once for the inventory record, and once for the pointer to the parent inventory record):
+
+ - inventory_number_part1
+ - inventory_number_part2
+ - inventory_number_part3
+ - form_type_code
+ 
+These will have different aliases within the dataview definition itself (because SQL requires this to function properly)
+and those aliases are how Import Wizard can tell which field(s) belong to which set of data.
+
+When creating dataviews for many-to-many tables (i.e. _map tables), there are also some additional guidelines.  The way middle tier processing works is that it only looks at tables which
+have fields defined in the dataview.  Most of our _map tables contain nothing more than a primary key, foreign keys, and audit fields.  The problem is that none of these are eligible for being meaningful to
+an import dataview.  If we don't include any of those fields, the _map table is not part of the dataview definition and therefore will not attempt to write to that table.  However, following
+the workaround below, we can define a dataview to write _map data using the existing framework:
+
+ 1. Add the created_date field from the _map table as the first column in the dataview
+ 2. Mark the created_date's "Visible in CT?" as false (unchecked).
+ 3. Follow typical rules outlined above for including alternate unique key fields for all tables the _map table points at
+ 
+This will cause the Import Wizard to not display the created_date to the user in the GUI, and created_date is ignored by the middle tier when processing data (it ignores what the client says for audit
+fields and puts in the current timestamp regardless).  So the created_date is essentially ignored on both ends, but causes the _map table to be part of the processing, meaning the middle tier
+will actually write data to the _map table.
+

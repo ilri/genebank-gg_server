@@ -1,0 +1,46 @@
+drop table _uniq;
+
+create table _uniq ( id integer(11) auto_increment,
+acp varchar(50),
+acno integer(11),
+acs varchar(50),
+primary key (id)
+);
+
+alter table _uniq add unique index _uniq_ndx (acp, acno, acs);
+
+show create table _uniq;
+
+truncate _uniq;
+
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+
+
+
+drop table _uniq;
+create table _uniq ( id integer(11) auto_increment,
+acp varchar(50),
+acno integer(11),
+acs varchar(50),
+primary key (id),
+unique index _uniq_ndx (acp, acno, acs)
+);
+
+show create table _uniq;
+
+truncate _uniq;
+
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+insert into _uniq (acp, acno, acs) values ('pi', 1234, null);
+insert into _uniq (acp, acno, acs) values ('pi', 1234, null);
+select * from _uniq;
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+insert into _uniq (acp, acno, acs) values ('pi', 1234, 'ab');
+
+

@@ -1,0 +1,74 @@
+SQL Guidelines
+---------------------------------------------------------------------------------------------------
+
+GRIN-Global was written with the following database engines in mind:
+
+* Microsoft SQL Server Express 2008
+* Oracle XE
+* MySQL 5.1
+* PostgreSQL 8.3
+
+To that end, the following rules should be adhered to so that existing GRIN-Global code works as 
+it has been tested:
+
+- ANSI-standard SQL should be used when at all possible
+
+- Do use only the following data types in schema definitions:
+  date + time (must support pre-Gregorian dates and have a time component)
+  string      (must support UTF-8)
+  integer     (must be signed)
+  decimal     (use deterministic, exact types when possible; avoid floating points with mantissa)
+
+- DO NOT use the following data types:
+  boolean     (use single character flag instead)
+  date only   (use date + time, even if time is meaningless)
+  time only   (use date + time, even it date is meaningless)
+  unsigned numbers
+  
+- DO NOT use engine-specific objects (Views, User Defined functions, triggers, stored procedures, etc)
+ 
+- DO apply indexes as appropriate to increase performance
+
+- If performance of ANSI-standard SQL is sub par (or impossible) for a particular query, 
+  engine-specific SQL extensions may be used
+
+Great resource for differences in SQL among various engines:
+http://troels.arvin.dk/db/rdbms/
+  
+
+Query guidelines:
+
+Avoid Using            Substitute
+====================== ==========================================================================
+FIELD1(+) = FIELD2(+)  TABLE1 FULL OUTER JOIN TABLE2 ON TABLE1.FIELD1 = TABLE2.FIELD2
+
+FIELD1(+) = FIELD2     TABLE1 RIGHT JOIN TABLE2 ON TABLE1.FIELD1 = TABLE2.FIELD2
+                       NOTE: Right joins are inherently slower on SQL Server and MySql.
+                       Rewrite them as Left Join if at all possible.
+  
+FIELD1 = FIELD2(+)     TABLE1 LEFT JOIN TABLE2 ON TABLE1.FIELD1 = TABLE2.FIELD2
+
+FIELD1 = FIELD2        TABLE1 INNER JOIN TABLE2 ON TABLE1.FIELD1 = TABLE2.FIELD2
+
+ISNULL()               COALESCE() -- same as isnull, but takes as many parameters as you like,
+                       not just two like ISNULL().  MySQL does not support ISNULL().
+
+subqueries             MySQL 5.1 InnoDB-based tables have horrific subquery performance, and cause
+                       a temp table to be created for every query which pegs out I/O on the machine
+
+TOP                    Set the DataManager.Limit property -- limiting rows is very vendor
+LIMIT                  specific, so DataManager handles this as well.
+OFFSET                 Note: This does not support limiting rows on subqueries, just the final
+ROWNUMBER              number of rows that are returned from the engine.  For subquery limits,
+ROWCOUNT               the engine-specific SQL row limiter must be used.
+
+NOW()                  Pass in current date/time stamp as a parameter
+GETDATE()
+CURDATE()
+
++ or || for string     Use CONCAT().  DataManager implicitly changes CONCAT() calls to + or || as
+concatentation         as needed for the current engine.
+
+
+
+ 

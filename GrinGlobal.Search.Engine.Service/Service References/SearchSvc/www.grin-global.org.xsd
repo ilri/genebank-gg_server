@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.grin-global.org" elementFormDefault="qualified" targetNamespace="http://www.grin-global.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfIndexReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IndexReport" nillable="true" type="tns:IndexReport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIndexReport" nillable="true" type="tns:ArrayOfIndexReport" />
+  <xs:complexType name="IndexReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsLoaded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Resolvers" nillable="true" type="tns:ArrayOfResolverReport" />
+      <xs:element minOccurs="0" name="Sql" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IndexReport" nillable="true" type="tns:IndexReport" />
+  <xs:complexType name="ArrayOfResolverReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResolverReport" nillable="true" type="tns:ResolverReport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfResolverReport" nillable="true" type="tns:ArrayOfResolverReport" />
+  <xs:complexType name="ResolverReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ForeignKeyField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsLoaded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Method" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrimaryKeyField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResolvedPrimaryKeyField" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sql" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResolverReport" nillable="true" type="tns:ResolverReport" />
+  <xs:complexType name="ArrayOfUpdateRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdateRow" nillable="true" type="tns:UpdateRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUpdateRow" nillable="true" type="tns:ArrayOfUpdateRow" />
+  <xs:complexType name="UpdateRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Mode" type="tns:UpdateMode" />
+      <xs:element minOccurs="0" name="Values" nillable="true" type="tns:ArrayOfFieldValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateRow" nillable="true" type="tns:UpdateRow" />
+  <xs:simpleType name="UpdateMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Add" />
+      <xs:enumeration value="Replace" />
+      <xs:enumeration value="Subtract" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UpdateMode" nillable="true" type="tns:UpdateMode" />
+  <xs:complexType name="ArrayOfFieldValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FieldValue" nillable="true" type="tns:FieldValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFieldValue" nillable="true" type="tns:ArrayOfFieldValue" />
+  <xs:complexType name="FieldValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NewValue" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="OriginalValue" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FieldValue" nillable="true" type="tns:FieldValue" />
+</xs:schema>

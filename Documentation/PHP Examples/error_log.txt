@@ -1,0 +1,22 @@
+[28-Oct-2010 11:54:44] PHP Warning:  file_get_contents(http://leela/gringlobal/view.aspx?dv=get_accession&params=:accessionid=382129;:cooperatorid=;:cropid=;:geographyid=;:inventoryid=;:orderrequestid=;:taxonomygenusid=;&format=tab): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 34
+[28-Oct-2010 11:55:23] PHP Warning:  file_get_contents(http://leela/gringlobal/view.aspx?dv=get_accession&params=:accessionid=382129;:cooperatorid=;:cropid=;:geographyid=;:inventoryid=;:orderrequestid=;:taxonomygenusid=;&format=tab): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 22
+[28-Oct-2010 11:55:36] PHP Warning:  file_get_contents(http://localhost/gringlobal/view.aspx?dv=get_accession&params=:accessionid=382129;:cooperatorid=;:cropid=;:geographyid=;:inventoryid=;:orderrequestid=;:taxonomygenusid=;&format=tab): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 22
+[28-Oct-2010 11:57:23] PHP Warning:  file_get_contents(http://localhost/gringlobal/view.aspx?dv=get_accession&params=:accessionid=382129;:cooperatorid=;:cropid=;:geographyid=;:inventoryid=;:orderrequestid=;:taxonomygenusid=;&format=tab): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 22
+[28-Oct-2010 11:57:33] PHP Warning:  file_get_contents(http://test.grin-global.org/gringlobal/view.aspx?dv=get_accession&params=:accessionid=382129;:cooperatorid=;:cropid=;:geographyid=;:inventoryid=;:orderrequestid=;:taxonomygenusid=;&format=tab): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 22
+[28-Oct-2010 11:59:17] PHP Warning:  file_get_contents(http://test.grin-global.org/gringlobal/view.aspx?dv=get_accession&params=:accessionid=382129;:cooperatorid=;:cropid=;:geographyid=;:inventoryid=;:orderrequestid=;:taxonomygenusid=;&format=tab): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 23
+[28-Oct-2010 12:00:30] PHP Warning:  file_get_contents(http://test.grin-global.org/gringlobal/view.aspx?dv=get_accession&params=:accessionid=382129;:cooperatorid=;:cropid=;:geographyid=;:inventoryid=;:orderrequestid=;:taxonomygenusid=;&format=tab): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 23
+[28-Oct-2010 12:00:50] PHP Warning:  file_get_contents(http://test.grin-global.org/gringlobal/view.aspx?dv=get_accession): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 23
+[28-Oct-2010 12:01:01] PHP Warning:  file_get_contents(http://test.grin-global.org/gringlobal/view.aspx): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 23
+[28-Oct-2010 12:04:32] PHP Warning:  file_get_contents(http://localhost:2600/gringlobal/view.aspx): failed to open stream: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 23
+[28-Oct-2010 12:04:45] PHP Warning:  file_get_contents(http://localhost/gringlobal/view.aspx): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in C:\projects\GrinGlobal\Documentation\PHP Examples\get_data_minimal.php on line 23

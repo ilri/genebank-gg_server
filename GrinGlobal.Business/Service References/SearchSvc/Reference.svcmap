@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3459462c-cdf1-42d3-8d75-f805145283ec" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2011/SearchHost/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="6bf1bacc-6131-4805-905e-613ea0e71b90" SourceId="1" SourceUrl="http://localhost:2011/SearchHost/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="64cc4389-a920-42be-9d3c-a0d9218b4a51" SourceId="1" SourceUrl="http://localhost:2011/SearchHost/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="310b4adb-4452-4f94-a587-5e69eb120d92" SourceId="1" SourceUrl="http://localhost:2011/SearchHost/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3708fc8c-ee1b-452d-bf5a-1623e4d519e0" SourceId="1" SourceUrl="http://localhost:2011/SearchHost/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ec28d1a2-829f-4dcc-ab99-55ec13c4bd2f" SourceId="1" SourceUrl="http://localhost:2011/SearchHost/mex" />
+    <MetadataFile FileName="GrinGlobal.Search.Engine.xsd" MetadataType="Schema" ID="d343e198-cc75-4a1e-95e1-ced75951ce57" SourceId="1" SourceUrl="http://localhost:2011/SearchHost/mex" />
+    <MetadataFile FileName="www.grin-global.org.xsd" MetadataType="Schema" ID="c44ceb03-82ff-455d-851e-4b98addbb88f" SourceId="1" SourceUrl="http://localhost:2011/SearchHost/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="1e7ada35-bb9f-4ad0-8e1f-5f1a580c5ea0" SourceId="1" SourceUrl="http://localhost:2011/SearchHost/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

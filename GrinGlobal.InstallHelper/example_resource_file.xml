@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<apps>
+  <app Name="Updater">
+    <form Name="frmMain">
+      <resource Name="lblHello" SortOrder="0">
+        <language Name="en-US" ValueMember="" DisplayMember="Hello" Description="This is a typical friendly greeting" />
+        <language Name="en-AU" ValueMember="" DisplayMember="G'day, mate" Description="This is a typical friendly greeting" />
+      </resource>
+    </form>
+  </app>
+</apps>

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://www.grin-global.org/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.grin-global.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.grin-global.org/Imports">
+      <xsd:import namespace="http://www.grin-global.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://www.grin-global.org" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISearchHost_Search_InputMessage">
+    <wsdl:part name="parameters" element="tns:Search" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_Search_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_SearchForHits_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchForHits" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_SearchForHits_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchForHitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_RotateIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:RotateIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_RotateIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RotateIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ListIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ListIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_GetLatestMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestMessages" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_GetLatestMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_VerifyIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_VerifyIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_CreateIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_CreateIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_EnableIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_EnableIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_DisableIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_DisableIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ReloadIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReloadIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ReloadIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReloadIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ReportOnIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportOnIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_ReportOnIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportOnIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_UpdateIndex_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateIndex" />
+  </wsdl:message>
+  <wsdl:message name="ISearchHost_UpdateIndex_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateIndexResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISearchHost">
+    <wsdl:operation name="Search">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/Search" message="tns:ISearchHost_Search_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/SearchResponse" message="tns:ISearchHost_Search_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchForHits">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/SearchForHits" message="tns:ISearchHost_SearchForHits_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/SearchForHitsResponse" message="tns:ISearchHost_SearchForHits_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RotateIndexes">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/RotateIndexes" message="tns:ISearchHost_RotateIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/RotateIndexesResponse" message="tns:ISearchHost_RotateIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListIndexes">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/ListIndexes" message="tns:ISearchHost_ListIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/ListIndexesResponse" message="tns:ISearchHost_ListIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestMessages">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/GetLatestMessages" message="tns:ISearchHost_GetLatestMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/GetLatestMessagesResponse" message="tns:ISearchHost_GetLatestMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyIndexes">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/VerifyIndexes" message="tns:ISearchHost_VerifyIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/VerifyIndexesResponse" message="tns:ISearchHost_VerifyIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateIndexes">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/CreateIndexes" message="tns:ISearchHost_CreateIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/CreateIndexesResponse" message="tns:ISearchHost_CreateIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableIndexes">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/EnableIndexes" message="tns:ISearchHost_EnableIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/EnableIndexesResponse" message="tns:ISearchHost_EnableIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableIndexes">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/DisableIndexes" message="tns:ISearchHost_DisableIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/DisableIndexesResponse" message="tns:ISearchHost_DisableIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReloadIndexes">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/ReloadIndexes" message="tns:ISearchHost_ReloadIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/ReloadIndexesResponse" message="tns:ISearchHost_ReloadIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportOnIndexes">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/ReportOnIndexes" message="tns:ISearchHost_ReportOnIndexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/ReportOnIndexesResponse" message="tns:ISearchHost_ReportOnIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/Ping" message="tns:ISearchHost_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/PingResponse" message="tns:ISearchHost_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIndex">
+      <wsdl:input wsaw:Action="http://www.grin-global.org/ISearchHost/UpdateIndex" message="tns:ISearchHost_UpdateIndex_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.grin-global.org/ISearchHost/UpdateIndexResponse" message="tns:ISearchHost_UpdateIndex_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

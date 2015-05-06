@@ -1,0 +1,149 @@
+<html>
+<body>
+	<h1>Building a GRIN-Global release is complex for a few reasons:</h1>
+	<hr />
+	<ul>
+		<li>We are packaging up a database</li>
+		<li>We let people opt out of some data in the database package</li>
+		<li>Including all data would make the MSI way too large for those who want minimal data</li>
+		<li>Same situation with Search Engine -- ready-made indexes are optional</li>
+		<li>We create a huge standalone .cab file which can be used to create a CD</li>
+		<li>Installs must work transparently online or offline</li>
+	</ul>
+
+	<h1>Given all that, there's a few basic steps to creating a build:</h1>
+	<hr />
+	<ol>
+		<li><a href='#step1'>Prepare environment</a> (get latest code & data)</li>
+		<li><a href='#step2'>OPTIONAL - Create cabs</a> for latest database data and search engine indexes</li>
+		<li><a href='#step3'>Compile</a> the latest code</li>
+		<li><a href='#step4'>Copy files to appropriate folders</a></li>
+		<li><a href='#step5'>Embed correct absolute URL in Updater installer</a></li>
+		<li><a href='#step6'>Commit to SVN</a></li>
+		<li><a href='#step7'>Update Dev1 Database</a></li>
+		<li><a href='#step8'>Update Trac</a></li>
+	</ol>
+	<h3>Note step 2 is optional -- if there are no changes to the database schema or data or search
+engine indexes, there is no need to recreate them from the latest database.  Otherwise you
+will need to do step 2.</h3>
+
+
+<h1><a name='step1'>Step 1: Prepare environment</h1>
+<hr />
+<ol>
+	<li>Update codebase from SVN (right-click C:\projects\GrinGlobal, "SVN Update")
+		<ul>
+			<li>   Will prompt for userid/password, just use svnguest/svnguest (the readonly guest account). Do NOT save credentials.<br />
+			<h3>Write down the Changeset ID displayed when update is complete.  Add 1 to that number, and that is the 3rd octet for the build number.</h3>
+			This makes it easy to rollback SVN to a specific changeset if we need to debug exactly what went out with a given release.</li>
+		</ul>
+	</li>
+	<li>IF the latest schema or data is needed (for either database or search engine):
+		<ol>
+			<li>Take a backup of the dev2 database (or whatever your 'master' database is)</li>
+			<li>Copy that backup file to dev4</li>
+			<li>Drop 'gringlobal' database from dev4</li>
+			<li>Restore backup file to dev4 as 'gringlobal'</li>
+			<li>Run <a href='file:///C:/projects/GrinGlobal/Documentation/Release/Step_1_drop_create_users.bat'>C:\projects\GrinGlobal\Documentation\Release\Step_1_drop_create_users.bat</a><br />
+			There may be a lot of errors show up -- you can safely ignore them.  The script tries to drop/create users for all Windows OS's, and the one you're running one is missing some of those (no matter which one you're running)</li>
+		</ol>
+	</li>
+	<li>To make sure the latest CT installer is included in the CD cab file, we must pull the latest version of it from dev2 (or whatever the 'master' server is):
+	<ol>
+		<li>Open SyncToy 2.0</li>
+		<li>Select "Dev2CTToLocalWebInstaller_"</li>
+		<li>Click Preview</li>
+		<li>Verify all files are GrinGlobal_Client_Installer.*, click Run</li>
+	</ol>
+</ol>
+
+
+<h1><a name='step2'>Step 2: Create cabs</h1>
+<hr />
+<ol>
+	<li>IF the latest schema or data is needed (for either database or search engine):<br />
+	Run <a href='file:///C:/projects/GrinGlobal/Documentation/Release/Step_2_create_data_and_se_indexes.bat'>C:\projects\GrinGlobal\Documentation\Release\Step_2_create_data_and_se_indexes.bat</a>
+	</li>
+</ol>
+
+<h1><a name='step3'>Step 3: Compile latest code</h1>
+<hr />
+<ol>
+	<li>Change version number on all server components: <br />
+		Run <a href='file:///C:/projects/GrinGlobal/update_version_numbers.vbs'>C:\projects\GrinGlobal\update_version_numbers.vbs</a>.  It will prompt you for the version number: <h3>Set the first 2 octets to whatever you want.  Set the 3rd octet to the changeset id you wrote down in step 1.</h3></li>
+	<li>Open the <a href='file:///C:/projects/GrinGlobal/GrinGlobal_AutoBuild.sln'>C:\projects\GrinGlobal\GrinGlobal_AutoBuild.sln</a> in Visual Studio 2008.  Do a Full Rebuild of the entire solution.</li>
+</ol>
+
+
+<h1><a name='step4'>Step 4: Copy files</h1>
+<hr />
+<ol>
+	<li>Now, everything is built.  For other servers to point Updater at dev4, all these files must be located in the right folders.<br />
+	Run <a href='file:///C:/projects/GrinGlobal/Documentation/Release/Step_4_copy_files.bat'>C:\projects\GrinGlobal\Documentation\Release\Step_4_copy_files.bat</a> (this is located in the same folder as this html file)
+	</li>
+	</li>
+</ol>
+
+<h1><a name='step5'>Step 5: Embed absolute url</h1>
+<hr />
+<ol>
+	<li>The GrinGlobal_Updater_Setup.exe file is simply a bootstrapper for GrinGlobal_Updater_Setup.msi -- it makes sure the necessary prerequisites are installed before launching the MSI.<br />
+	In GRIN-Global, we actually have two distinct modes in which GrinGlobal_Updater_Setup.exe is launched:
+	<ul><li>A user clicks a link in the GRIN-Global website to download the file</li><li>A user runs GRIN-Global Updater and it downloads the file</li></ul>
+	<p>Though similar, it means the .exe needs to look to the website for the corresponding msi (in the first case) or to the local temporary folder (in the second case).  To address this, there are always two copies of
+	the GrinGlobal_Updater_Setup.exe file on the website.  The one at ~/uploads/installers is for a user to download via the browser.  It has the absolute URL to the msi file embedded in it.  The other one is at ~/uploads/installers/beta3 and that one is for the Updater to use (as it has no URL embedded in it and therefore assumes the local directory).
+	</p>
+<p>Long story short, after building and copying files, we need to embed the appropriate absolute URL into the ~/uploads/installers/GrinGlobal_Updater_Setup.exe file, but NOT the one under the ~/uploads/installers/beta3 folder.</p>
+	Run <a href='file:///C:/projects/GrinGlobal/change_updater_url_to_dev2.bat'>C:\projects\GrinGlobal\change_updater_url_to_dev2.bat</a> to point it at dev2.  There are other batch files for other servers, just run the appropriate one.  Create new ones as needed.
+	</li>
+	</li>
+</ol>
+
+<h1><a name='step6'>Step 6: Commit to SVN</h1>
+<hr />
+<ol>
+	<li>Usually you don't commit to source control from a build box.  However, when we create cab files in step 2 or update the version numbers in step 3, we're changing items
+		that are under source control.  To make sure this is reproduceable, we need to commit these changes after the build has been verified.  (This is why we wrote down the changeset id and added 1 to it in step 1.)
+	</li>
+	<li>Commit changes to SVN (right-click C:\projects\GrinGlobal, "SVN Commit")
+		<ul>
+			<li>Will prompt for userid/password, put in YOUR userid/password (svnguest does not have write access). Do NOT save credentials.<br /></li>
+		</ul>
+	</li>
+	</li>
+</ol>
+
+<h1><a name='step7'>Step 7: Update Dev1 Database</h1>
+<hr />
+<ol>
+	<li>The code release is complete.  However, since dev1 has "minime" data and dev4 has the minimal data, we must manually tweak the dev1 database.
+	<ol>
+		<li>Change schema to match dev4 exactly.  Delete data as needed if unique key violations occur.</li>
+		<li>Remap corresponding table mappings, including relationships and indexes, as needed</li>
+		<li>Export all dataviews from dev4.  Import them into dev1.</li>
+		<li>Add any other necessary data as needed to make sure everything works properly (such as code values)</li>
+		<li>Perform a backup of dev1 database.</li>
+		<li>Copy/paste that .bak file to C:\inetpub\wwwroot</li>
+	</ol>
+	</li>
+</ol>
+
+<h1><a name='step8'>Step 8: Update Trac</h1>
+<hr />
+<ol>
+	<li>The release is now complete.  But now we need to tell everybody that it is:
+	<ol>
+		<li>Create a new reply to the <a href='http://luke.ars-grin.gov/gringlobaltrac/discussion/topic/7?discussion_action=add;#topic'>Dev Release Notes</a> discussion.  You will need admin rights.  Trac uses the same login credentials as SVN.  <b>After submitting, save the link so you can put it in the email later</b></li>
+		<li><a href='http://luke.ars-grin.gov/gringlobaltrac/admin/ticket/versions'>Add the appropriate version number to Trac</a></li>
+		<li><a href='http://luke.ars-grin.gov/gringlobaltrac/report/11'>Mark all 'Addressed but Unreleased' tickets as released</a> No need to add any comment, that should have been done by the developer at code commit time.</li>
+		<li>Send a notification email.  Include the link to the exact discussion thread you created in step one. <b>Also include a link to the .bak file you created in step 7</b></li>
+	</ol>
+	</li>
+</ol>
+
+
+<h1>Done!</h1>
+<hr />
+<p>
+	You should be able to point Updater on another server at dev4 and everything work.  Congratulations.
+</p>

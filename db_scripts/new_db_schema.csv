@@ -1,0 +1,1403 @@
+Current Table Name,Current Field Name,Current Field Type,New Table Name,New Field Name,New Field Type,notes,Max Length,Foreign Key Constraint Name,Foreign Key Table Name,Foreign Key Field Name,Index 1,Index 2,Index 3,Index 4,Index 5,Index 6,Index 7,Index 8,Index 9,Index 10
+<THIS MUST BE AT THE TOP OF THIS FILE!>,citno,,citation,citation_id,INTEGER,Auto Increment ,,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,abbr,,citation,literature_id,INTEGER,Nullable ,20,fk_ci_l,Literature,Literature_ID,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,cittitle,,citation,title,STRING,Nullable ,240,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,author,,citation,author_name,STRING,Nullable ,240,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,cityr,,citation,citation_year_date,DATETIME,Nullable ,,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,citref,,citation,reference,STRING,Nullable ,60,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,cmt,,citation,note,STRING,Nullable ,240,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,userid,,citation,<absorbed by 3 amigos>,,,,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,created,,citation,created_date,DATETIME,,,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,,,citation,created_by,INTEGER,,,fk_ci_created,Cooperator,Cooperator_ID,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,modified,,citation,modified_date,DATETIME,Nullable,,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,,,citation,modified_by,INTEGER,Nullable,,fk_ci_modified,Cooperator,Cooperator_ID,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,,,citation,owned_date,DATETIME,,,,,,,,,,,,,,,
+<THIS MUST BE AT THE TOP OF THIS FILE!>,,,citation,owned_by,INTEGER,,,fk_ci_owned,Cooperator,Cooperator_ID,,,,,,,,,,
+,,,code_group,code_group_id,INTEGER,Auto Increment,,,,,,,,,,,,,,
+,,,code_group,name,STRING,,100,,,
+,,,code_group,created_date,DATETIME,,,,,
+,,,code_group,created_by,INTEGER,,,fk_cdgrp_created,cooperator,cooperator_id
+,,,code_group,modified_date,DATETIME,Nullable ,,,,
+,,,code_group,modified_by,INTEGER,Nullable ,,fk_cdgrp_modified,cooperator,cooperator_id
+,,,code_group,owned_date,DATETIME,,,,,
+,,,code_group,owned_by,INTEGER,,,fk_cdgrp_owned,cooperator,cooperator_id
+aact,aactno,INTEGER,accession_action,accession_action_id,INTEGER,Auto Increment ,,,,
+aact,acid,INTEGER,accession_action,accession_id,INTEGER,,,fk_aa_a,Accession,Accession_ID
+aact,action,STRING,accession_action,action_name,STRING,,10,,,
+aact,occurred,DATETIME,accession_action,occurred_date,DATETIME,Nullable ,,,,
+aact,fmtoccurred,STRING,accession_action,occurred_date_format,STRING,Nullable ,10,,,
+aact,completed,DATETIME,accession_action,completed_date,DATETIME,Nullable ,,,,
+aact,fmtcompleted,STRING,accession_action,completed_date_format,STRING,Nullable ,10,,,
+aact,showweb,STRING,accession_action,is_visible_from_web,STRING,,1,,,
+aact,narr,STRING,accession_action,narrative,STRING,Nullable ,2000,,,
+aact,cno,INTEGER,accession_action,cooperator_id,INTEGER,Nullable ,,fk_aa_c,Cooperator,Cooperator_ID,
+aact,eno,INTEGER,accession_action,method_id,INTEGER,Nullable ,,fk_aa_m,method,method_id,
+aact,userid,STRING,accession_action,<absorbed by 3 amigos>,,,10,,,,
+aact,created,DATETIME,accession_action,created_date,DATETIME,,,,,,
+aact,,INTEGER,accession_action,created_by,INTEGER,,,fk_aa_created,Cooperator,Cooperator_ID,
+aact,modified,DATETIME,accession_action,modified_date,DATETIME,Nullable,,,,,
+aact,,INTEGER,accession_action,modified_by,INTEGER,Nullable,,fk_aa_modified,Cooperator,Cooperator_ID,
+aact,,DATETIME,accession_action,owned_date,DATETIME,,,,,,
+aact,,INTEGER,accession_action,owned_by,INTEGER,,,fk_aa_owned,Cooperator,Cooperator_ID,
+acc,acid,INTEGER,accession,accession_id,INTEGER,Auto Increment ,,,,,
+acc,acp,STRING,accession,accession_prefix,STRING,Nullable ,50,,,,UNIQUE ndx_uniq_ac
+acc,acno,INTEGER,accession,accession_number,INTEGER,Nullable ,,,,,UNIQUE ndx_uniq_ac
+acc,acs,STRING,accession,accession_suffix,STRING,Nullable ,20,,,,UNIQUE ndx_uniq_ac
+acc,,,accession,accession_name_id,INTEGER,Nullable,,fk_a_an,accession_name,accession_name_id,
+acc,site,STRING,accession,site_code,STRING,Nullable ,8,,,,
+acc,whynull,STRING,accession,inactive_site_code_reason,STRING,Nullable ,10,,,,
+acc,core,STRING,accession,is_core,STRING,,1,,,
+acc,backup,STRING,accession,is_backed_up,STRING,,1,,,
+acc,,,accession,backup_location,STRING,Nullable,50,,,
+acc,lifeform,STRING,accession,life_form,STRING,Nullable ,10,,,
+acc,acimpt,STRING,accession,level_of_improvement_code,STRING,Nullable ,10,,,
+acc,uniform,STRING,accession,reproductive_uniformity,STRING,Nullable ,10,,,
+acc,acform,STRING,accession,initial_material_type,STRING,Nullable ,2,,,
+acc,received,DATETIME,accession,initial_received_date,DATETIME,,,,,
+acc,datefmt,STRING,accession,initial_received_date_format,STRING,Nullable ,10,,,
+acc,taxno,INTEGER,accession,taxonomy_id,INTEGER,,,fk_a_t,Taxonomy,Taxonomy_ID
+acc,pivol,INTEGER,accession,plant_introduction_id,INTEGER,Nullable ,,fk_a_pi,Plant_Introduction,Plant_Introduction_ID
+acc,userid,STRING,accession,<absorbed by 3 amigos>,,Nullable ,10,,,
+acc,created,DATETIME,accession,created_date,DATETIME,,,,,
+acc,,INTEGER,accession,created_by,INTEGER,,,fk_a_created,Cooperator,Cooperator_ID
+acc,modified,DATETIME,accession,modified_date,DATETIME,Nullable ,,,,
+acc,,INTEGER,accession,modified_by,INTEGER,Nullable ,,fk_a_modified,Cooperator,Cooperator_ID
+acc,,DATETIME,accession,owned_date,DATETIME,,,,,
+acc,,INTEGER,accession,owned_by,INTEGER,,,fk_a_owned,Cooperator,Cooperator_ID
+acit,citno,INTEGER,accession_citation_map,accession_citation_map_id,INTEGER,Auto Increment ,,,,
+acit,acid,INTEGER,accession_citation_map,accession_id,INTEGER,,,fk_acm_a,accession,accession_id
+acit,abbr,STRING,accession_citation_map,citation_id,INTEGER,,,fk_acm_ci,citation,citation_id
+acit,cittitle,STRING,accession_citation_map,<moved to citation table>,,Nullable ,20,,,
+acit,author,STRING,accession_citation_map,<moved to citation table>,,Nullable ,240,,,
+acit,cityr,INTEGER,accession_citation_map,<moved to citation table>,,Nullable ,240,,,
+acit,citref,STRING,accession_citation_map,<moved to citation table>,,Nullable ,,,,
+acit,cmt,STRING,accession_citation_map,<moved to citation table>,,Nullable ,240,,,
+acit,userid,STRING,accession_citation_map,<absorbed by 3 amigos>,,Nullable ,240,,,
+acit,created,DATETIME,accession_citation_map,<moved to citation table>,,Nullable ,10,,,
+acit,,INTEGER,accession_citation_map,created_date,DATETIME,,,,,
+acit,modified,DATETIME,accession_citation_map,created_by,INTEGER,,,fk_acm_created,Cooperator,Cooperator_ID
+acit,,INTEGER,accession_citation_map,modified_date,DATETIME,Nullable ,,,,
+acit,,DATETIME,accession_citation_map,modified_by,INTEGER,Nullable ,,fk_acm_modified,Cooperator,Cooperator_ID
+acit,,DATETIME,accession_citation_map,owned_date,DATETIME,,,,,,
+acit,,INTEGER,accession_citation_map,owned_by,INTEGER,,,fk_acm_owned,Cooperator,Cooperator_ID,
+ag,agid,INTEGER,accession_group,accession_group_id,INTEGER,Auto Increment,,,,,
+ag,agname,STRING,accession_group,accession_group_code,STRING,,20,,,,
+ag,cmt,STRING,accession_group,note,STRING,Nullable ,240,,,,
+ag,site,STRING,accession_group,site_code,STRING,Nullable ,8,,,,
+ag,userid,STRING,accession_group,<absorbed by 3 amigos>,,Nullable ,10,,,,
+ag,url,STRING,accession_group,url,STRING,Nullable ,240,,,,
+ag,created,DATETIME,accession_group,created_date,DATETIME,,,,,,
+ag,,INTEGER,accession_group,created_by,INTEGER,,,fk_ag_created,Cooperator,Cooperator_ID,
+ag,modified,DATETIME,accession_group,modified_date,DATETIME,Nullable ,,,,,
+ag,,INTEGER,accession_group,modified_by,INTEGER,Nullable ,,fk_ag_modified,Cooperator,Cooperator_ID,
+ag,,DATETIME,accession_group,owned_date,DATETIME,,,,,,
+ag,,INTEGER,accession_group,owned_by,INTEGER,,,fk_ag_owned,Cooperator,Cooperator_ID,
+al,alno,INTEGER,accession_annotation,accession_annotation_id,INTEGER,Auto Increment ,,,,,
+al,action,STRING,accession_annotation,action_name,STRING,,10,,,,UNIQUE ndx_uniq_al
+al,acted,DATETIME,accession_annotation,action_date,DATETIME,,,,,,UNIQUE ndx_uniq_al,,,,,,,
+al,acid,INTEGER,accession_annotation,accession_id,INTEGER,,,fk_aan_a,Accession,Accession_ID,UNIQUE ndx_uniq_al,,,,,,,
+al,site,STRING,accession_annotation,site_code,STRING,Nullable ,8,,,,,,,,,,,ndx_fk_al_site
+al,cno,INTEGER,accession_annotation,cooperator_id,INTEGER,Nullable ,,fk_aan_c,Cooperator,Cooperator_ID,,,,,,,,
+al,ivid,INTEGER,accession_annotation,inventory_id,INTEGER,Nullable ,,fk_aan_i,Inventory,Inventory_ID,,,,,,,,
+al,orno,INTEGER,accession_annotation,order_request_id,INTEGER,Nullable ,,fk_aan_or,Order_request,Order_request_ID,,,,,,,,
+al,oldtaxno,INTEGER,accession_annotation,old_taxonomy_id,INTEGER,Nullable ,,fk_aan_t_old,Taxonomy,Taxonomy_ID,,,,,,,,
+al,newtaxno,INTEGER,accession_annotation,new_taxonomy_id,INTEGER,Nullable ,,fk_aan_t_new,Taxonomy,Taxonomy_ID,,,,,,,ndx_fk_al_oldtax,
+al,cmt,STRING,accession_annotation,note,STRING,Nullable ,240,,,,,,,,,,,
+al,userid,STRING,accession_annotation,<absorbed by 3 amigos>,,,10,,,,,,,,,,,
+al,created,DATETIME,accession_annotation,created_date,DATETIME,,,,,,,,,,,,,
+al,,INTEGER,accession_annotation,created_by,INTEGER,,,fk_aan_created,Cooperator,Cooperator_ID,,,,,,,,
+al,modified,DATETIME,accession_annotation,modified_date,DATETIME,Nullable ,,,,,,,,,,,,
+al,,INTEGER,accession_annotation,modified_by,INTEGER,Nullable ,,fk_aan_modified,Cooperator,Cooperator_ID,,,,,,,,
+al,,DATETIME,accession_annotation,owned_date,DATETIME,,,,,,,,,,,,,
+al,,INTEGER,accession_annotation,owned_by,INTEGER,,,fk_aan_owned,Cooperator,Cooperator_ID,,,,,,,,
+an,anno,INTEGER,accession_name,accession_name_id,INTEGER,Auto Increment ,,,,,,
+an,acid,INTEGER,accession_name,accession_id,INTEGER,,,fk_an_a,Accession,Accession_ID,UNIQUE ndx_uniq_an,
+an,idtype,STRING,accession_name,category,STRING,,10,,,,,
+an,idrank,INTEGER,accession_name,<no longer needed>,,,,,,,,
+an,topname,STRING,accession_name,<absorbed by name field>,,,1,,,,,
+an,plantid,STRING,accession_name,name,STRING,,40,,,,UNIQUE ndx_uniq_an,ndx_an_name
+an,searchid,STRING,accession_name,<no longer needed>,,,40,,,,,
+an,agname,STRING,accession_name,accession_group_id,INTEGER,Nullable ,20,fk_an_ag,accession_group,accession_group_id,UNIQUE ndx_uniq_an,
+an,ivid,INTEGER,accession_name,inventory_id,INTEGER,Nullable ,,fk_an_i,Inventory,Inventory_ID,,
+an,cno,INTEGER,accession_name,cooperator_id,INTEGER,Nullable ,,fk_an_c,Cooperator,Cooperator_ID,,
+an,cmt,STRING,accession_name,note,STRING,Nullable ,240,,,,,
+an,userid,STRING,accession_name,<absorbed by 3 amigos>,,,10,,,,,
+an,created,DATETIME,accession_name,created_date,DATETIME,,,,,,,
+an,,INTEGER,accession_name,created_by,INTEGER,,,fk_an_created,Cooperator,Cooperator_ID,,
+an,modified,DATETIME,accession_name,modified_date,DATETIME,Nullable ,,,,,,
+an,,INTEGER,accession_name,modified_by,INTEGER,Nullable ,,fk_an_modified,Cooperator,Cooperator_ID,,
+an,,DATETIME,accession_name,owned_date,DATETIME,,,,,
+an,,INTEGER,accession_name,owned_by,INTEGER,,,fk_an_owned,Cooperator,Cooperator_ID
+app_resource,app_resource_id,INTEGER,app_resource,app_resource_id,INTEGER,Auto Increment ,,,,
+app_resource,language_code,STRING,app_resource,sec_lang_id,INTEGER,,50,fk_are_sl,sec_lang,sec_lang_id
+app_resource,app_resource_name,STRING,app_resource,app_resource_name,STRING,,100,,,
+app_resource,display_member,STRING,app_resource,display_member,STRING,,4000,,,
+app_resource,value_member,STRING,app_resource,value_member,STRING,,4000,,,
+app_resource,sort_order,INTEGER,app_resource,sort_order,INTEGER,Nullable ,,,,
+app_resource,,DATETIME,app_resource,created_date,DATETIME,,,,,
+app_resource,,INTEGER,app_resource,created_by,INTEGER,,,fk_are_created,Cooperator,Cooperator_ID
+app_resource,,DATETIME,app_resource,modified_date,DATETIME,Nullable ,,,,
+app_resource,,INTEGER,app_resource,modified_by,INTEGER,Nullable ,,fk_are_modified,Cooperator,Cooperator_ID
+app_resource,,DATETIME,app_resource,owned_date,DATETIME,,,,,
+app_resource,,INTEGER,app_resource,owned_by,INTEGER,,,fk_are_owned,Cooperator,Cooperator_ID
+cd,cdid,INTEGER,crop_trait_code,crop_trait_code_id,INTEGER,Auto Increment,,,,
+cd,dno,INTEGER,crop_trait_code,crop_trait_id,INTEGER,,,fk_tct_tr,crop_trait,crop_trait_id
+cd,code,STRING,crop_trait_code,code,STRING,,30,,,
+,,STRING,crop_trait_code,is_enabled,STRING,,1,,,
+cd,def,STRING,crop_trait_code,<moved to crop_trait_code_lang>,,Nullable ,240,,,
+cd,userid,STRING,crop_trait_code,<absorbed by 3 amigos>,,Nullable ,10,,,
+cd,created,DATETIME,crop_trait_code,created_date,DATETIME,,,,,
+cd,,INTEGER,crop_trait_code,created_by,INTEGER,,,fk_tct_created,Cooperator,Cooperator_ID
+cd,modified,DATETIME,crop_trait_code,modified_date,DATETIME,Nullable ,,,,
+cd,,INTEGER,crop_trait_code,modified_by,INTEGER,Nullable ,,fk_tct_modified,Cooperator,Cooperator_ID
+cd,,DATETIME,crop_trait_code,owned_date,DATETIME,,,,,
+cd,,INTEGER,crop_trait_code,owned_by,INTEGER,,,fk_tct_owned,Cooperator,Cooperator_ID
+,,,crop_trait_code_lang,crop_trait_code_lang_id,INTEGER,Auto Increment,,,,
+,,,crop_trait_code_lang,crop_trait_code_id,INTEGER,,,fk_ctcl_tc,Crop_Trait_Code,Crop_Trait_Code_ID
+,,,crop_trait_code_lang,sec_lang_id,INTEGER,,,fk_ctcl_sl,sec_lang,sec_lang_id
+,,,crop_trait_code_lang,description,STRING,Nullable ,4000,,,
+,,,crop_trait_code_lang,created_date,DATETIME,,,,,
+,,,crop_trait_code_lang,created_by,INTEGER,,,fk_ctcl_created,Cooperator,Cooperator_ID
+,,,crop_trait_code_lang,modified_date,DATETIME,Nullable ,,,,,,
+,,,crop_trait_code_lang,modified_by,INTEGER,Nullable ,,fk_ctcl_modified,Cooperator,Cooperator_ID,,
+,,,crop_trait_code_lang,owned_date,DATETIME,,,,,,,
+,,,crop_trait_code_lang,owned_by,INTEGER,,,fk_ctcl_owned,Cooperator,Cooperator_ID,,
+cg,cgid_int,INTEGER,cooperator_group,cooperator_group_id,INTEGER,Auto Increment,20,,,,,
+cg,cgid,STRING,cooperator_group,code,,,,,,,UNIQUE ndx_uniq_cg_code,
+cg,cgname,STRING,cooperator_group,name,STRING,Nullable ,60,,,,,UNIQUE ndx_uniq_cg_name
+cg,site,STRING,cooperator_group,site_code,STRING,Nullable ,8,,,,,
+cg,historical,STRING,cooperator_group,is_historical,STRING,,1,,,,,
+cg,cmt,STRING,cooperator_group,note,STRING,Nullable ,240,,,,,
+cg,userid,STRING,cooperator_group,<absorbed by 3 amigos>,,Nullable ,10,,,,,
+cg,created,DATETIME,cooperator_group,created_date,DATETIME,,,,,,,
+cg,,INTEGER,cooperator_group,created_by,INTEGER,,,fk_cg_created,Cooperator,Cooperator_ID,,
+cg,modified,DATETIME,cooperator_group,modified_date,DATETIME,Nullable ,,,,,,
+cg,,INTEGER,cooperator_group,modified_by,INTEGER,Nullable ,,fk_cg_modified,Cooperator,Cooperator_ID,,
+cg,,DATETIME,cooperator_group,owned_date,DATETIME,,,,,,,
+cg,,INTEGER,cooperator_group,owned_by,INTEGER,,,fk_cg_owned,Cooperator,Cooperator_ID,,
+cn,cnid_int,INTEGER,taxonomy_common_name,taxonomy_common_name_id,INTEGER,Auto Increment,,,,,,
+cn,taxno,INTEGER,taxonomy_common_name,taxonomy_id,INTEGER,,,fk_tcn_t,Taxonomy,Taxonomy_ID,,
+cn,cname,STRING,taxonomy_common_name,name,STRING,,50,,,,ndx_cn_name,
+cn,source,STRING,taxonomy_common_name,source,STRING,Nullable ,20,,,,,
+cn,cmt,STRING,taxonomy_common_name,note,STRING,Nullable ,240,,,,,
+cn,userid,STRING,taxonomy_common_name,<absorbed by 3 amigos>,,Nullable ,10,,,,,
+cn,cnid,STRING,taxonomy_common_name,simplified_name,STRING,Nullable ,50,,,,,ndx_cn_simplified_name
+cn,created,DATETIME,taxonomy_common_name,created_date,DATETIME,,,,,,,
+cn,,INTEGER,taxonomy_common_name,created_by,INTEGER,,50,fk_tcn_created,Cooperator,Cooperator_ID,,
+cn,modified,DATETIME,taxonomy_common_name,modified_date,DATETIME,Nullable ,,,,,,
+cn,,INTEGER,taxonomy_common_name,modified_by,INTEGER,Nullable ,,fk_tcn_modified,Cooperator,Cooperator_ID,,
+cn,,DATETIME,taxonomy_common_name,owned_date,DATETIME,,,,,,,
+cn,,INTEGER,taxonomy_common_name,owned_by,INTEGER,,,fk_tcn_owned,Cooperator,Cooperator_ID,,
+code_rule,code_rule_id,INTEGER,code_rule,code_rule_id,INTEGER,Auto Increment ,,,,,,
+code_rule,owner,STRING,code_rule,<no longer needed>,,,30,,,,,
+code_rule,table_name,STRING,code_rule,<no longer needed>,STRING,,30,,,
+code_rule,column_name,STRING,code_rule,<no longer needed>,STRING,,30,,,
+code_rule,code_no,INTEGER,code_rule,code_value_id,INTEGER,,,fk_cdrule_cv,code_value,code_value_id
+code_rule,site,STRING,code_rule,site_code,STRING,,8,,,
+code_rule,maxlen,INTEGER,code_rule,max_length,INTEGER,Nullable ,,,,
+code_rule,function,STRING,code_rule,function_name,STRING,Nullable ,7,,,
+code_rule,std,STRING,code_rule,is_standard,STRING,,1,,,
+code_rule,cat_flag,STRING,code_rule,is_by_category,STRING,,1,,,
+code_rule,cat_no,INTEGER,code_rule,cateogry_number,INTEGER,Nullable ,,,,
+code_rule,cat_cmt,STRING,code_rule,category_note,STRING,Nullable ,240,,,
+code_rule,userid,STRING,code_rule,<absorbed by 3 amigos>,,Nullable ,10,,,
+code_rule,form_name,STRING,code_rule,form_name,STRING,Nullable ,30,,,
+code_rule,created,DATETIME,code_rule,created_date,DATETIME,,,,,
+code_rule,,INTEGER,code_rule,created_by,INTEGER,,,fk_cdrule_created,Cooperator,Cooperator_ID
+code_rule,modified,DATETIME,code_rule,modified_date,DATETIME,Nullable ,,,,
+code_rule,,INTEGER,code_rule,modified_by,INTEGER,Nullable ,,fk_cdrule_modified,Cooperator,Cooperator_ID
+code_rule,,DATETIME,code_rule,owned_date,DATETIME,,,,,
+code_rule,,INTEGER,code_rule,owned_by,INTEGER,,,fk_cdrule_owned,Cooperator,Cooperator_ID
+code_value,code_value_id,INTEGER,code_value,code_value_id,INTEGER,Auto Increment ,,,,
+code_value,code_no,INTEGER,code_value,code_group_id,INTEGER,,,fk_cdval_cdgrp,code_group,code_group_id
+code_value,code,STRING,code_value,value,STRING,,10,,,
+code_value,site,STRING,code_value,site_code,STRING,,8,,,
+code_value,std,STRING,code_value,is_standard,STRING,,1,,,
+code_value,cat,STRING,code_value,category_name,STRING,Nullable ,10,,,
+code_value,def,STRING,code_value,<moved to code_value_lang table>,,Nullable ,40,,,
+code_value,cmt,STRING,code_value,<moved to code_value_lang table>,,Nullable ,4000,,,
+code_value,userid,STRING,code_value,<absorbed by 3 amigos>,,Nullable ,10,,,
+code_value,created,DATETIME,code_value,created_date,DATETIME,,,,,
+code_value,,INTEGER,code_value,created_by,INTEGER,,,fk_cdval_created,Cooperator,Cooperator_ID
+code_value,modified,DATETIME,code_value,modified_date,DATETIME,Nullable ,,,,
+code_value,,INTEGER,code_value,modified_by,INTEGER,Nullable ,,fk_cdval_modified,Cooperator,Cooperator_ID
+code_value,,DATETIME,code_value,owned_date,DATETIME,,,,,
+code_value,,INTEGER,code_value,owned_by,INTEGER,,,fk_cdval_owned,Cooperator,Cooperator_ID,,
+,,,code_value_lang,code_value_lang_id,INTEGER,Auto Increment,,,,,,
+,,,code_value_lang,code_value_id,INTEGER,,,fk_cvl_cv,code_value,code_value_id,,
+,,,code_value_lang,sec_lang_id,INTEGER,,,fk_cvl_sl,sec_lang,sec_lang_id,,
+,,,code_value_lang,name,STRING,,50,,,,,
+,,,code_value_lang,description,STRING,Nullable ,4000,,,,,
+,,,code_value_lang,created_date,DATETIME,,,,,,,
+,,,code_value_lang,created_by,INTEGER,,,fk_cvl_created,Cooperator,Cooperator_ID,,
+,,,code_value_lang,modified_date,DATETIME,Nullable ,,,,,,
+,,,code_value_lang,modified_by,INTEGER,Nullable ,,fk_cvl_modified,Cooperator,Cooperator_ID,,
+,,,code_value_lang,owned_date,DATETIME,,,,,,,
+,,,code_value_lang,owned_by,INTEGER,,,fk_cvl_owned,Cooperator,Cooperator_ID,,
+coop,cno,INTEGER,cooperator,cooperator_id,INTEGER,Auto Increment ,,,,,,
+coop,validcno,INTEGER,cooperator,current_cooperator_id,INTEGER,Nullable ,,fk_c_cur_c,Cooperator,Cooperator_ID,,
+coop,site,STRING,cooperator,site_code,STRING,Nullable ,8,,,,,
+coop,lname,STRING,cooperator,last_name,STRING,Nullable ,40,,,,,ndx_co_full_name
+coop,title,STRING,cooperator,title,STRING,Nullable ,5,,,,,,
+coop,fname,STRING,cooperator,first_name,STRING,Nullable ,30,,,,,ndx_co_full_name,
+coop,job,STRING,cooperator,job,STRING,Nullable ,40,,,,,,
+coop,org,STRING,cooperator,organization,STRING,Nullable ,60,,,,,,
+coop,orgid,STRING,cooperator,organization_code,STRING,Nullable ,10,,,,,,ndx_co_org_code
+coop,add1,STRING,cooperator,address_line1,STRING,Nullable ,60,,,,UNIQUE ndx_uniq_co,,
+coop,add2,STRING,cooperator,address_line2,STRING,Nullable ,60,,,,,,
+coop,add3,STRING,cooperator,address_line3,STRING,Nullable ,60,,,,,,
+coop,city,STRING,cooperator,admin_1,STRING,Nullable ,20,,,,UNIQUE ndx_uniq_co,,
+coop,zip,STRING,cooperator,admin_2,STRING,Nullable ,10,,,,,,
+coop,geono,INTEGER,cooperator,geography_id,INTEGER,Nullable ,,,,,UNIQUE ndx_uniq_co,,
+coop,phone1,STRING,cooperator,primary_phone,STRING,Nullable ,30,,,,,,
+coop,phone2,STRING,cooperator,secondary_phone,STRING,Nullable ,30,,,,,,
+coop,fax,STRING,cooperator,fax,STRING,Nullable ,30,,,,,,
+coop,email,STRING,cooperator,email,STRING,Nullable ,100,,,,,,
+coop,active,STRING,cooperator,is_active,STRING,,1,,,,,,
+coop,cat,STRING,cooperator,category_code,STRING,Nullable ,4,,,,
+coop,arsregion,STRING,cooperator,ars_region,STRING,Nullable ,3,,,,
+coop,discipline,STRING,cooperator,discipline,STRING,Nullable ,10,,,,
+coop,initials,STRING,cooperator,initials,STRING,Nullable ,6,,,,
+coop,coop,STRING,cooperator,full_name,STRING,Nullable ,100,,,,UNIQUE ndx_uniq_co
+coop,cmt,STRING,cooperator,note,STRING,Nullable ,500,,,,
+coop,userid,STRING,cooperator,<absorbed by 3 amigos>,,Nullable ,10,,,,
+coop,language_code,STRING,cooperator,sec_lang_id,INTEGER,Nullable <= due to circular references,,fk_c_sl,sec_lang,sec_lang_id,
+coop,created,DATETIME,cooperator,created_date,DATETIME,,,,,,
+coop,,INTEGER,cooperator,created_by,INTEGER,,,fk_c_created,Cooperator,Cooperator_ID,
+coop,modified,DATETIME,cooperator,modified_date,DATETIME,Nullable ,,,,,
+coop,,INTEGER,cooperator,modified_by,INTEGER,Nullable ,,fk_c_modified,Cooperator,Cooperator_ID,
+coop,,DATETIME,cooperator,owned_date,DATETIME,,,,,,
+coop,,INTEGER,cooperator,owned_by,INTEGER,,,fk_c_owned,Cooperator,Cooperator_ID,
+crop,cropno,INTEGER,crop,crop_id,INTEGER,Auto Increment ,,,,,
+crop,crop,STRING,crop,name,STRING,,20,,,,UNIQUE ndx_tcr_name
+crop,cmt,STRING,crop,note,STRING,Nullable ,2000,,,
+crop,userid,STRING,crop,<absorbed by 3 amigos>,,Nullable ,10,,,
+crop,created,DATETIME,crop,created_date,DATETIME,,,,,
+crop,,INTEGER,crop,created_by,INTEGER,,,fk_cr_created,Cooperator,Cooperator_ID
+crop,modified,DATETIME,crop,modified_date,DATETIME,Nullable ,,,,
+crop,,INTEGER,crop,modified_by,INTEGER,Nullable ,,fk_cr_modified,Cooperator,Cooperator_ID
+crop,,DATETIME,crop,owned_date,DATETIME,,,,,
+crop,,INTEGER,crop,owned_by,INTEGER,,,fk_cr_owned,Cooperator,Cooperator_ID
+dist,distno,INTEGER,taxonomy_distribution,taxonomy_distribution_id,INTEGER,Auto Increment ,,,,
+dist,taxno,INTEGER,taxonomy_distribution,taxonomy_id,INTEGER,,,fk_td_t,taxonomy,taxonomy_id
+dist,geono,INTEGER,taxonomy_distribution,geography_id,INTEGER,Nullable ,,fk_td_g,geography,geography_id
+dist,cmt,STRING,taxonomy_distribution,note,STRING,Nullable ,240,,,
+dist,userid,STRING,taxonomy_distribution,<absorbed by 3 amigos>,,Nullable ,10,,,
+dist,created,DATETIME,taxonomy_distribution,created_date,DATETIME,,,,,
+dist,,INTEGER,taxonomy_distribution,created_by,INTEGER,,,fk_td_created,Cooperator,Cooperator_ID
+dist,modified,DATETIME,taxonomy_distribution,modified_date,DATETIME,Nullable ,,,,
+dist,,INTEGER,taxonomy_distribution,modified_by,INTEGER,Nullable ,,fk_td_modified,Cooperator,Cooperator_ID,
+dist,,DATETIME,taxonomy_distribution,owned_date,DATETIME,,,,,,
+dist,,INTEGER,taxonomy_distribution,owned_by,INTEGER,,,fk_td_owned,Cooperator,Cooperator_ID,
+dsc,dno,INTEGER,crop_trait,crop_trait_id,INTEGER,Auto Increment ,,,,,
+dsc,dqname,STRING,crop_trait,short_name,STRING,,10,,,,UNIQUE ndx_uniq_ct
+dsc,dname,STRING,crop_trait,name,STRING,Nullable ,30,,,,
+dsc,cac,STRING,crop_trait,is_cgc_approved,STRING,,1,,,,
+dsc,dcat,STRING,crop_trait,category_code,STRING,Nullable ,10,,,,
+dsc,obtype,STRING,crop_trait,data_type,STRING,,10,,,,
+dsc,usecode,STRING,crop_trait,is_coded,STRING,,1,,,,
+dsc,obmaxlen,INTEGER,crop_trait,max_length,INTEGER,Nullable ,,,,,
+dsc,obformat,STRING,crop_trait,numeric_format,STRING,Nullable ,15,,,,
+dsc,obmax,INTEGER,crop_trait,numeric_max,INTEGER,Nullable ,,,,,
+dsc,obmin,INTEGER,crop_trait,numeric_min,INTEGER,Nullable ,,,,,
+dsc,orgtype,STRING,crop_trait,original_value_type,STRING,Nullable ,10,,,,
+dsc,orgformat,STRING,crop_trait,original_value_format,STRING,Nullable ,15,,,,
+dsc,cropno,INTEGER,crop_trait,crop_id,INTEGER,,,fk_ct_cr,crop,crop_trait_id,UNIQUE ndx_uniq_ct
+dsc,site,STRING,crop_trait,site_code,STRING,Nullable ,8,,,,
+dsc,def,STRING,crop_trait,definition,STRING,Nullable ,240,,,,
+dsc,cmt,STRING,crop_trait,note,STRING,Nullable ,240,,,,
+dsc,userid,STRING,crop_trait,<absorbed by 3 amigos>,,Nullable ,10,,,,
+dsc,created,DATETIME,crop_trait,created_date,DATETIME,,,,,,
+dsc,,INTEGER,crop_trait,created_by,INTEGER,,,fk_ct_created,Cooperator,Cooperator_ID,
+dsc,modified,DATETIME,crop_trait,modified_date,DATETIME,Nullable ,,,,,
+dsc,,INTEGER,crop_trait,modified_by,INTEGER,Nullable ,,fk_ct_modified,Cooperator,Cooperator_ID,
+dsc,,DATETIME,crop_trait,owned_date,DATETIME,,,,,,
+dsc,,INTEGER,crop_trait,owned_by,INTEGER,,,fk_ct_owned,Cooperator,Cooperator_ID,
+durl,durlid,INTEGER,crop_trait_url,crop_trait_url_id,INTEGER,Auto Increment,,,,,
+durl,urltype,STRING,crop_trait_url,url_type,STRING,,10,,,,UNIQUE ndx_uniq_ctu
+durl,seqno,INTEGER,crop_trait_url,sequence_number,INTEGER,,,,,,UNIQUE ndx_uniq_ctu
+durl,cropno,INTEGER,crop_trait_url,crop_id,INTEGER,,,fk_ctu_cr,crop,crop_id,UNIQUE ndx_uniq_ctu
+durl,dno,INTEGER,crop_trait_url,crop_trait_id,INTEGER,Nullable ,,fk_ctu_ct,crop_trait,crop_trait_id,UNIQUE ndx_uniq_ctu
+durl,code,STRING,crop_trait_url,code,STRING,Nullable ,30,,,,UNIQUE ndx_uniq_ctu
+durl,caption,STRING,crop_trait_url,<moved to url table>,STRING,Nullable ,60,,,,
+durl,url,STRING,crop_trait_url,url_id,INTEGER,,100,fk_ctu_u,url,url_id,
+durl,site,STRING,crop_trait_url,site_code,STRING,,8,,,,
+durl,cmt,STRING,crop_trait_url,note,STRING,Nullable ,240,,,,
+durl,userid,STRING,crop_trait_url,<absorbed by 3 amigos>,,,10,,,,
+durl,eno,INTEGER,crop_trait_url,method_id,INTEGER,Nullable ,,fk_ctu_m,method,method_id,
+durl,created,DATETIME,crop_trait_url,created_date,DATETIME,,,,,,
+durl,,INTEGER,crop_trait_url,created_by,INTEGER,,,fk_ctu_created,Cooperator,Cooperator_ID,
+durl,modified,DATETIME,crop_trait_url,modified_date,DATETIME,Nullable ,,,,,
+durl,,INTEGER,crop_trait_url,modified_by,INTEGER,Nullable ,,fk_ctu_modified,Cooperator,Cooperator_ID,
+durl,,DATETIME,crop_trait_url,owned_date,DATETIME,,,,,,
+durl,,INTEGER,crop_trait_url,owned_by,INTEGER,,,fk_ctu_owned,Cooperator,Cooperator_ID,
+ecit,citno,INTEGER,method_citation_map,method_citation_map_id,INTEGER,Auto Increment ,,,,,
+ecit,eno,INTEGER,method_citation_map,method_id,INTEGER,,,fk_mcm_m,method,method_id,
+ecit,,,method_citation_map,citation_id,INTEGER,,,fk_mcm_ci,citation,citation_id,
+ecit,abbr,STRING,method_citation_map,<moved to citation table>,,Nullable ,20,,,
+ecit,cittitle,STRING,method_citation_map,<moved to citation table>,,Nullable ,240,,,
+ecit,author,STRING,method_citation_map,<moved to citation table>,,Nullable ,240,,,
+ecit,cityr,INTEGER,method_citation_map,<moved to citation table>,,Nullable ,,,,
+ecit,citref,STRING,method_citation_map,<moved to citation table>,,Nullable ,240,,,
+ecit,cmt,STRING,method_citation_map,<moved to citation table>,,Nullable ,240,,,
+ecit,userid,STRING,method_citation_map,<absorbed by 3 amigos>,,Nullable ,10,,,
+ecit,created,DATETIME,method_citation_map,created_date,DATETIME,,,,,
+ecit,,INTEGER,method_citation_map,created_by,INTEGER,,,fk_mcm_created,Cooperator,Cooperator_ID
+ecit,modified,DATETIME,method_citation_map,modified_date,DATETIME,Nullable ,,,,
+ecit,,INTEGER,method_citation_map,modified_by,INTEGER,Nullable ,,fk_mcm_modified,Cooperator,Cooperator_ID
+ecit,,DATETIME,method_citation_map,owned_date,DATETIME,,,,,
+ecit,,INTEGER,method_citation_map,owned_by,INTEGER,,,fk_mcm_owned,Cooperator,Cooperator_ID
+embr,EMBRID,INTEGER,method_map,method_cooperator_map_id,INTEGER,Auto Increment,,,,
+embr,cno,INTEGER,method_map,cooperator_id,INTEGER,,,fk_mm_c,Cooperator,Cooperator_ID
+embr,eno,INTEGER,method_map,method_id,INTEGER,,,fk_mm_m,method,method_id
+embr,userid,STRING,method_map,<absorbed by 3 amigos>,,Nullable ,10,,,,
+embr,created,DATETIME,method_map,created_date,DATETIME,,,,,,
+embr,,INTEGER,method_map,created_by,INTEGER,,,fk_mm_created,Cooperator,Cooperator_ID,
+embr,modified,DATETIME,method_map,modified_date,DATETIME,Nullable ,,,,,
+embr,,INTEGER,method_map,modified_by,INTEGER,Nullable ,,fk_mm_modified,Cooperator,Cooperator_ID,
+embr,,DATETIME,method_map,owned_date,DATETIME,,,,,,
+embr,,INTEGER,method_map,owned_by,INTEGER,,,fk_mm_owned,Cooperator,Cooperator_ID,
+eval,eno,INTEGER,method,method_id,INTEGER,Auto Increment ,,,,,
+eval,ename,STRING,method,name,STRING,,100,,,,UNIQUE ndx_uniq_m
+eval,site,STRING,method,site_code,STRING,Nullable ,8,,,,
+eval,geono,INTEGER,method,geography_id,INTEGER,Nullable ,,fk_m_g,geography,geography_id,
+eval,userid,STRING,method,<absorbed by 3 amigos>,,Nullable ,10,,,,
+eval,methods,STRING,method,material_or_method_used,STRING,Nullable ,4000,,,,
+eval,studytype,STRING,method,study_reason,STRING,Nullable ,10,,,,
+eval,created,DATETIME,method,created_date,DATETIME,,,,,,
+eval,,INTEGER,method,created_by,INTEGER,,,fk_m_created,Cooperator,Cooperator_ID,
+eval,modified,DATETIME,method,modified_date,DATETIME,Nullable ,,,,,
+eval,,INTEGER,method,modified_by,INTEGER,Nullable ,,fk_m_modified,Cooperator,Cooperator_ID,
+eval,,DATETIME,method,owned_date,DATETIME,,,,,,
+eval,,INTEGER,method,owned_by,INTEGER,Points to Cooperator.Cooperator_ID,,fk_m_owned,Cooperator,Cooperator_ID,
+fam,famno,INTEGER,taxonomy_family,taxonomy_family_id,INTEGER,Auto Increment ,,,,,
+fam,validfamno,INTEGER,taxonomy_family,current_taxonomy_family_id,INTEGER,Nullable ,,fk_tf_cur_tf,taxonomy_family,taxonomy_family_id,
+fam,family,STRING,taxonomy_family,family_name,STRING,,25,,,,UNIQUE ndx_uniq_fa
+fam,famauthor,STRING,taxonomy_family,author_name,STRING,Nullable ,100,,,,UNIQUE ndx_uniq_fa
+fam,altfamily,STRING,taxonomy_family,alternate_name,STRING,Nullable ,25,,,,
+fam,subfamily,STRING,taxonomy_family,subfamily,STRING,Nullable ,25,,,,UNIQUE ndx_uniq_fa
+fam,tribe,STRING,taxonomy_family,tribe,STRING,Nullable ,25,,,,UNIQUE ndx_uniq_fa
+fam,subtribe,STRING,taxonomy_family,subtribe,STRING,Nullable ,25,,,,UNIQUE ndx_uniq_fa
+fam,cmt,STRING,taxonomy_family,note,STRING,Nullable ,240,,,,
+fam,userid,STRING,taxonomy_family,<absorbed by 3 amigos>,,Nullable ,10,,,,
+fam,created,DATETIME,taxonomy_family,created_date,DATETIME,,,,,,
+fam,,INTEGER,taxonomy_family,created_by,INTEGER,,,fk_tf_created,Cooperator,Cooperator_ID,
+fam,modified,DATETIME,taxonomy_family,modified_date,DATETIME,Nullable ,,,,,
+fam,,INTEGER,taxonomy_family,modified_by,INTEGER,Nullable ,,fk_tf_modified,Cooperator,Cooperator_ID,
+fam,,DATETIME,taxonomy_family,owned_date,DATETIME,,,,,,
+fam,,INTEGER,taxonomy_family,owned_by,INTEGER,,,fk_tf_owned,Cooperator,Cooperator_ID,
+ga,gano,INTEGER,genomic_annotation,genomic_annotation_id,INTEGER,Auto Increment ,,,,,
+ga,mrkno,INTEGER,genomic_annotation,marker_id,INTEGER,,,fk_ga_gm,genomic_marker,genomic_marker_id,UNIQUE ndx_uniq_ga
+ga,eno,INTEGER,genomic_annotation,method_id,INTEGER,,,fk_ga_m,method,method_id,UNIQUE ndx_uniq_ga
+ga,method,STRING,genomic_annotation,method,STRING,Nullable ,2000,,,,
+ga,scoring_method,STRING,genomic_annotation,scoring_method,STRING,Nullable ,1000,,,,
+ga,control_values,STRING,genomic_annotation,control_values,STRING,Nullable ,1000,,,,
+ga,no_obs_alleles,INTEGER,genomic_annotation,observation_alleles_count,INTEGER,Nullable ,,,,,
+ga,max_gob_alleles,INTEGER,genomic_annotation,max_gob_alleles,INTEGER,Nullable ,,,,,
+ga,size_alleles,STRING,genomic_annotation,size_alleles,STRING,Nullable ,100,,,,
+ga,unusual_alleles,STRING,genomic_annotation,unusual_alleles,STRING,Nullable ,100,,,,
+ga,cmt,STRING,genomic_annotation,note,STRING,Nullable ,4000,,,,
+ga,userid,STRING,genomic_annotation,<absorbed by 3 amigos>,,Nullable ,10,,,,
+ga,created,DATETIME,genomic_annotation,created_date,DATETIME,,,,,
+ga,,INTEGER,genomic_annotation,created_by,INTEGER,,,fk_ga_created,Cooperator,Cooperator_ID
+ga,modified,DATETIME,genomic_annotation,modified_date,DATETIME,Nullable ,,,,
+ga,,INTEGER,genomic_annotation,modified_by,INTEGER,Nullable ,,fk_ga_modified,Cooperator,Cooperator_ID
+ga,,DATETIME,genomic_annotation,owned_date,DATETIME,,,,,
+ga,,INTEGER,genomic_annotation,owned_by,INTEGER,,,fk_ga_owned,Cooperator,Cooperator_ID
+gcit,citno,INTEGER,taxonomy_genus_citation_map,taxonomy_genus_citation_map_id,INTEGER,Auto Increment ,,,,
+gcit,gno,INTEGER,taxonomy_genus_citation_map,taxonomy_genus_id,INTEGER,,,fk_tgc_tg,taxonomy_genus,taxonomy_genus_id
+gcit,abbr,STRING,taxonomy_genus_citation_map,citation_id,INTEGER,Nullable ,20,fk_tgc_ci,citation,citation_id
+gcit,cittitle,STRING,taxonomy_genus_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+gcit,author,STRING,taxonomy_genus_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+gcit,cityr,INTEGER,taxonomy_genus_citation_map,<moved to citation table>,DATETIME,Nullable ,,,,
+gcit,citref,STRING,taxonomy_genus_citation_map,<moved to citation table>,STRING,Nullable ,60,,,
+gcit,cmt,STRING,taxonomy_genus_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+gcit,userid,STRING,taxonomy_genus_citation_map,<absorbed by 3 amigos>,,Nullable ,10,,,
+gcit,created,DATETIME,taxonomy_genus_citation_map,created_date,DATETIME,,,,,
+gcit,,INTEGER,taxonomy_genus_citation_map,created_by,INTEGER,,,fk_tgc_created,Cooperator,Cooperator_ID,,,,,
+gcit,modified,DATETIME,taxonomy_genus_citation_map,modified_date,DATETIME,Nullable ,,,,,,,,,
+gcit,,INTEGER,taxonomy_genus_citation_map,modified_by,INTEGER,Nullable ,,fk_tgc_modified,Cooperator,Cooperator_ID,,,,,
+gcit,,DATETIME,taxonomy_genus_citation_map,owned_date,DATETIME,,,,,,,,,,
+gcit,,INTEGER,taxonomy_genus_citation_map,owned_by,INTEGER,,,fk_tgc_owned,Cooperator,Cooperator_ID,,,,,
+geo,geono,INTEGER,geography,geography_id,INTEGER,Auto Increment ,,,,,,,,,
+geo,validgeono,INTEGER,geography,current_geography_id,INTEGER,Nullable ,,fk_g_cur_g,geography,geography_id,,,,,
+geo,country,STRING,geography,country_name,STRING,,30,,,,UNIQUE ndx_uniq_ge_name,,,,
+geo,state,STRING,geography,state_name,STRING,Nullable ,20,,,,UNIQUE ndx_uniq_ge_name,,,,ndx_ge_state
+geo,isofull,STRING,geography,country_iso_full_name,STRING,Nullable ,100,,,,,,ndx_ge_full_state,,
+geo,isoshort,STRING,geography,country_iso_short_name,STRING,Nullable ,60,,,,,,,,
+geo,statefull,STRING,geography,state_full_name,STRING,Nullable ,60,,,,,,ndx_ge_full_state,,
+geo,iso3,STRING,geography,iso_3_char_country_code,STRING,Nullable ,3,,,,,UNIQUE ndx_uniq_ge_code,,,
+geo,iso2,STRING,geography,iso_2_char_country_code,STRING,Nullable ,2,,,,,,,,
+geo,st,STRING,geography,state_code,STRING,Nullable ,3,,,,,UNIQUE ndx_uniq_ge_code,,ndx_ge_state_code,
+geo,cflag,STRING,geography,is_valid,STRING,,1,,,,,,,,
+geo,lath,STRING,geography,latitude_hemisphere,STRING,Nullable ,1,,,
+geo,lonh,STRING,geography,longitude_hemisphere,STRING,Nullable ,1,,,
+geo,regno,INTEGER,geography,region_id,INTEGER,Nullable ,,fk_g_re,region,region_id
+geo,changed,DATETIME,geography,changed_date,DATETIME,Nullable ,,,,
+geo,oldname,STRING,geography,previous_name,STRING,Nullable ,100,,,
+geo,cmt,STRING,geography,note,STRING,Nullable ,240,,,
+geo,userid,STRING,geography,<absorbed by 3 amigos>,,Nullable ,10,,,
+geo,created,DATETIME,geography,created_date,DATETIME,,,,,
+geo,,INTEGER,geography,created_by,INTEGER,,,fk_g_created,Cooperator,Cooperator_ID
+geo,modified,DATETIME,geography,modified_date,DATETIME,Nullable ,,,,
+geo,,INTEGER,geography,modified_by,INTEGER,Nullable ,,fk_g_modified,Cooperator,Cooperator_ID
+geo,,DATETIME,geography,owned_date,DATETIME,,,,,
+geo,,INTEGER,geography,owned_by,INTEGER,,,fk_g_owned,Cooperator,Cooperator_ID
+germrule,ruleno,INTEGER,taxonomy_germination_rule,taxonomy_germination_rule_id,INTEGER,Auto Increment ,,,,
+germrule,substrata,STRING,taxonomy_germination_rule,substrata,STRING,Nullable ,70,,,
+germrule,temp,STRING,taxonomy_germination_rule,temperature_range,STRING,Nullable ,30,,,
+germrule,requirements,STRING,taxonomy_germination_rule,requirements,STRING,Nullable ,500,,,
+germrule,author,STRING,taxonomy_germination_rule,author_name,STRING,Nullable ,20,,,
+germrule,category,STRING,taxonomy_germination_rule,category,STRING,Nullable ,10,,,
+germrule,days,STRING,taxonomy_germination_rule,days,STRING,Nullable ,20,,,
+germrule,taxno,INTEGER,taxonomy_germination_rule,taxonomy_id,INTEGER,Nullable ,,fk_tgr_t,taxonomy,taxonomy_id
+germrule,userid,STRING,taxonomy_germination_rule,<absorbed by 3 amigos>,,Nullable ,10,,,
+germrule,created,DATETIME,taxonomy_germination_rule,created_date,DATETIME,,,,,
+germrule,,INTEGER,taxonomy_germination_rule,created_by,INTEGER,,,fk_tgr_created,Cooperator,Cooperator_ID
+germrule,modified,DATETIME,taxonomy_germination_rule,modified_date,DATETIME,Nullable ,,,,
+germrule,,INTEGER,taxonomy_germination_rule,modified_by,INTEGER,Nullable ,,fk_tgr_modified,Cooperator,Cooperator_ID
+germrule,,DATETIME,taxonomy_germination_rule,owned_date,DATETIME,,,,,
+germrule,,INTEGER,taxonomy_germination_rule,owned_by,INTEGER,,,fk_tgr_owned,Cooperator,Cooperator_ID
+gn,gno,INTEGER,taxonomy_genus,taxonomy_genus_id,INTEGER,Auto Increment ,,,,
+gn,validgno,INTEGER,taxonomy_genus,current_taxonomy_genus_id,INTEGER,Nullable ,,fk_tg_cur_tgt,taxonomy_genus,taxonomy_genus_id
+gn,famno,INTEGER,taxonomy_genus,taxonomy_family_id,INTEGER,Nullable ,,fk_tg_tf,taxonomy_family,taxonomy_family_id
+gn,qual,STRING,taxonomy_genus,qualifying_code,STRING,Nullable ,2,,,
+gn,ghybrid,STRING,taxonomy_genus,is_hybrid,STRING,,1,,,,,
+gn,genus,STRING,taxonomy_genus,genus_name,STRING,,30,,,,UNIQUE ndx_uniq_tg,
+gn,gauthor,STRING,taxonomy_genus,genus_authority,STRING,Nullable ,100,,,,UNIQUE ndx_uniq_tg,
+gn,subgenus,STRING,taxonomy_genus,subgenus_name,STRING,Nullable ,30,,,,UNIQUE ndx_uniq_tg,
+gn,section,STRING,taxonomy_genus,section_name,STRING,Nullable ,30,,,,UNIQUE ndx_uniq_tg,
+gn,series,STRING,taxonomy_genus,series_name,STRING,Nullable ,30,,,,UNIQUE ndx_uniq_tg,
+gn,subseries,STRING,taxonomy_genus,subseries_name,STRING,Nullable ,30,,,,UNIQUE ndx_uniq_tg,
+gn,subsection,STRING,taxonomy_genus,subsection_name,STRING,Nullable ,30,,,,UNIQUE ndx_uniq_tg,
+gn,othfamily,STRING,taxonomy_genus,alternate_family,STRING,Nullable ,100,,,,,
+gn,cname,STRING,taxonomy_genus,common_name,STRING,Nullable ,30,,,,,ndx_tg_name
+gn,cmt,STRING,taxonomy_genus,note,STRING,Nullable ,240,,,,,
+gn,userid,STRING,taxonomy_genus,<absorbed by 3 amigos>,,Nullable ,10,,,,,
+gn,created,DATETIME,taxonomy_genus,created_date,DATETIME,,,,,,,
+gn,,INTEGER,taxonomy_genus,created_by,INTEGER,,30,fk_tg_created,Cooperator,Cooperator_ID,,
+gn,modified,DATETIME,taxonomy_genus,modified_date,DATETIME,Nullable ,,,,,,
+gn,,INTEGER,taxonomy_genus,modified_by,INTEGER,Nullable ,,fk_tg_modified,Cooperator,Cooperator_ID,,
+gn,,DATETIME,taxonomy_genus,owned_date,DATETIME,,,,,,
+gn,,INTEGER,taxonomy_genus,owned_by,INTEGER,,,fk_tg_owned,Cooperator,Cooperator_ID,
+gnt,gnid,INTEGER,taxonomy_genus_type,taxonomy_genus_type_id,INTEGER,Auto Increment ,,,,,
+gnt,gno,INTEGER,taxonomy_genus_type,taxonomy_genus_id,INTEGER,,,,,,
+gnt,famno,INTEGER,taxonomy_genus_type,taxonomy_family_id,INTEGER,,,fk_gt_tf,taxonomy_family,taxonomy_family_id,
+gnt,cmt,STRING,taxonomy_genus_type,note,STRING,Nullable ,240,,,,
+gnt,userid,STRING,taxonomy_genus_type,<absorbed by 3 amigos>,,Nullable ,10,,,,
+gnt,created,DATETIME,taxonomy_genus_type,created_date,DATETIME,,,,,,
+gnt,,INTEGER,taxonomy_genus_type,created_by,INTEGER,,,fk_tgt_created,Cooperator,Cooperator_ID,
+gnt,modified,DATETIME,taxonomy_genus_type,modified_date,DATETIME,Nullable ,,,,,
+gnt,,INTEGER,taxonomy_genus_type,modified_by,INTEGER,Nullable ,,fk_tgt_modified,Cooperator,Cooperator_ID,
+gnt,,DATETIME,taxonomy_genus_type,owned_date,DATETIME,,,,,,
+gnt,,INTEGER,taxonomy_genus_type,owned_by,INTEGER,,,fk_tgt_owned,Cooperator,Cooperator_ID,
+gob,gobno,INTEGER,genomic_observation,genomic_observation_id,INTEGER,Auto Increment ,,,,,
+gob,gano,INTEGER,genomic_observation,genomic_annotation_id,INTEGER,,,fk_go_ga,genomic_annotation,genomic_annotation_id,UNIQUE ndx_uniq_go
+gob,ivid,INTEGER,genomic_observation,inventory_id,INTEGER,,,fk_go_i,inventory,inventory_id,UNIQUE ndx_uniq_go
+gob,indiv,INTEGER,genomic_observation,individual,INTEGER,Nullable ,,,,,UNIQUE ndx_uniq_go,
+gob,gob,STRING,genomic_observation,value,STRING,,1000,,,,,
+gob,genbank_link,STRING,genomic_observation,genebank_url,STRING,Nullable ,200,,,,,
+gob,image_link,STRING,genomic_observation,image_url,STRING,Nullable ,200,,,,,
+gob,userid,STRING,genomic_observation,<absorbed by 3 amigos>,,Nullable ,10,,,,,
+gob,created,DATETIME,genomic_observation,created_date,DATETIME,,,,,,,
+gob,,INTEGER,genomic_observation,created_by,INTEGER,,,fk_go_created,Cooperator,Cooperator_ID,,
+gob,modified,DATETIME,genomic_observation,modified_date,DATETIME,,,,,,,
+gob,,INTEGER,genomic_observation,modified_by,INTEGER,,,fk_go_modified,Cooperator,Cooperator_ID,,
+gob,,DATETIME,genomic_observation,owned_date,DATETIME,,,,,,,
+gob,,INTEGER,genomic_observation,owned_by,INTEGER,,,fk_go_owned,Cooperator,Cooperator_ID,,
+groups,groups_id,INTEGER,app_user_item_list,app_user_item_list_id,INTEGER,"Auto Increment, MyISAM",,,,,,
+groups,cno,INTEGER,app_user_item_list,cooperator_id,INTEGER,MyISAM,,fk_auil_c,Cooperator,Cooperator_ID,ndx_uil_group,ndx_uil_tab
+groups,tabname,STRING,app_user_item_list,tab_name,STRING,MyISAM,100,,,,,ndx_uil_tab
+groups,groupname,STRING,app_user_item_list,list_name,STRING,MyISAM,100,,,,ndx_uil_group,ndx_uil_tab
+groups,idno,INTEGER,app_user_item_list,id_number,INTEGER,MyISAM,,,,,,
+groups,idnotype,STRING,app_user_item_list,id_type,STRING,MyISAM,100,,,
+groups,friendlyname,STRING,app_user_item_list,friendly_name,STRING,MyISAM,1000,,,
+groups,,DATETIME,app_user_item_list,created_date,DATETIME,MyISAM,,,,
+groups,,INTEGER,app_user_item_list,created_by,INTEGER,MyISAM,,fk_auil_created,Cooperator,Cooperator_ID
+groups,,DATETIME,app_user_item_list,modified_date,DATETIME,"Nullable, MyISAM",,,,
+groups,,INTEGER,app_user_item_list,modified_by,INTEGER,"Nullable, MyISAM",,fk_auil_modified,Cooperator,Cooperator_ID
+groups,,DATETIME,app_user_item_list,owned_date,DATETIME,MyISAM,,,,
+groups,,INTEGER,app_user_item_list,owned_by,INTEGER,MyISAM,,fk_auil_owned,Cooperator,Cooperator_ID
+hab,srcno,INTEGER,accession_habitat,accession_habitat_id,INTEGER,Auto Increment ,,,,
+hab,acid,INTEGER,accession_habitat,accession_id,INTEGER,,,fk_ah_a,accession,accession_id
+hab,latd,INTEGER,accession_habitat,latitude_degrees,INTEGER,Nullable ,,,,
+hab,latm,INTEGER,accession_habitat,latitude_minutes,INTEGER,Nullable ,,,,
+hab,lats,INTEGER,accession_habitat,latitude_seconds,INTEGER,Nullable ,,,,
+hab,lath,STRING,accession_habitat,latitude_hemisphere,STRING,Nullable ,1,,,
+hab,lond,INTEGER,accession_habitat,longitude_degrees,INTEGER,Nullable ,,,,
+hab,lonm,INTEGER,accession_habitat,longitude_minutes,INTEGER,Nullable ,,,,
+hab,lons,INTEGER,accession_habitat,longitude_seconds,INTEGER,Nullable ,,,,
+hab,lonh,STRING,accession_habitat,longitude_hemisphere,STRING,Nullable ,1,,,
+hab,elev,INTEGER,accession_habitat,elevation_in_meters,INTEGER,Nullable ,,,,
+hab,quant,INTEGER,accession_habitat,quantity_collected,INTEGER,Nullable ,,,,
+hab,units,STRING,accession_habitat,unit_of_quantity_collected,STRING,Nullable ,2,,,
+hab,cform,STRING,accession_habitat,form_material_collected_code,STRING,Nullable ,2,,,
+hab,plants,INTEGER,accession_habitat,plant_sample_count,INTEGER,Nullable ,,,,
+hab,locality,STRING,accession_habitat,locality,STRING,Nullable ,240,,,
+hab,habitat,STRING,accession_habitat,habitat_name,STRING,Nullable ,240,,,
+hab,cmt,STRING,accession_habitat,note,STRING,Nullable ,240,,,
+hab,userid,STRING,accession_habitat,<absorbed by 3 amigos>,,Nullable ,10,,,
+hab,gctype,STRING,accession_habitat,collection_coordinate_system,STRING,Nullable ,10,,,
+hab,gstype,STRING,accession_habitat,gstype,STRING,Nullable ,10,,,
+hab,created,DATETIME,accession_habitat,created_date,DATETIME,,,,,
+hab,,INTEGER,accession_habitat,created_by,INTEGER,,,fk_ah_created,Cooperator,Cooperator_ID
+hab,modified,DATETIME,accession_habitat,modified_date,DATETIME,Nullable ,,,,
+hab,,INTEGER,accession_habitat,modified_by,INTEGER,Nullable ,,fk_ah_modified,Cooperator,Cooperator_ID
+hab,,DATETIME,accession_habitat,owned_date,DATETIME,,,,,
+hab,,INTEGER,accession_habitat,owned_by,INTEGER,,,fk_ah_owned,Cooperator,Cooperator_ID
+iact,iactno,INTEGER,inventory_action,inventory_action_id,INTEGER,Auto Increment ,,,,
+iact,action,STRING,inventory_action,action_name,STRING,,10,,,
+iact,occurred,DATETIME,inventory_action,occurred_date,DATETIME,Nullable ,,,,
+iact,datefmt,STRING,inventory_action,occurred_date_format,STRING,Nullable ,10,,,
+iact,quant,INTEGER,inventory_action,quantity,INTEGER,Nullable ,,,,
+iact,units,STRING,inventory_action,unit_of_quantity,STRING,Nullable ,2,,,
+iact,iform,STRING,inventory_action,form_involved,STRING,Nullable ,2,,,
+iact,ivid,INTEGER,inventory_action,inventory_id,INTEGER,,,fk_ia_i,inventory,inventory_id
+iact,cno,INTEGER,inventory_action,cooperator_id,INTEGER,Nullable ,,fk_ia_c,cooperator,cooperator_id
+iact,eno,INTEGER,inventory_action,method_id,INTEGER,Nullable ,,fk_ia_m,method,method_id
+iact,cmt,STRING,inventory_action,note,STRING,Nullable ,240,,,
+iact,userid,STRING,inventory_action,<absorbed by 3 amigos>,,Nullable ,10,,,
+iact,iactqual,STRING,inventory_action,qualifier,STRING,Nullable ,10,,,
+iact,created,DATETIME,inventory_action,created_date,DATETIME,,,,,
+iact,,INTEGER,inventory_action,created_by,INTEGER,,,fk_ia_created,Cooperator,Cooperator_ID
+iact,modified,DATETIME,inventory_action,modified_date,DATETIME,Nullable ,,,,
+iact,,INTEGER,inventory_action,modified_by,INTEGER,Nullable ,,fk_ia_modified,Cooperator,Cooperator_ID
+iact,,DATETIME,inventory_action,owned_date,DATETIME,,,,,
+iact,,INTEGER,inventory_action,owned_by,INTEGER,,,fk_ia_owned,Cooperator,Cooperator_ID
+ig,igid,INTEGER,inventory_group,inventory_group_id,INTEGER,Auto Increment,,,,
+ig,igname,STRING,inventory_group,group_name,STRING,,100,,,
+ig,site,STRING,inventory_group,site_code,STRING,,8,,,
+ig,cmt,STRING,inventory_group,note,STRING,Nullable ,240,,,
+ig,userid,STRING,inventory_group,<absorbed by 3 amigos>,,Nullable ,10,,,
+ig,created,DATETIME,inventory_group,created_date,DATETIME,,,,,
+ig,,INTEGER,inventory_group,created_by,INTEGER,,,fk_ig_created,Cooperator,Cooperator_ID
+ig,modified,DATETIME,inventory_group,modified_date,DATETIME,Nullable ,,,,
+ig,,INTEGER,inventory_group,modified_by,INTEGER,Nullable ,,fk_ig_modified,Cooperator,Cooperator_ID
+ig,,DATETIME,inventory_group,owned_date,DATETIME,,,,,
+ig,,INTEGER,inventory_group,owned_by,INTEGER,,,fk_ig_owned,Cooperator,Cooperator_ID,
+igm,igmid,INTEGER,inventory_group_map,inventory_group_map_id,INTEGER,Auto Increment,,,,,
+igm,ivid,INTEGER,inventory_group_map,inventory_id,INTEGER,,,fk_igm_i,inventory,inventory_id,UNIQUE ndx_uniq_igm
+igm,igname,STRING,inventory_group_map,inventory_group_id,INTEGER,,,fk_igm_ig,inventory_group,inventory_group_id,UNIQUE ndx_uniq_igm
+igm,site,STRING,inventory_group_map,site_code,STRING,,8,,,,UNIQUE ndx_uniq_igm
+igm,cmt,STRING,inventory_group_map,note,STRING,Nullable ,240,,,,
+igm,userid,STRING,inventory_group_map,<absorbed by 3 amigos>,,Nullable ,10,,,,
+igm,created,DATETIME,inventory_group_map,created_date,DATETIME,,,,,,
+igm,,INTEGER,inventory_group_map,created_by,INTEGER,,,fk_igm_created,Cooperator,Cooperator_ID,
+igm,modified,DATETIME,inventory_group_map,modified_date,DATETIME,Nullable ,,,,,
+igm,,INTEGER,inventory_group_map,modified_by,INTEGER,Nullable ,,fk_igm_modified,Cooperator,Cooperator_ID,
+igm,,DATETIME,inventory_group_map,owned_date,DATETIME,,,,,,
+igm,,INTEGER,inventory_group_map,owned_by,INTEGER,,,fk_igm_owned,Cooperator,Cooperator_ID,
+im,imid,INTEGER,inventory_maint_policy,inventory_maint_policy_id,INTEGER,Auto Increment,,,,,
+im,imname,STRING,inventory_maint_policy,maintenance_name,STRING,,20,,,,
+im,site,STRING,inventory_maint_policy,site_code,STRING,,8,,,,
+im,ivt,STRING,inventory_maint_policy,inventory_default_form,STRING,,2,,,
+im,munits,STRING,inventory_maint_policy,unit_of_maintenance,STRING,Nullable ,2,,,
+im,debit,STRING,inventory_maint_policy,is_debit,STRING,,1,,,
+im,dform,STRING,inventory_maint_policy,distribution_default_form,STRING,,2,,,
+im,dquant,INTEGER,inventory_maint_policy,standard_distribution_quantity,INTEGER,Nullable ,,,,
+im,dunits,STRING,inventory_maint_policy,unit_of_distribution,STRING,Nullable ,2,,,
+im,dcritical,INTEGER,inventory_maint_policy,distribution_critical_amount,INTEGER,Nullable ,,,,
+im,rcritical,INTEGER,inventory_maint_policy,replenishment_critical_amount,INTEGER,Nullable ,,,,
+im,regen,STRING,inventory_maint_policy,regeneration_method,STRING,Nullable ,10,,,
+im,ptests,INTEGER,inventory_maint_policy,standard_pathogen_test_count,INTEGER,Nullable ,,,,
+im,cmt,STRING,inventory_maint_policy,note,STRING,Nullable ,240,,,
+im,userid,STRING,inventory_maint_policy,<absorbed by 3 amigos>,,Nullable ,10,,,
+im,cno,INTEGER,inventory_maint_policy,cooperator_id,INTEGER,Nullable ,,fk_im_co,cooperator,cooperator_id
+im,created,DATETIME,inventory_maint_policy,created_date,DATETIME,,,,,
+im,,INTEGER,inventory_maint_policy,created_by,INTEGER,,,fk_im_created,Cooperator,Cooperator_ID
+im,modified,DATETIME,inventory_maint_policy,modified_date,DATETIME,Nullable ,,,,
+im,,INTEGER,inventory_maint_policy,modified_by,INTEGER,Nullable ,,fk_im_modified,Cooperator,Cooperator_ID,,,,
+im,,DATETIME,inventory_maint_policy,owned_date,DATETIME,,,,,,,,,
+im,,INTEGER,inventory_maint_policy,owned_by,INTEGER,,,fk_im_owned,Cooperator,Cooperator_ID,,,,
+ipr,IPRID_INT,INTEGER,accession_ipr,accession_ipr_id,INTEGER,Auto Increment,,,,,,,,
+ipr,acid,INTEGER,accession_ipr,accession_id,INTEGER,,,fk_ar_a,accession,accession_id,UNIQUE ndx_uniq_ipr,,,
+ipr,iprtype,STRING,accession_ipr,assigned_type,STRING,,10,,,,UNIQUE ndx_uniq_ipr,,,
+ipr,iprid,STRING,accession_ipr,accession_ipr_prefix,STRING,Nullable ,40,,,,UNIQUE ndx_uniq_ipr,,ndx_ipr_prefix,
+ipr,iprno,INTEGER,accession_ipr,accession_ipr_number,INTEGER,Nullable ,,,,,,,,ndx_ipr_number
+ipr,iprcrop,STRING,accession_ipr,crop_name,STRING,Nullable ,60,,,,,ndx_ipr_crop,,
+ipr,iprname,STRING,accession_ipr,full_name,STRING,Nullable ,240,,,,,,,
+ipr,issued,DATETIME,accession_ipr,issued_date,DATETIME,Nullable ,,,,,,,,
+ipr,expired,DATETIME,accession_ipr,expired_date,DATETIME,Nullable ,,,,,,,,
+ipr,cno,INTEGER,accession_ipr,cooperator_id,INTEGER,Nullable ,,fk_ar_c,cooperator,cooperator_id,,,,
+ipr,citno,INTEGER,accession_ipr,citation_id,INTEGER,Nullable ,,fk_ar_ac,citation,citation_id,,,,
+ipr,cmt,STRING,accession_ipr,note,STRING,Nullable ,240,,,,,,,
+ipr,site,STRING,accession_ipr,site_code,STRING,Nullable ,8,,,,,,,
+ipr,userid,STRING,accession_ipr,<absorbed by 3 amigos>,,Nullable ,10,,,,,,,
+ipr,accepted,DATETIME,accession_ipr,accepted_date,DATETIME,Nullable ,,,,,,,,
+ipr,expected,DATETIME,accession_ipr,expected_date,DATETIME,Nullable ,,,,,,,,
+ipr,created,DATETIME,accession_ipr,created_date,DATETIME,,,,,,,,,
+ipr,,INTEGER,accession_ipr,created_by,INTEGER,,,fk_ar_created,Cooperator,Cooperator_ID,,,,
+ipr,modified,DATETIME,accession_ipr,modified_date,DATETIME,Nullable ,,,,,,,,
+ipr,,INTEGER,accession_ipr,modified_by,INTEGER,Nullable ,,fk_ar_modified,Cooperator,Cooperator_ID,,,,
+ipr,,DATETIME,accession_ipr,owned_date,DATETIME,,,,,,,,,
+ipr,,INTEGER,accession_ipr,owned_by,INTEGER,,,fk_ar_owned,Cooperator,Cooperator_ID,,,,
+iv,ivid,INTEGER,inventory,inventory_id,INTEGER,Auto Increment ,,,,,,,,
+iv,ivp,STRING,inventory,inventory_prefix,STRING,Nullable ,50,,,,UNIQUE ndx_uniq_inv,,ndx_inv_prefix,
+iv,ivno,INTEGER,inventory,inventory_number,INTEGER,Nullable ,,,,,UNIQUE ndx_uniq_inv,,,ndx_inv_number
+iv,ivs,STRING,inventory,inventory_suffix,STRING,Nullable ,20,,,,UNIQUE ndx_uniq_inv,,,
+iv,ivt,STRING,inventory,inventory_type_code,STRING,,2,,,,UNIQUE ndx_uniq_inv,,,
+iv,imname,STRING,inventory,inventory_maint_policy_id,INTEGER,Nullable ,,fk_i_im,inventory_maint_policy,inventory_maint_policy_id,,,,
+iv,site,STRING,inventory,site_code,STRING,Nullable ,8,,,,,ndx_inv_location,,
+iv,distribute,STRING,inventory,is_distributable,STRING,,1,,,,,
+iv,loc1,STRING,inventory,location_section_1,STRING,Nullable ,10,,,,,ndx_inv_location
+iv,loc2,STRING,inventory,location_section_2,STRING,Nullable ,10,,,,,ndx_inv_location
+iv,loc3,STRING,inventory,location_section_3,STRING,Nullable ,10,,,,,ndx_inv_location
+iv,loc4,STRING,inventory,location_section_4,STRING,Nullable ,10,,,,,ndx_inv_location
+iv,onhand,INTEGER,inventory,quantity_on_hand,INTEGER,Nullable ,,,,,,
+iv,munits,STRING,inventory,unit_of_quantity_on_hand,STRING,Nullable ,2,,,,,
+iv,debit,STRING,inventory,is_debit,STRING,,1,,,,,
+iv,dform,STRING,inventory,distribution_default_form,STRING,Nullable ,2,,,,,
+iv,dquant,INTEGER,inventory,standard_distribution_quantity,INTEGER,Nullable ,,,,,,
+iv,dunits,STRING,inventory,unit_of_distribution,STRING,Nullable ,2,,,,,
+iv,dcritical,INTEGER,inventory,distribution_critical_amount,INTEGER,Nullable ,,,,,,
+iv,rcritical,INTEGER,inventory,replenishment_critical_amount,INTEGER,Nullable ,,,,,,
+iv,pstatus,STRING,inventory,pathogen_status,STRING,Nullable ,10,,,,,
+iv,status,STRING,inventory,availability_status,STRING,Nullable ,10,,,,,
+iv,statcmt,STRING,inventory,status_note,STRING,Nullable ,60,,,,,
+iv,acid,INTEGER,inventory,accession_id,INTEGER,,,fk_i_a,accession,accession_id
+iv,parent,INTEGER,inventory,parent_inventory_id,INTEGER,Nullable ,,fk_i_parent_i,inventory,inventory_id
+iv,cno,INTEGER,inventory,cooperator_id,INTEGER,Nullable ,,fk_i_c,cooperator,cooperator_id
+iv,backupiv,INTEGER,inventory,backup_inventory_id,INTEGER,Nullable ,,fk_i_backup_i,inventory,inventory_id
+iv,cmt,STRING,inventory,note,STRING,Nullable ,240,,,
+iv,userid,STRING,inventory,<absorbed by 3 amigos>,,Nullable ,10,,,
+iv,created,DATETIME,inventory,created_date,DATETIME,Nullable ,,,,
+iv,,INTEGER,inventory,created_by,INTEGER,,,fk_i_created,Cooperator,Cooperator_ID
+iv,modified,DATETIME,inventory,modified_date,DATETIME,Nullable ,,,,
+iv,,INTEGER,inventory,modified_by,INTEGER,Nullable ,,fk_i_modified,Cooperator,Cooperator_ID
+iv,,DATETIME,inventory,owned_date,DATETIME,,,,,
+iv,,INTEGER,inventory,owned_by,INTEGER,,,fk_i_owned,Cooperator,Cooperator_ID
+lit,litid,INTEGER,literature,literature_id,INTEGER,Auto Increment,,,,
+lit,abbr,STRING,literature,abbreviation,STRING,,20,,,
+lit,stdabbr,STRING,literature,standard_abbreviation,STRING,Nullable ,240,,,
+lit,reftitle,STRING,literature,reference_title,STRING,Nullable ,240,,,
+lit,editor,STRING,literature,author_editor_name,STRING,Nullable ,240,,,
+lit,cmt,STRING,literature,note,STRING,Nullable ,240,,,
+lit,site,STRING,literature,site_code,STRING,Nullable ,8,,,
+lit,userid,STRING,literature,<absorbed by 3 amigos>,,Nullable ,10,,,
+lit,created,DATETIME,literature,created_date,DATETIME,,,,,
+lit,,INTEGER,literature,created_by,INTEGER,,,fk_l_created,Cooperator,Cooperator_ID
+lit,modified,DATETIME,literature,modified_date,DATETIME,Nullable ,,,,
+lit,,INTEGER,literature,modified_by,INTEGER,Nullable ,,fk_l_modified,Cooperator,Cooperator_ID
+lit,,DATETIME,literature,owned_date,DATETIME,,,,,
+lit,,INTEGER,literature,owned_by,INTEGER,,,fk_l_owned,Cooperator,Cooperator_ID
+mbr,mbrid,INTEGER,cooperator_map,cooperator_map_id,INTEGER,Auto Increment,,,,
+mbr,cno,INTEGER,cooperator_map,cooperator_id,INTEGER,,,fk_cm_c,cooperator,cooperator_id
+mbr,cgid,STRING,cooperator_map,cooperator_group_id,INTEGER,,20,fk_cm_cg,cooperator_group,cooperator_group_id
+mbr,cmt,STRING,cooperator_map,note,STRING,Nullable ,240,,,
+mbr,userid,STRING,cooperator_map,<absorbed by 3 amigos>,STRING,Nullable ,10,,,
+mbr,localid,STRING,cooperator_map,localid,STRING,Nullable ,10,,,
+mbr,created,DATETIME,cooperator_map,created_date,DATETIME,,,,,
+mbr,,INTEGER,cooperator_map,created_by,INTEGER,,,fk_cm_created,Cooperator,Cooperator_ID
+mbr,modified,DATETIME,cooperator_map,modified_date,DATETIME,Nullable ,,,,
+mbr,,INTEGER,cooperator_map,modified_by,INTEGER,Nullable ,,fk_cm_modified,Cooperator,Cooperator_ID
+mbr,,DATETIME,cooperator_map,owned_date,DATETIME,,,,,
+mbr,,INTEGER,cooperator_map,owned_by,INTEGER,,,fk_cm_owned,Cooperator,Cooperator_ID
+mcit,citno,INTEGER,genomic_marker_citation_map,genomic_marker_citation_map_id,INTEGER,Auto Increment ,,,,
+mcit,mrkno,INTEGER,genomic_marker_citation_map,genomic_marker_id,INTEGER,,,fk_gmc_gm,genomic_marker,genomic_marker_id
+mcit,abbr,STRING,genomic_marker_citation_map,citation_id,INTEGER,Nullable ,,fk_gmc_ci,citation,citation_id
+mcit,cittitle,STRING,genomic_marker_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+mcit,author,STRING,genomic_marker_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+mcit,cityr,INTEGER,genomic_marker_citation_map,<moved to citation table>,DATETIME,Nullable ,,,,
+mcit,citref,STRING,genomic_marker_citation_map,<moved to citation table>,STRING,Nullable ,60,,,
+mcit,cmt,STRING,genomic_marker_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+mcit,userid,STRING,genomic_marker_citation_map,<absorbed by 3 amigos>,,Nullable ,10,,,
+mcit,created,DATETIME,genomic_marker_citation_map,created_date,DATETIME,,,,,
+mcit,,INTEGER,genomic_marker_citation_map,created_by,INTEGER,,,fk_gmc_created,Cooperator,Cooperator_ID,
+mcit,modified,DATETIME,genomic_marker_citation_map,modified_date,DATETIME,Nullable ,,,,,
+mcit,,INTEGER,genomic_marker_citation_map,modified_by,INTEGER,Nullable ,,fk_gmc_modified,Cooperator,Cooperator_ID,
+mcit,,DATETIME,genomic_marker_citation_map,owned_date,DATETIME,,,,,,
+mcit,,INTEGER,genomic_marker_citation_map,owned_by,INTEGER,,,fk_gmc_owned,Cooperator,Cooperator_ID,
+mrk,mrkno,INTEGER,genomic_marker,genomic_marker_id,INTEGER,Auto Increment ,,,,,
+mrk,cropno,INTEGER,genomic_marker,crop_id,INTEGER,,,fk_gm_tcr,crop,crop_id,UNIQUE ndx_uniq_gm_crop
+mrk,site,STRING,genomic_marker,site_code,STRING,,10,,,,
+mrk,marker,STRING,genomic_marker,name,STRING,,100,,,,UNIQUE ndx_uniq_gm_crop
+mrk,synonyms,STRING,genomic_marker,synonyms,STRING,Nullable ,200,,,,
+mrk,repeat_motif,STRING,genomic_marker,repeat_motif,STRING,Nullable ,100,,,,
+mrk,primers,STRING,genomic_marker,primers,STRING,Nullable ,200,,,,
+mrk,assay_conditions,STRING,genomic_marker,assay_conditions,STRING,Nullable ,4000,,,,
+mrk,range_products,STRING,genomic_marker,range_products,STRING,Nullable ,60,,,,
+mrk,known_standards,STRING,genomic_marker,known_standards,STRING,Nullable ,300,,,,
+mrk,genbank_no,STRING,genomic_marker,genebank_number,STRING,Nullable ,20,,,,
+mrk,map_location,STRING,genomic_marker,map_location,STRING,Nullable ,100,,,
+mrk,position,STRING,genomic_marker,position,STRING,Nullable ,1000,,,
+mrk,cmt,STRING,genomic_marker,note,STRING,Nullable ,4000,,,
+mrk,poly_type,STRING,genomic_marker,poly_type,STRING,Nullable ,10,,,
+mrk,userid,STRING,genomic_marker,<absorbed by 3 amigos>,,Nullable ,10,,,
+mrk,created,DATETIME,genomic_marker,created_date,DATETIME,,,,,
+mrk,,INTEGER,genomic_marker,created_by,INTEGER,,,fk_gm_created,Cooperator,Cooperator_ID
+mrk,modified,DATETIME,genomic_marker,modified_date,DATETIME,Nullable ,,,,
+mrk,,INTEGER,genomic_marker,modified_by,INTEGER,Nullable ,,fk_gm_modified,Cooperator,Cooperator_ID
+mrk,,DATETIME,genomic_marker,owned_date,DATETIME,,,,,
+mrk,,INTEGER,genomic_marker,owned_by,INTEGER,,,fk_gm_owned,Cooperator,Cooperator_ID
+narr,narr_id,INTEGER,accession_narrative,accession_narrative_id,INTEGER,Auto Increment,,,,
+narr,acid,INTEGER,accession_narrative,accession_id,INTEGER,,1,fk_ana_a,accession,accession_id
+narr,ntype,STRING,accession_narrative,type_code,STRING,Nullable ,10,,,
+narr,userid,STRING,accession_narrative,<absorbed by 3 amigos>,STRING,Nullable ,,,,
+narr,narr,STRING,accession_narrative,narrative_body,STRING,,4000,,,
+narr,created,DATETIME,accession_narrative,created_date,DATETIME,,,,,
+narr,,INTEGER,accession_narrative,created_by,INTEGER,,,fk_ana_created,Cooperator,Cooperator_ID
+narr,modified,DATETIME,accession_narrative,modified_date,DATETIME,Nullable ,,,,
+narr,,INTEGER,accession_narrative,modified_by,INTEGER,Nullable ,,fk_ana_modified,Cooperator,Cooperator_ID
+narr,,DATETIME,accession_narrative,owned_date,DATETIME,,,,,
+narr,,INTEGER,accession_narrative,owned_by,INTEGER,,,fk_ana_owned,Cooperator,Cooperator_ID
+oact,oactno,INTEGER,order_request_action,order_request_action_id,INTEGER,Auto Increment ,,,,
+oact,action,STRING,order_request_action,action_name,STRING,,10,,,
+oact,acted,DATETIME,order_request_action,acted_date,DATETIME,,,,,
+oact,actid,STRING,order_request_action,action_for_id,STRING,Nullable ,40,,,
+oact,orno,INTEGER,order_request_action,order_request_id,INTEGER,,,fk_ora_or,order_request,order_request_id
+oact,site,STRING,order_request_action,site_code,STRING,Nullable ,8,,,
+oact,cmt,STRING,order_request_action,note,STRING,Nullable ,240,,,
+oact,userid,STRING,order_request_action,<absorbed by 3 amigos>,STRING,Nullable ,10,,,
+oact,coop,STRING,order_request_action,<absorbed by 3 amigos>,,,,,,
+oact,cno,INTEGER,order_request_action,cooperator_id,INTEGER,Nullable ,,,,
+oact,created,DATETIME,order_request_action,created_date,DATETIME,,100,,,
+oact,,INTEGER,order_request_action,created_by,INTEGER,,,fk_ora_created,Cooperator,Cooperator_ID
+oact,modified,DATETIME,order_request_action,modified_date,DATETIME,Nullable ,,,,
+oact,,INTEGER,order_request_action,modified_by,INTEGER,Nullable ,,fk_ora_modified,Cooperator,Cooperator_ID
+oact,,DATETIME,order_request_action,owned_date,DATETIME,,,,,
+oact,,INTEGER,order_request_action,owned_by,INTEGER,,,fk_ora_owned,Cooperator,Cooperator_ID
+ob,obno,INTEGER,crop_trait_observation,crop_trait_observation_id,INTEGER,Auto Increment ,,,,
+ob,dno,INTEGER,crop_trait_observation,crop_trait_id,INTEGER,,,fk_cto_ct,crop_trait,crop_trait_id
+ob,,,crop_trait_observation,crop_trait_code_id,INTEGER,Nullable - lookup to crop_trait_code!!!!,,fk_cto_ctc,crop_trait_code,crop_trait_code_id
+ob,,,crop_trait_observation,numeric_value,DECIMAL,Nullable - contains number-based data from ob,,,,
+ob,ob,STRING,crop_trait_observation,string_value,STRING,Nullable - contains string-based data from ob,30,,,
+ob,acid,INTEGER,crop_trait_observation,<no longer used. Dummy inventory records created instead.>,,,,,,
+ob,eno,INTEGER,crop_trait_observation,method_id,INTEGER,,,fk_cto_m,method,method_id
+ob,qno,INTEGER,crop_trait_observation,crop_trait_qualifier_id,INTEGER,Nullable ,,fk_cto_ctq,crop_trait_qualifier,crop_trait_qualifier_id
+ob,ivid,INTEGER,crop_trait_observation,inventory_id,INTEGER,Nullable ,,fk_cto_i,inventory,inventory_id
+ob,orgvalue,STRING,crop_trait_observation,original_value,STRING,Nullable ,30,,,
+ob,freq,FLOAT,crop_trait_observation,frequency,DECIMAL,Nullable ,,,,
+ob,mean,INTEGER,crop_trait_observation,mean_value,DECIMAL,Nullable ,,,,
+ob,high,INTEGER,crop_trait_observation,maximum_value,DECIMAL,Nullable ,,,,
+ob,low,INTEGER,crop_trait_observation,minimum_value,DECIMAL,Nullable ,,,,
+ob,sdev,INTEGER,crop_trait_observation,standard_deviation,DECIMAL,Nullable ,,,,
+ob,ssize,INTEGER,crop_trait_observation,sample_size,DECIMAL,Nullable ,,,,
+ob,cmt,STRING,crop_trait_observation,note,STRING,Nullable ,500,,,
+ob,userid,STRING,crop_trait_observation,<absorbed by 3 amigos>,,Nullable ,10,,,
+ob,rank,INTEGER,crop_trait_observation,rank,INTEGER,Nullable ,,,,
+ob,created,DATETIME,crop_trait_observation,created_date,DATETIME,,,,,
+ob,,INTEGER,crop_trait_observation,created_by,INTEGER,,,fk_cto_created,Cooperator,Cooperator_ID
+ob,modified,DATETIME,crop_trait_observation,modified_date,DATETIME,Nullable ,,,,
+ob,,INTEGER,crop_trait_observation,modified_by,INTEGER,Nullable ,,fk_cto_modified,Cooperator,Cooperator_ID
+ob,,DATETIME,crop_trait_observation,owned_date,DATETIME,,,,,
+ob,,INTEGER,crop_trait_observation,owned_by,INTEGER,,,fk_cto_owned,Cooperator,Cooperator_ID
+oi,itno,INTEGER,order_request_item,order_request_item_id,INTEGER,Auto Increment,,,,
+oi,orno,INTEGER,order_request_item,order_request_id,INTEGER,Nullable ,,fk_ori_or,order_request,order_request_id,UNIQUE ndx_uniq_ori,ndx_ori_item,ndx_ori_aio
+oi,oino,INTEGER,order_request_item,sequence_number,INTEGER,Nullable ,,,,,UNIQUE ndx_uniq_ori,,
+oi,item,STRING,order_request_item,name,STRING,Nullable ,40,,,,,ndx_ori_item,
+oi,quant,INTEGER,order_request_item,quantity_shipped,INTEGER,Nullable ,,,,,,,
+oi,units,STRING,order_request_item,unit_of_shipped,STRING,Nullable ,2,,,,,,
+oi,dform,STRING,order_request_item,distribution_form,STRING,Nullable ,2,,,,,,
+oi,rest,STRING,order_request_item,ipr_restriction,STRING,Nullable ,10,,,,,,
+oi,status,STRING,order_request_item,status_code,STRING,Nullable ,10,,,,,,
+oi,acted,DATETIME,order_request_item,acted_date,DATETIME,Nullable ,,,,,,,
+oi,cno,INTEGER,order_request_item,cooperator_id,INTEGER,Nullable ,,fk_ori_c,cooperator,cooperator_id,,,
+oi,ivid,INTEGER,order_request_item,inventory_id,INTEGER,Nullable ,,fk_ori_i,inventory,inventory_id,,,ndx_ori_aio
+oi,acid,INTEGER,order_request_item,<no longer used. Dummy inventory records created instead.>,INTEGER,Nullable ,,fk_ori_a,accession,accession_id,,,ndx_ori_aio
+oi,taxno,INTEGER,order_request_item,taxonomy_id,INTEGER,Nullable ,,fk_ori_t,taxonomy,taxonomy_id,,,
+oi,taxon,STRING,order_request_item,external_taxonomy,STRING,Nullable ,100,,,,,,
+oi,cmt,STRING,order_request_item,note,STRING,Nullable ,240,,,,,,
+oi,userid,STRING,order_request_item,<absorbed by 3 amigos>,,Nullable ,10,,,,,,
+oi,created,DATETIME,order_request_item,created_date,DATETIME,,,,,,,,
+oi,,INTEGER,order_request_item,created_by,INTEGER,,,fk_ori_created,Cooperator,Cooperator_ID,,,
+oi,modified,DATETIME,order_request_item,modified_date,DATETIME,Nullable ,,,,,,,
+oi,,INTEGER,order_request_item,modified_by,INTEGER,Nullable ,,fk_ori_modified,Cooperator,Cooperator_ID,,,
+oi,,DATETIME,order_request_item,owned_date,DATETIME,,,,,,,,
+oi,,INTEGER,order_request_item,owned_by,INTEGER,,,fk_ori_owned,Cooperator,Cooperator_ID,,,
+ord,orno,INTEGER,order_request,order_request_id,INTEGER,Auto Increment ,,,,,,,
+ord,origno,INTEGER,order_request,original_order_request_id,INTEGER,Nullable ,,fk_or_original_or,order_request,order_request_id,,,
+ord,site,STRING,order_request,site_code,STRING,Nullable ,8,,,,ndx_or_local,,
+ord,localno,INTEGER,order_request,local_number,INTEGER,Nullable ,,,,,ndx_or_local,,
+ord,ortype,STRING,order_request,order_type,STRING,Nullable ,2,,,,,,
+ord,ordered,DATETIME,order_request,ordered_date,DATETIME,Nullable ,,,,,,,
+ord,status,STRING,order_request,status,STRING,Nullable ,10,,,,,,
+ord,done,STRING,order_request,is_completed,STRING,,1,,,,,,
+ord,acted,DATETIME,order_request,acted_date,DATETIME,Nullable ,,,,,,,
+ord,source,INTEGER,order_request,source_cooperator_id,INTEGER,Nullable ,,fk_or_source_c,cooperator,cooperator_id,,,ndx_oe_source
+ord,orderer,INTEGER,order_request,requestor_cooperator_id,INTEGER,Nullable ,,fk_or_requestor_c,cooperator,cooperator_id,,
+ord,shipto,INTEGER,order_request,ship_to_cooperator_id,INTEGER,Nullable ,,fk_or_ship_to_c,cooperator,cooperator_id,,
+ord,final,INTEGER,order_request,final_recipient_cooperator_id,INTEGER,,,fk_or_final_c,cooperator,cooperator_id,,
+ord,reqref,STRING,order_request,order_obtained_via,STRING,Nullable ,10,,,,,ndx_or_obtained
+ord,supplylow,STRING,order_request,is_supply_low,STRING,,1,,,,,
+ord,cmt,STRING,order_request,note,STRING,Nullable ,240,,,,,
+ord,userid,STRING,order_request,<absorbed by 3 amigos>,,Nullable ,10,,,,,
+ord,request,STRING,order_request,special_instruction,STRING,Nullable ,900,,,,,
+ord,created,DATETIME,order_request,created_date,DATETIME,,,,,,,
+ord,,INTEGER,order_request,created_by,INTEGER,,,fk_or_created,Cooperator,Cooperator_ID,,
+ord,modified,DATETIME,order_request,modified_date,DATETIME,Nullable ,,,,,,
+ord,,INTEGER,order_request,modified_by,INTEGER,Nullable ,,fk_or_modified,Cooperator,Cooperator_ID,,
+ord,,DATETIME,order_request,owned_date,DATETIME,,,,,,,
+ord,,INTEGER,order_request,owned_by,INTEGER,,,fk_or_owned,Cooperator,Cooperator_ID,,
+ped,pedid,INTEGER,accession_pedigree,accession_pedigree_id,INTEGER,Auto Increment,,,,,,
+ped,acid,INTEGER,accession_pedigree,accession_id,INTEGER,,,fk_ap_a,accession,accession_id,,
+ped,released,DATETIME,accession_pedigree,released_date,DATETIME,Nullable ,,,,,
+ped,datefmt,STRING,accession_pedigree,released_date_format,STRING,Nullable ,10,,,,
+ped,citno,INTEGER,accession_pedigree,citation_id,INTEGER,Nullable ,,fk_ap_ac,citation,citation_id,
+ped,userid,STRING,accession_pedigree,<absorbed by 3 amigos>,,Nullable ,10,,,,
+ped,pedigree,STRING,accession_pedigree,description,STRING,Nullable ,2000,,,,
+ped,created,DATETIME,accession_pedigree,created_date,DATETIME,,,,,,
+ped,,INTEGER,accession_pedigree,created_by,INTEGER,,,fk_ap_created,Cooperator,Cooperator_ID,
+ped,modified,DATETIME,accession_pedigree,modified_date,DATETIME,Nullable ,,,,,
+ped,,INTEGER,accession_pedigree,modified_by,INTEGER,Nullable ,,fk_ap_modified,Cooperator,Cooperator_ID,
+ped,,DATETIME,accession_pedigree,owned_date,DATETIME,,,,,,
+ped,,INTEGER,accession_pedigree,owned_by,INTEGER,,,fk_ap_owned,Cooperator,Cooperator_ID,
+pi,pivol,INTEGER,plant_introduction,plant_introduction_id,INTEGER,Auto Increment ,,,,,
+pi,piyear,INTEGER,plant_introduction,plant_introduction_year_date,DATETIME,,,,,,ndx_pi_year
+pi,lowpi,INTEGER,plant_introduction,lowest_pi_number,INTEGER,,,,,,
+pi,userid,STRING,plant_introduction,<absorbed by 3 amigos>,,Nullable ,10,,,,
+pi,created,DATETIME,plant_introduction,created_date,DATETIME,,,,,,
+pi,,INTEGER,plant_introduction,created_by,INTEGER,,,fk_pi_created,Cooperator,Cooperator_ID,,
+pi,modified,DATETIME,plant_introduction,modified_date,DATETIME,Nullable ,,,,,,
+pi,,INTEGER,plant_introduction,modified_by,INTEGER,Nullable ,,fk_pi_modified,Cooperator,Cooperator_ID,,
+pi,,DATETIME,plant_introduction,owned_date,DATETIME,,,,,,,
+pi,,INTEGER,plant_introduction,owned_by,INTEGER,,,fk_pi_owned,Cooperator,Cooperator_ID,,
+pt,ptid,INTEGER,inventory_quality_status,inventory_quality_status_id,INTEGER,Auto Increment,,,,,,
+pt,ivid,INTEGER,inventory_quality_status,inventory_id,INTEGER,,,fk_iqs_i,inventory,inventory_id,UNIQUE ndx_uniq_iqs,
+pt,pttype,STRING,inventory_quality_status,test_type,STRING,,10,,,,UNIQUE ndx_uniq_iqs,ndx_iqs_test
+pt,ptcode,STRING,inventory_quality_status,pathogen_code,STRING,,10,,,,UNIQUE ndx_uniq_iqs,ndx_iqs_test
+pt,began,DATETIME,inventory_quality_status,started_date,DATETIME,Nullable ,,,,,,
+pt,finished,DATETIME,inventory_quality_status,finished_date,DATETIME,Nullable ,,,,,UNIQUE ndx_uniq_iqs,
+pt,results,STRING,inventory_quality_status,test_results,STRING,Nullable ,10,,,,,
+pt,needed,INTEGER,inventory_quality_status,needed_count,INTEGER,Nullable ,,,,,,
+pt,started,INTEGER,inventory_quality_status,started_count,INTEGER,Nullable ,,,,,,
+pt,completed,INTEGER,inventory_quality_status,completed_count,INTEGER,Nullable ,,,,,,
+pt,cmt,STRING,inventory_quality_status,note,STRING,Nullable ,240,,,,,
+pt,userid,STRING,inventory_quality_status,<absorbed by 3 amigos>,,Nullable ,10,,,,
+pt,created,DATETIME,inventory_quality_status,created_date,DATETIME,,,,,,
+pt,,INTEGER,inventory_quality_status,created_by,INTEGER,,,fk_iqs_created,Cooperator,Cooperator_ID,
+pt,modified,DATETIME,inventory_quality_status,modified_date,DATETIME,Nullable ,,,,,
+pt,,INTEGER,inventory_quality_status,modified_by,INTEGER,Nullable ,,fk_iqs_modified,Cooperator,Cooperator_ID,
+pt,,DATETIME,inventory_quality_status,owned_date,DATETIME,,,,,,
+pt,,INTEGER,inventory_quality_status,owned_by,INTEGER,,,fk_iqs_owned,Cooperator,Cooperator_ID,
+qual,qno,INTEGER,crop_trait_qualifier,crop_trait_qualifier_id,INTEGER,Auto Increment ,,,,,
+qual,dno,INTEGER,crop_trait_qualifier,crop_trait_id,INTEGER,,,fk_ctq_ct,crop_trait,crop_trait_id,
+qual,qual,STRING,crop_trait_qualifier,name,STRING,,30,,,,ndx_ctq_name
+qual,def,STRING,crop_trait_qualifier,definition,STRING,Nullable ,240,,,,
+qual,userid,STRING,crop_trait_qualifier,<absorbed by 3 amigos>,,Nullable ,10,,,,
+qual,created,DATETIME,crop_trait_qualifier,created_date,DATETIME,,,,,,
+qual,,INTEGER,crop_trait_qualifier,created_by,INTEGER,,,fk_ctq_created,Cooperator,Cooperator_ID,
+qual,modified,DATETIME,crop_trait_qualifier,modified_date,DATETIME,Nullable ,,,,,
+qual,,INTEGER,crop_trait_qualifier,modified_by,INTEGER,Nullable ,,fk_ctq_modified,Cooperator,Cooperator_ID,
+qual,,DATETIME,crop_trait_qualifier,owned_date,DATETIME,,,,,
+qual,,INTEGER,crop_trait_qualifier,owned_by,INTEGER,,,fk_ctq_owned,Cooperator,Cooperator_ID
+quar,quarid,INTEGER,accession_quarantine,accession_quarantine_id,INTEGER,Auto Increment,,,,
+quar,acid,INTEGER,accession_quarantine,accession_id,INTEGER,,,fk_aq_a,accession,accession_id
+quar,qtype,STRING,accession_quarantine,quarantine_type,STRING,,10,,,
+quar,status,STRING,accession_quarantine,progress_status_code,STRING,Nullable ,10,,,
+quar,cno,INTEGER,accession_quarantine,cooperator_id,INTEGER,,,fk_aq_c,cooperator,cooperator_id
+quar,entered,DATETIME,accession_quarantine,entered_date,DATETIME,Nullable ,,,,
+quar,establish,DATETIME,accession_quarantine,established_date,DATETIME,Nullable ,,,,
+quar,expected,DATETIME,accession_quarantine,expected_release_date,DATETIME,Nullable ,,,,
+quar,released,DATETIME,accession_quarantine,released_date,DATETIME,Nullable ,,,,
+quar,cmt,STRING,accession_quarantine,note,STRING,Nullable ,240,,,
+quar,site,STRING,accession_quarantine,site_code,STRING,Nullable ,8,,,
+quar,userid,STRING,accession_quarantine,<absorbed by 3 amigos>,,Nullable ,10,,,
+quar,created,DATETIME,accession_quarantine,created_date,DATETIME,,,,,
+quar,,INTEGER,accession_quarantine,created_by,INTEGER,,,fk_aq_created,Cooperator,Cooperator_ID
+quar,modified,DATETIME,accession_quarantine,modified_date,DATETIME,Nullable ,,,,,
+quar,,INTEGER,accession_quarantine,modified_by,INTEGER,Nullable ,,fk_aq_modified,Cooperator,Cooperator_ID,
+quar,,DATETIME,accession_quarantine,owned_date,DATETIME,,,,,,
+quar,,INTEGER,accession_quarantine,owned_by,INTEGER,,,fk_aq_owned,Cooperator,Cooperator_ID,
+reg,regno,INTEGER,region,region_id,INTEGER,Auto Increment ,,,,,
+reg,area,STRING,region,continent,STRING,,20,,,,UNIQUE ndx_uniq_re
+reg,region,STRING,region,subcontinent,STRING,Nullable ,30,,,,UNIQUE ndx_uniq_re
+reg,cmt,STRING,region,note,STRING,Nullable ,240,,,,
+reg,userid,STRING,region,<absorbed by 3 amigos>,,Nullable ,10,,,,
+reg,created,DATETIME,region,created_date,DATETIME,,,,,,
+reg,,INTEGER,region,created_by,INTEGER,,,fk_r_created,Cooperator,Cooperator_ID,
+reg,modified,DATETIME,region,modified_date,DATETIME,Nullable ,,,,,
+reg,,INTEGER,region,modified_by,INTEGER,Nullable ,,fk_r_modified,Cooperator,Cooperator_ID,
+reg,,DATETIME,region,owned_date,DATETIME,,,,,,
+reg,,INTEGER,region,owned_by,INTEGER,,,fk_r_owned,Cooperator,Cooperator_ID,
+sec_lang,sec_lang_id,INTEGER,sec_lang,sec_lang_id,INTEGER,Auto Increment ,,,,,
+sec_lang,iso_639_3_code,STRING,sec_lang,iso_639_3_code,STRING,,5,,,,UNIQUE ndx_uniq_sl_code,
+sec_lang,ietf_tag,STRING,sec_lang,ietf_tag,STRING,Nullable ,30,,,,,UNIQUE ndx_uniq_sl_tag
+sec_lang,language_name,STRING,sec_lang,name,STRING,,100,,,,,
+sec_lang,description,STRING,sec_lang,description,STRING,Nullable ,500,,,,,
+sec_lang,,DATETIME,sec_lang,created_date,DATETIME,,,,,,,
+sec_lang,,INTEGER,sec_lang,created_by,INTEGER,,,fk_sl_created,Cooperator,Cooperator_ID,,
+sec_lang,,DATETIME,sec_lang,modified_date,DATETIME,Nullable ,,,,,,
+sec_lang,,INTEGER,sec_lang,modified_by,INTEGER,Nullable ,,fk_sl_modified,Cooperator,Cooperator_ID,,
+sec_lang,,DATETIME,sec_lang,owned_date,DATETIME,,,,,,,
+sec_lang,,INTEGER,sec_lang,owned_by,INTEGER,,,fk_sl_owned,Cooperator,Cooperator_ID,,
+sec_perm,sec_perm_id,INTEGER,sec_perm,sec_perm_id,INTEGER,Auto Increment ,,,,,,
+sec_perm,table_name,STRING,sec_perm,table_name,STRING,,50,,,,,
+sec_perm,sec_perm_template_id,INTEGER,sec_perm,sec_perm_template_id,INTEGER,Nullable ,,fk_sp_spt,sec_perm_template,sec_perm_template_id,,
+sec_perm,enabled,STRING,sec_perm,is_enabled,STRING,,1,,,,,
+sec_perm,perm_type,STRING,sec_perm,perm_type,STRING,Nullable ,1,,,,,
+sec_perm,perm_value,STRING,sec_perm,perm_value,STRING,Nullable ,1,,,,,
+sec_perm,,DATETIME,sec_perm,created_date,DATETIME,,,,,
+sec_perm,,INTEGER,sec_perm,created_by,INTEGER,,,fk_sp_created,Cooperator,Cooperator_ID
+sec_perm,,DATETIME,sec_perm,modified_date,DATETIME,Nullable ,,,,
+sec_perm,,INTEGER,sec_perm,modified_by,INTEGER,Nullable ,,fk_sp_modified,Cooperator,Cooperator_ID
+sec_perm,,DATETIME,sec_perm,owned_date,DATETIME,,,,,
+sec_perm,,INTEGER,sec_perm,owned_by,INTEGER,,,fk_sp_owned,Cooperator,Cooperator_ID
+sec_perm_field,sec_perm_field_id,INTEGER,sec_perm_field,sec_perm_field_id,INTEGER,Auto Increment ,,,,
+sec_perm_field,sec_perm_id,INTEGER,sec_perm_field,sec_perm_id,INTEGER,,,fk_spf_sp,sec_perm,sec_perm_id
+sec_perm_field,field_name,STRING,sec_perm_field,field_name,STRING,,50,,,
+sec_perm_field,field_type,STRING,sec_perm_field,field_type,STRING,,20,,,
+sec_perm_field,compare_operator,STRING,sec_perm_field,compare_operator,STRING,,20,,,
+sec_perm_field,compare_value,STRING,sec_perm_field,compare_value,STRING,Nullable ,100,,,
+sec_perm_field,compare_field_name,STRING,sec_perm_field,compare_field_name,STRING,Nullable ,150,,,
+sec_perm_field,,DATETIME,sec_perm_field,created_date,DATETIME,,,,,
+sec_perm_field,,INTEGER,sec_perm_field,created_by,INTEGER,,,fk_spf_created,Cooperator,Cooperator_ID
+sec_perm_field,,DATETIME,sec_perm_field,modified_date,DATETIME,Nullable ,,,,
+sec_perm_field,,INTEGER,sec_perm_field,modified_by,INTEGER,Nullable ,,fk_spf_modified,Cooperator,Cooperator_ID
+sec_perm_field,,DATETIME,sec_perm_field,owned_date,DATETIME,,,,,
+sec_perm_field,,INTEGER,sec_perm_field,owned_by,INTEGER,,,fk_spf_owned,Cooperator,Cooperator_ID
+sec_perm_template,sec_perm_template_id,INTEGER,sec_perm_template,sec_perm_template_id,INTEGER,Auto Increment ,,,,
+sec_perm_template,template_name,STRING,sec_perm_template,template_name,STRING,,100,,,
+sec_perm_template,enabled,STRING,sec_perm_template,is_enabled,STRING,,1,,,
+sec_perm_template,,DATETIME,sec_perm_template,created_date,DATETIME,,,,,
+sec_perm_template,,INTEGER,sec_perm_template,created_by,INTEGER,,,fk_spt_created,Cooperator,Cooperator_ID
+sec_perm_template,,DATETIME,sec_perm_template,modified_date,DATETIME,Nullable ,,,,
+sec_perm_template,,INTEGER,sec_perm_template,modified_by,INTEGER,Nullable ,,fk_spt_modified,Cooperator,Cooperator_ID
+sec_perm_template,,DATETIME,sec_perm_template,owned_date,DATETIME,,,,,
+sec_perm_template,,INTEGER,sec_perm_template,owned_by,INTEGER,,,fk_spt_owned,Cooperator,Cooperator_ID
+sec_perm_template_map,sec_perm_template_map_id,INTEGER,sec_perm_template_map,sec_perm_template_map_id,INTEGER,Auto Increment ,,,,
+sec_perm_template_map,sec_perm_template_id,INTEGER,sec_perm_template_map,sec_perm_template_id,INTEGER,,,fk_sptm_spt,sec_perm_template,sec_perm_template_id
+sec_perm_template_map,sec_perm_id,INTEGER,sec_perm_template_map,sec_perm_id,INTEGER,,,fk_sptm_sp,sec_perm,sec_perm_id
+sec_perm_template_map,,DATETIME,sec_perm_template_map,created_date,DATETIME,,,,,
+sec_perm_template_map,,INTEGER,sec_perm_template_map,created_by,INTEGER,,,fk_sptm_created,Cooperator,Cooperator_ID
+sec_perm_template_map,,DATETIME,sec_perm_template_map,modified_date,DATETIME,Nullable ,,,,
+sec_perm_template_map,,INTEGER,sec_perm_template_map,modified_by,INTEGER,Nullable ,,fk_sptm_modified,Cooperator,Cooperator_ID
+sec_perm_template_map,,DATETIME,sec_perm_template_map,owned_date,DATETIME,,,,,
+sec_perm_template_map,,INTEGER,sec_perm_template_map,owned_by,INTEGER,,,fk_sptm_owned,Cooperator,Cooperator_ID
+sec_rs,sec_rs_id,INTEGER,sec_rs,sec_rs_id,INTEGER,Auto Increment,,,,
+sec_rs,rs_name,STRING,sec_rs,rs_name,STRING,,100,,,
+sec_rs,sql_statement,STRING,sec_rs,sql_statement,STRING,Nullable ,4000,,,
+sec_rs,,STRING,sec_rs,primary_key_field_names,STRING,Nullable ,255,,,
+sec_rs,enabled,STRING,sec_rs,is_enabled,STRING,,1,,,
+sec_rs,updateable,STRING,sec_rs,is_readonly,STRING,,1,,,
+sec_rs,description,STRING,sec_rs,description,STRING,Nullable ,500,,,
+sec_rs,is_system,STRING,sec_rs,is_system,STRING,,1,,,
+sec_rs,suppress_props,STRING,sec_rs,is_property_suppressed,STRING,,1,,,
+sec_rs,is_user_visible,STRING,sec_rs,is_user_visible,STRING,,1,,,
+sec_rs,,DATETIME,sec_rs,created_date,DATETIME,,,,,
+sec_rs,,INTEGER,sec_rs,created_by,INTEGER,,,fk_sr_created,Cooperator,Cooperator_ID
+sec_rs,,DATETIME,sec_rs,modified_date,DATETIME,Nullable ,,,,
+sec_rs,,INTEGER,sec_rs,modified_by,INTEGER,Nullable ,,fk_sr_modified,Cooperator,Cooperator_ID
+sec_rs,,DATETIME,sec_rs,owned_date,DATETIME,,,,,
+sec_rs,,INTEGER,sec_rs,owned_by,INTEGER,,,fk_sr_owned,Cooperator,Cooperator_ID
+sec_rs_field,sec_rs_field_id,INTEGER,sec_rs_field,sec_rs_field_id,INTEGER,Auto Increment ,,,,
+sec_rs_field,sec_rs_id,INTEGER,sec_rs_field,sec_rs_id,INTEGER,,,fk_srf_sr,sec_rs,sec_rs_id
+sec_rs_field,field_name,STRING,sec_rs_field,field_name,STRING,,50,,,
+sec_rs_field,sec_table_field_id,INTEGER,sec_rs_field,sec_table_field_id,INTEGER,Nullable ,,fk_srf_stf,sec_table_field,sec_table_field_id
+sec_rs_field,updateable,STRING,sec_rs_field,is_readonly,STRING,,1,,,
+sec_rs_field,,,sec_rs_field,is_primary_key,STRING,,1,,,
+sec_rs_field,sort_order,INTEGER,sec_rs_field,sort_order,INTEGER,,,,,
+sec_rs_field,foreign_key_resultset_name,STRING,sec_rs_field,foreign_key_resultset_name,STRING,Nullable ,50,,,
+sec_rs_field,description,STRING,sec_rs_field,description,STRING,Nullable ,500,,,
+sec_rs_field,,DATETIME,sec_rs_field,created_date,DATETIME,,,,,
+sec_rs_field,,INTEGER,sec_rs_field,created_by,INTEGER,,,fk_srf_created,Cooperator,Cooperator_ID
+sec_rs_field,,DATETIME,sec_rs_field,modified_date,DATETIME,Nullable ,,,,
+sec_rs_field,,INTEGER,sec_rs_field,modified_by,INTEGER,Nullable ,,fk_srf_modified,Cooperator,Cooperator_ID
+sec_rs_field,,DATETIME,sec_rs_field,owned_date,DATETIME,,,,,
+sec_rs_field,,INTEGER,sec_rs_field,owned_by,INTEGER,,,fk_srf_owned,Cooperator,Cooperator_ID
+sec_rs_field_friendly,sec_rs_field_friendly_id,INTEGER,sec_rs_field_lang,sec_rs_field_lang_id,INTEGER,Auto Increment ,,,,
+sec_rs_field_friendly,sec_rs_field_id,INTEGER,sec_rs_field_lang,sec_rs_field_id,INTEGER,,,fk_srfl_srf,sec_rs_field,sec_rs_field_id
+sec_rs_field_friendly,language_code,STRING,sec_rs_field_lang,sec_lang_id,INTEGER,,,fk_srfl_sl,sec_lang,sec_lang_id
+sec_rs_field_friendly,friendly_field_name,STRING,sec_rs_field_lang,name,STRING,,100,,,
+sec_rs_field_friendly,,STRING,sec_rs_field_lang,description,STRING,Nullable ,500,,,
+sec_rs_field_friendly,,DATETIME,sec_rs_field_lang,created_date,DATETIME,,,,,
+sec_rs_field_friendly,,INTEGER,sec_rs_field_lang,created_by,INTEGER,,,fk_srfl_created,Cooperator,Cooperator_ID
+sec_rs_field_friendly,,DATETIME,sec_rs_field_lang,modified_date,DATETIME,Nullable ,,,,
+sec_rs_field_friendly,,INTEGER,sec_rs_field_lang,modified_by,INTEGER,Nullable ,,fk_srfl_modified,Cooperator,Cooperator_ID
+sec_rs_field_friendly,,DATETIME,sec_rs_field_lang,owned_date,DATETIME,,,,,
+sec_rs_field_friendly,,INTEGER,sec_rs_field_lang,owned_by,INTEGER,,,fk_srfl_owned,Cooperator,Cooperator_ID
+sec_rs_param,sec_rs_param_id,INTEGER,sec_rs_param,sec_rs_param_id,INTEGER,Auto Increment ,,,,
+sec_rs_param,sec_rs_id,INTEGER,sec_rs_param,sec_rs_id,INTEGER,,,fk_srp_sr,sec_rs,sec_rs_id
+sec_rs_param,param_name,STRING,sec_rs_param,param_name,STRING,,50,,,
+sec_rs_param,param_type,STRING,sec_rs_param,param_type,STRING,Nullable ,50,,,
+sec_rs_param,sort_order,INTEGER,sec_rs_param,sort_order,INTEGER,Nullable ,,,,
+sec_rs_param,description,STRING,sec_rs_param,description,STRING,Nullable ,100,,,
+sec_rs_param,,DATETIME,sec_rs_param,created_date,DATETIME,,,,,
+sec_rs_param,,INTEGER,sec_rs_param,created_by,INTEGER,,,fk_srp_created,Cooperator,Cooperator_ID
+sec_rs_param,,DATETIME,sec_rs_param,modified_date,DATETIME,Nullable ,,,,
+sec_rs_param,,INTEGER,sec_rs_param,modified_by,INTEGER,Nullable ,,fk_srp_modified,Cooperator,Cooperator_ID
+sec_rs_param,,DATETIME,sec_rs_param,owned_date,DATETIME,,,,,
+sec_rs_param,,INTEGER,sec_rs_param,owned_by,INTEGER,,,fk_srp_owned,Cooperator,Cooperator_ID
+sec_table,sec_table_id,INTEGER,sec_table,sec_table_id,INTEGER,Auto Increment ,,,,
+sec_table,table_name,STRING,sec_table,table_name,STRING,,50,,,
+sec_table,enabled,STRING,sec_table,is_enabled,STRING,,1,,,
+sec_table,updateable,STRING,sec_table,is_readonly,STRING,,1,,,
+sec_table,audits_created,STRING,sec_table,audits_created,STRING,,1,,,
+sec_table,audits_modified,STRING,sec_table,audits_modified,STRING,,1,,,
+sec_table,audits_owned,STRING,sec_table,audits_owned,STRING,,1,,,
+sec_table,database_area,STRING,sec_table,database_area,STRING,Nullable ,100,,,
+sec_table,description,STRING,sec_table,description,STRING,Nullable ,500,,,
+sec_table,,DATETIME,sec_table,created_date,DATETIME,,,,,
+sec_table,,INTEGER,sec_table,created_by,INTEGER,,,fk_st_created,Cooperator,Cooperator_ID
+sec_table,,DATETIME,sec_table,modified_date,DATETIME,Nullable ,,,,
+sec_table,,INTEGER,sec_table,modified_by,INTEGER,Nullable ,,fk_st_modified,Cooperator,Cooperator_ID
+sec_table,,DATETIME,sec_table,owned_date,DATETIME,,,,,
+sec_table,,INTEGER,sec_table,owned_by,INTEGER,,,fk_st_owned,Cooperator,Cooperator_ID
+sec_table_field,sec_table_field_id,INTEGER,sec_table_field,sec_table_field_id,INTEGER,Auto Increment ,,,,
+sec_table_field,sec_table_id,INTEGER,sec_table_field,sec_table_id,INTEGER,,,fk_stf_st,sec_table,sec_table_id
+sec_table_field,field_name,STRING,sec_table_field,field_name,STRING,,50,,,
+sec_table_field,field_purpose,STRING,sec_table_field,field_purpose,STRING,,50,,,
+sec_table_field,field_type,STRING,sec_table_field,field_type,STRING,,50,,,
+sec_table_field,description,STRING,sec_table_field,description,STRING,Nullable ,500,,,
+sec_table_field,,STRING,sec_table_field,default_value,STRING,Nullable ,50,,,
+sec_table_field,is_primary_key,STRING,sec_table_field,is_primary_key,STRING,,1,,,
+sec_table_field,is_foreign_key,STRING,sec_table_field,is_foreign_key,STRING,,1,,,
+sec_table_field,foreign_key_field_id,INTEGER,sec_table_field,foreign_key_field_id,INTEGER,Nullable ,,,,
+sec_table_field,foreign_key_resultset_name,STRING,sec_table_field,foreign_key_resultset_name,STRING,Nullable ,50,,,
+sec_table_field,is_nullable,STRING,sec_table_field,is_nullable,STRING,,1,,,
+sec_table_field,gui_hint,STRING,sec_table_field,gui_hint,STRING,,50,,,
+sec_table_field,is_readonly,STRING,sec_table_field,is_readonly,STRING,,1,,,
+sec_table_field,min_length,INTEGER,sec_table_field,min_length,INTEGER,,,,,
+sec_table_field,max_length,INTEGER,sec_table_field,max_length,INTEGER,,,,,
+sec_table_field,numeric_precision,INTEGER,sec_table_field,numeric_precision,INTEGER,,,,,
+sec_table_field,numeric_scale,INTEGER,sec_table_field,numeric_scale,INTEGER,,,,,
+sec_table_field,is_autoincrement,STRING,sec_table_field,is_autoincrement,STRING,,1,,,
+sec_table_field,lookup_code_no,INTEGER,sec_table_field,code_group_id,INTEGER,Nullable ,,fk_stf_cdgrp,code_group,code_group_id
+sec_table_field,,DATETIME,sec_table_field,created_date,DATETIME,,,,,
+sec_table_field,,INTEGER,sec_table_field,created_by,INTEGER,,,fk_stf_created,Cooperator,Cooperator_ID
+sec_table_field,,DATETIME,sec_table_field,modified_date,DATETIME,Nullable ,,,,,
+sec_table_field,,INTEGER,sec_table_field,modified_by,INTEGER,Nullable ,,fk_stf_modified,Cooperator,Cooperator_ID,
+sec_table_field,,DATETIME,sec_table_field,owned_date,DATETIME,,,,,,
+sec_table_field,,INTEGER,sec_table_field,owned_by,INTEGER,,,fk_stf_owned,Cooperator,Cooperator_ID,
+sec_user,sec_user_id,INTEGER,sec_user,sec_user_id,INTEGER,Auto Increment ,,,,,
+sec_user,user_name,STRING,sec_user,user_name,STRING,,50,,,,UNIQUE ndx_uniq_su_name
+sec_user,password,STRING,sec_user,password,STRING,,255,,,,
+sec_user,enabled,STRING,sec_user,is_enabled,STRING,,1,,,,
+sec_user,cno,INTEGER,sec_user,cooperator_id,INTEGER,Nullable ,,fk_su_co,cooperator,cooperator_id,
+sec_user,,DATETIME,sec_user,created_date,DATETIME,,,,,,
+sec_user,,INTEGER,sec_user,created_by,INTEGER,,,fk_su_created,Cooperator,Cooperator_ID,
+sec_user,,DATETIME,sec_user,modified_date,DATETIME,Nullable ,,,,,
+sec_user,,INTEGER,sec_user,modified_by,INTEGER,Nullable ,,fk_su_modified,Cooperator,Cooperator_ID,
+sec_user,,DATETIME,sec_user,owned_date,DATETIME,,,,,,
+sec_user,,INTEGER,sec_user,owned_by,INTEGER,,,fk_su_owned,Cooperator,Cooperator_ID,
+sec_user_gui_settings,sec_user_gui_settings_id,INTEGER,sec_user_gui_setting,sec_user_gui_setting_id,INTEGER,Auto Increment ,,,,,
+sec_user_gui_settings,cno,INTEGER,sec_user_gui_setting,cooperator_id,INTEGER,,,fk_sugs_co,Cooperator,Cooperator_ID
+sec_user_gui_settings,resource_name,STRING,sec_user_gui_setting,resource_name,STRING,,100,,,
+sec_user_gui_settings,resource_key,STRING,sec_user_gui_setting,resource_key,STRING,,100,,,
+sec_user_gui_settings,resource_value,STRING,sec_user_gui_setting,resource_value,STRING,,4000,,,
+sec_user_gui_settings,,DATETIME,sec_user_gui_setting,created_date,DATETIME,,,,,
+sec_user_gui_settings,,INTEGER,sec_user_gui_setting,created_by,INTEGER,,,fk_sugs_created,Cooperator,Cooperator_ID
+sec_user_gui_settings,,DATETIME,sec_user_gui_setting,modified_date,DATETIME,Nullable ,,,,
+sec_user_gui_settings,,INTEGER,sec_user_gui_setting,modified_by,INTEGER,Nullable ,,fk_sugs_modified,Cooperator,Cooperator_ID
+sec_user_gui_settings,,DATETIME,sec_user_gui_setting,owned_date,DATETIME,,,,,
+sec_user_gui_settings,,INTEGER,sec_user_gui_setting,owned_by,INTEGER,,,fk_sugs_owned,Cooperator,Cooperator_ID
+sec_user_perm,sec_user_perm_id,INTEGER,sec_user_perm,sec_user_perm_id,INTEGER,Auto Increment ,,,,
+sec_user_perm,sec_user_id,INTEGER,sec_user_perm,sec_user_id,INTEGER,,,fk_sup_su,sec_user,sec_user_id
+sec_user_perm,sec_perm_id,INTEGER,sec_user_perm,sec_perm_id,INTEGER,,,fk_sup_sp,sec_perm,sec_perm_id
+sec_user_perm,enabled,STRING,sec_user_perm,is_enabled,STRING,,1,,,
+sec_user_perm,,DATETIME,sec_user_perm,created_date,DATETIME,,,,,
+sec_user_perm,,INTEGER,sec_user_perm,created_by,INTEGER,,,fk_sup_created,Cooperator,Cooperator_ID
+sec_user_perm,,DATETIME,sec_user_perm,modified_date,DATETIME,Nullable ,,,,
+sec_user_perm,,INTEGER,sec_user_perm,modified_by,INTEGER,Nullable ,,fk_sup_modified,Cooperator,Cooperator_ID
+sec_user_perm,,DATETIME,sec_user_perm,owned_date,DATETIME,,,,,
+sec_user_perm,,INTEGER,sec_user_perm,owned_by,INTEGER,,,fk_sup_owned,Cooperator,Cooperator_ID
+smbr,SMBRID,INTEGER,accession_source_map,accession_source_map_id,INTEGER,Auto Increment,,,,
+smbr,srcno,INTEGER,accession_source_map,accession_source_id,INTEGER,,,fk_asm_as,accession_source,accession_source_id
+smbr,acid,INTEGER,accession_source_map,<moved to accession_source table>,,,,,,
+smbr,cno,INTEGER,accession_source_map,cooperator_id,INTEGER,,,fk_asm_c,Cooperator,Cooperator_ID
+smbr,userid,STRING,accession_source_map,<absorbed by 3 amigos>,,Nullable ,10,,,
+smbr,created,DATETIME,accession_source_map,created_date,DATETIME,,,,,
+smbr,,INTEGER,accession_source_map,created_by,INTEGER,,,fk_asm_created,Cooperator,Cooperator_ID
+smbr,modified,DATETIME,accession_source_map,modified_date,DATETIME,Nullable ,,,,
+smbr,,INTEGER,accession_source_map,modified_by,INTEGER,Nullable ,,fk_asm_modified,Cooperator,Cooperator_ID
+smbr,,DATETIME,accession_source_map,owned_date,DATETIME,,,,,
+smbr,,INTEGER,accession_source_map,owned_by,INTEGER,,,fk_asm_owned,Cooperator,Cooperator_ID
+src,srcno,INTEGER,accession_source,accession_source_id,INTEGER,Auto Increment ,,,,
+src,acid,INTEGER,accession_source,accession_id,INTEGER,,,fk_as_a,accession,accession_id
+src,srctype,STRING,accession_source,type_code,STRING,,10,,,
+src,srcdate,DATETIME,accession_source,step_date,DATETIME,Nullable ,,,,
+src,datefmt,STRING,accession_source,step_date_format,STRING,Nullable ,10,,,
+src,origin,STRING,accession_source,is_origin_step,STRING,,1,,,
+src,geono,INTEGER,accession_source,geography_id,INTEGER,Nullable ,,fk_as_g,geography,geography_id
+src,cmt,STRING,accession_source,note,STRING,Nullable ,240,,,
+src,userid,STRING,accession_source,<absorbed by 3 amigos>,,Nullable ,10,,,
+src,srcqual,STRING,accession_source,source_qualifier,STRING,Nullable ,10,,,
+src,created,DATETIME,accession_source,created_date,DATETIME,,,,,
+src,,INTEGER,accession_source,created_by,INTEGER,,,fk_as_created,Cooperator,Cooperator_ID
+src,modified,DATETIME,accession_source,modified_date,DATETIME,Nullable ,,,,
+src,,INTEGER,accession_source,modified_by,INTEGER,Nullable ,,fk_as_modified,Cooperator,Cooperator_ID
+src,,DATETIME,accession_source,owned_date,DATETIME,,,,,
+src,,INTEGER,accession_source,owned_by,INTEGER,,,fk_as_owned,Cooperator,Cooperator_ID
+taut,tautid,INTEGER,taxonomy_author,taxonomy_author_id,INTEGER,Auto Increment,,,,
+taut,shortaut,STRING,taxonomy_author,short_name,STRING,,30,,,,
+taut,longaut,STRING,taxonomy_author,full_name,STRING,Nullable ,100,,,,
+taut,smarkaut,STRING,taxonomy_author,short_name_diacritic,STRING,Nullable ,30,,,,
+taut,lmarkaut,STRING,taxonomy_author,full_name_diacritic,STRING,Nullable ,100,,,,
+taut,shexpaut,STRING,taxonomy_author,short_name_expanded_diacritic,STRING,Nullable ,30,,,,ndx_ta_name
+taut,lgexpaut,STRING,taxonomy_author,full_name_expanded_diacritic,STRING,Nullable ,100,,,,
+taut,cmt,STRING,taxonomy_author,note,STRING,Nullable ,240,,,,
+taut,userid,STRING,taxonomy_author,<absorbed by 3 amigos>,,,10,,,,
+taut,created,DATETIME,taxonomy_author,created_date,DATETIME,,,,,,
+taut,,INTEGER,taxonomy_author,created_by,INTEGER,,,fk_ta_created,Cooperator,Cooperator_ID,
+taut,modified,DATETIME,taxonomy_author,modified_date,DATETIME,Nullable ,,,,,
+taut,,INTEGER,taxonomy_author,modified_by,INTEGER,Nullable ,,fk_ta_modified,Cooperator,Cooperator_ID,
+taut,,DATETIME,taxonomy_author,owned_date,DATETIME,,,,,,
+taut,,INTEGER,taxonomy_author,owned_by,INTEGER,,,fk_ta_owned,Cooperator,Cooperator_ID,
+tax,taxno,INTEGER,taxonomy,taxonomy_id,INTEGER,Auto Increment ,,,,,
+tax,validtaxno,INTEGER,taxonomy,current_taxonomy_id,INTEGER,Nullable ,,fk_t_cur_t,taxonomy,taxonomy_id,
+tax,shybrid,STRING,taxonomy,is_interspecific_hybrid,STRING,,1,,,
+tax,species,STRING,taxonomy,species,STRING,,30,,,
+tax,sauthor,STRING,taxonomy,species_authority,STRING,Nullable ,100,,,
+tax,ssphybrid,STRING,taxonomy,is_intraspecific_hybrid,STRING,,1,,,
+tax,subsp,STRING,taxonomy,subspecies,STRING,Nullable ,30,,,
+tax,sspauthor,STRING,taxonomy,subspecies_authority,STRING,Nullable ,100,,,
+tax,varhybrid,STRING,taxonomy,is_intervarietal_hybrid,STRING,,1,,,
+tax,var,STRING,taxonomy,variety,STRING,Nullable ,30,,,
+tax,varauthor,STRING,taxonomy,variety_authority,STRING,Nullable ,100,,,
+tax,svhybrid,STRING,taxonomy,is_subvarietal_hybrid,STRING,,1,,,
+tax,subvar,STRING,taxonomy,subvariety,STRING,Nullable ,30,,,
+tax,svauthor,STRING,taxonomy,subvariety_authority,STRING,Nullable ,100,,,
+tax,fhybrid,STRING,taxonomy,is_forma_hybrid,STRING,,1,,,
+tax,forma,STRING,taxonomy,forma,STRING,Nullable ,30,,,
+tax,fauthor,STRING,taxonomy,forma_authority,STRING,Nullable ,100,,,
+tax,gno,INTEGER,taxonomy,taxonomy_genus_id,INTEGER,,,fk_t_tg,taxonomy_genus,taxonomy_genus_id
+tax,cropno,INTEGER,taxonomy,crop_id,INTEGER,Nullable ,,fk_t_tcr,crop,crop_id,,,
+tax,psite1,STRING,taxonomy,priority_site_1,STRING,Nullable ,8,,,,,ndx_ta_site1,
+tax,psite2,STRING,taxonomy,priority_site_2,STRING,Nullable ,8,,,,,,ndx_ta_site2
+tax,rest,STRING,taxonomy,restriction,STRING,Nullable ,10,,,,,,
+tax,lifeform,STRING,taxonomy,life_form,STRING,Nullable ,10,,,,,,
+tax,fert,STRING,taxonomy,common_fertilization,STRING,Nullable ,10,,,,,,
+tax,pending,STRING,taxonomy,is_name_pending,STRING,,1,,,,,,
+tax,qual,STRING,taxonomy,synonym_code,STRING,Nullable ,6,,,,,,
+tax,cno,INTEGER,taxonomy,cooperator_id,INTEGER,Nullable ,,fk_t_c,cooperator,Cooperator_ID,,,
+tax,verified,DATETIME,taxonomy,name_verified_date,DATETIME,Nullable ,,,,,,,
+tax,taxon,STRING,taxonomy,name,STRING,Nullable ,100,,,,UNIQUE ndx_uniq_ta,,
+tax,taxauthor,STRING,taxonomy,name_authority,STRING,Nullable ,100,,,,UNIQUE ndx_uniq_ta,,
+tax,protologue,STRING,taxonomy,protologue,STRING,Nullable ,240,,,,,,
+tax,taxcmt,STRING,taxonomy,note,STRING,Nullable ,2000,,,,,,
+tax,sitecmt,STRING,taxonomy,site_note,STRING,Nullable ,240,,,,,,
+tax,userid,STRING,taxonomy,<absorbed by 3 amigos>,,Nullable ,10,,,,,,
+tax,othname,STRING,taxonomy,alternate_name,STRING,Nullable ,240,,,
+tax,created,DATETIME,taxonomy,created_date,DATETIME,,,,,
+tax,,INTEGER,taxonomy,created_by,INTEGER,,,fk_t_created,Cooperator,Cooperator_ID
+tax,modified,DATETIME,taxonomy,modified_date,DATETIME,Nullable ,,,,
+tax,,INTEGER,taxonomy,modified_by,INTEGER,Nullable ,,fk_t_modified,Cooperator,Cooperator_ID
+tax,,DATETIME,taxonomy,owned_date,DATETIME,,,,,
+tax,,INTEGER,taxonomy,owned_by,INTEGER,Points to Cooperator.Cooperator_ID,,fk_t_owned,Cooperator,Cooperator_ID
+taxtorc,taxtorcid,INTEGER,taxonomy_??????,taxonomy_???_id,INTEGER,Auto Increment,,,,
+taxtorc,taxno,INTEGER,taxonomy_??????,taxonomy_id,INTEGER,,,fk_t?_t,taxonomy,taxonomy_id
+taxtorc,dno,INTEGER,taxonomy_??????,crop_trait_id,INTEGER,,,fk_t?_tr,crop_trait,crop_trait_id
+taxtorc,ct,INTEGER,taxonomy_??????,total_count,INTEGER,Nullable ,,,,
+taxtorc,taxon,STRING,taxonomy_??????,<not in new database>,,Nullable ,70,,,
+taxtorc,crop,STRING,taxonomy_??????,<not in new database>,,Nullable ,20,,,
+taxtorc,cropno,INTEGER,taxonomy_??????,crop_id,INTEGER,Nullable ,,fk_t?_cr,crop,crop_id
+taxtorc,genus,STRING,taxonomy_??????,taxonomy_genus_id,INTEGER,Nullable ,30,fk_t?_tg,taxonomy_genus,taxonomy_genus_id
+taxtorc,created,DATETIME,taxonomy_??????,created_date,DATETIME,,,,,
+taxtorc,,INTEGER,taxonomy_??????,created_by,INTEGER,,,fk_t?_created,Cooperator,Cooperator_ID
+taxtorc,modified,DATETIME,taxonomy_??????,modified_date,DATETIME,Nullable ,,,,
+taxtorc,,INTEGER,taxonomy_??????,modified_by,INTEGER,Nullable ,,fk_t?_modified,Cooperator,Cooperator_ID
+taxtorc,,DATETIME,taxonomy_??????,owned_date,DATETIME,,,,,
+taxtorc,,INTEGER,taxonomy_??????,owned_by,INTEGER,,,fk_t?_owned,Cooperator,Cooperator_ID
+tcit,citno,INTEGER,taxonomy_citation_map,taxonomy_citation_id,INTEGER,Auto Increment ,,,,
+tcit,taxno,INTEGER,taxonomy_citation_map,taxonomy_id,INTEGER,,,fk_tcm_t,taxonomy,taxonomy_id
+tcit,abbr,STRING,taxonomy_citation_map,citation_id,INTEGER,Nullable ,20,fk_tcm_ci,citation,citation_id
+tcit,cittitle,STRING,taxonomy_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+tcit,author,STRING,taxonomy_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+tcit,cityr,INTEGER,taxonomy_citation_map,<moved to citation table>,DATETIME,Nullable ,,,,
+tcit,citref,STRING,taxonomy_citation_map,<moved to citation table>,STRING,Nullable ,60,,,
+tcit,cmt,STRING,taxonomy_citation_map,<moved to citation table>,STRING,Nullable ,240,,,
+tcit,userid,STRING,taxonomy_citation_map,<absorbed by 3 amigos>,,Nullable ,10,,,
+tcit,created,DATETIME,taxonomy_citation_map,created_date,DATETIME,,,,,
+tcit,,INTEGER,taxonomy_citation_map,created_by,INTEGER,,,fk_tcm_created,Cooperator,Cooperator_ID
+tcit,modified,DATETIME,taxonomy_citation_map,modified_date,DATETIME,Nullable ,,,,
+tcit,,INTEGER,taxonomy_citation_map,modified_by,INTEGER,Nullable ,,fk_tcm_modified,Cooperator,Cooperator_ID
+tcit,,DATETIME,taxonomy_citation_map,owned_date,DATETIME,,,,,
+tcit,,INTEGER,taxonomy_citation_map,owned_by,INTEGER,,,fk_tcm_owned,Cooperator,Cooperator_ID
+turl,turlno,INTEGER,taxonomy_url,taxonomy_url_id,INTEGER,Auto Increment ,,,,
+turl,urltype,STRING,taxonomy_url,url_type,STRING,,10,,,
+turl,famno,INTEGER,taxonomy_url,taxonomy_family_id,INTEGER,,,fk_tu_tf,taxonomy_family,taxonomy_family_id
+turl,gno,INTEGER,taxonomy_url,taxonomy_genus_id,INTEGER,Nullable ,,fk_tu_tg,taxonomy_genus,taxonomy_genus_id
+turl,taxno,INTEGER,taxonomy_url,taxonomy_id,INTEGER,Nullable ,,fk_tu_t,taxonomy,taxonomy_id
+turl,caption,STRING,taxonomy_url,<moved to url table>,,Nullable ,240,,,
+turl,url,STRING,taxonomy_url,url_id,INTEGER,Nullable,,fk_tu_u,url,url_id
+turl,site,STRING,taxonomy_url,site_code,STRING,,8,,,
+turl,cmt,STRING,taxonomy_url,note,STRING,Nullable ,240,,,
+turl,userid,STRING,taxonomy_url,<absorbed by 3 amigos>,,,10,,,
+turl,created,DATETIME,taxonomy_url,created_date,DATETIME,,,,,
+turl,,INTEGER,taxonomy_url,created_by,INTEGER,,,fk_tu_created,Cooperator,Cooperator_ID
+turl,modified,DATETIME,taxonomy_url,modified_date,DATETIME,Nullable ,,,,,
+turl,,INTEGER,taxonomy_url,modified_by,INTEGER,Nullable ,,fk_tu_modified,Cooperator,Cooperator_ID,
+turl,,DATETIME,taxonomy_url,owned_date,DATETIME,,,,,,
+turl,,INTEGER,taxonomy_url,owned_by,INTEGER,,,fk_tu_owned,Cooperator,Cooperator_ID,
+uses,usesid,INTEGER,taxonomy_use,taxonomy_use_id,INTEGER,Auto Increment,,,,,
+uses,taxno,INTEGER,taxonomy_use,taxonomy_id,INTEGER,,,fk_tus_t,taxonomy,taxonomy_id,
+uses,taxuse,STRING,taxonomy_use,economic_usage,STRING,,10,,,,ndx_tu_usage
+uses,cmt,STRING,taxonomy_use,note,STRING,Nullable ,240,,,,
+uses,userid,STRING,taxonomy_use,<absorbed by 3 amigos>,,Nullable ,10,,,,
+uses,usetype,STRING,taxonomy_use,usage_type,STRING,Nullable ,250,,,,
+uses,created,DATETIME,taxonomy_use,created_date,DATETIME,,,,,,
+uses,,INTEGER,taxonomy_use,created_by,INTEGER,,,fk_tus_created,Cooperator,Cooperator_ID,
+uses,modified,DATETIME,taxonomy_use,modified_date,DATETIME,Nullable ,,,,,
+uses,,INTEGER,taxonomy_use,modified_by,INTEGER,Nullable ,,fk_tus_modified,Cooperator,Cooperator_ID,
+uses,,DATETIME,taxonomy_use,owned_date,DATETIME,,,,,,
+uses,,INTEGER,taxonomy_use,owned_by,INTEGER,,,fk_tus_owned,Cooperator,Cooperator_ID,
+via,viano,INTEGER,inventory_viability,inventory_viability_id,INTEGER,Auto Increment ,,,,
+via,tested,DATETIME,inventory_viability,tested_date,DATETIME,,,,,
+via,datefmt,STRING,inventory_viability,tested_date_format,STRING,Nullable ,10,,,
+via,norm,INTEGER,inventory_viability,percent_normal,INTEGER,Nullable ,,,,
+via,abnorm,INTEGER,inventory_viability,percent_abnormal,INTEGER,Nullable ,,,,
+via,dormant,INTEGER,inventory_viability,percent_dormant,INTEGER,Nullable ,,,,
+via,viable,INTEGER,inventory_viability,percent_viable,INTEGER,Nullable ,,,,
+via,vigor,STRING,inventory_viability,vigor_rating,STRING,Nullable ,10,,,
+via,sample,INTEGER,inventory_viability,sample_count,INTEGER,Nullable ,,,,
+via,reps,INTEGER,inventory_viability,replication_count,INTEGER,Nullable ,,,,
+via,ivid,INTEGER,inventory_viability,inventory_id,INTEGER,,,fk_iv_i,inventory,inventory_id
+via,eno,INTEGER,inventory_viability,method_id,INTEGER,Nullable ,,fk_iv_m,method,method_id
+via,cmt,STRING,inventory_viability,note,STRING,Nullable ,240,,,
+via,userid,STRING,inventory_viability,<absorbed by 3 amigos>,,Nullable ,10,,,
+via,created,DATETIME,inventory_viability,created_date,DATETIME,,,,,
+via,,INTEGER,inventory_viability,created_by,INTEGER,,,fk_iv_created,Cooperator,Cooperator_ID
+via,modified,DATETIME,inventory_viability,modified_date,DATETIME,Nullable ,,,,
+via,,INTEGER,inventory_viability,modified_by,INTEGER,Nullable ,,fk_iv_modified,Cooperator,Cooperator_ID
+via,,DATETIME,inventory_viability,owned_date,DATETIME,,,,,
+via,,INTEGER,inventory_viability,owned_by,INTEGER,,,fk_iv_owned,Cooperator,Cooperator_ID
+vou,vno,INTEGER,accession_voucher,accession_voucher_id,INTEGER,Auto Increment,,,,
+vou,acid,INTEGER,accession_voucher,accession_id,INTEGER,,,fk_av_a,accession,accession_id
+vou,vtype,STRING,accession_voucher,voucher_type,STRING,,10,,,
+vou,ivid,INTEGER,accession_voucher,inventory_id,INTEGER,Nullable ,,fk_av_i,inventory,inventory_id
+vou,cno,INTEGER,accession_voucher,cooperator_id,INTEGER,Nullable ,,fk_av_c,cooperator,cooperator_id
+vou,vouchered,DATETIME,accession_voucher,vouchered_date,DATETIME,Nullable ,,,,
+vou,datefmt,STRING,accession_voucher,vouchered_date_format,STRING,Nullable ,10,,,
+vou,collid,STRING,accession_voucher,collector_identifier,STRING,Nullable ,40,,,
+vou,vloc,STRING,accession_voucher,<moved to image table>,,,200,,,
+vou,vcontent,STRING,accession_voucher,caption,STRING,Nullable ,100,,,
+vou,cmt,STRING,accession_voucher,note,STRING,Nullable ,240,,,
+vou,userid,STRING,accession_voucher,<absorbed by 3 amigos>,,Nullable ,10,,,
+vou,thumbnail,STRING,accession_voucher,<moved to image table>,,,,,,
+vou,created,DATETIME,accession_voucher,created_date,DATETIME,,,,,
+vou,,INTEGER,accession_voucher,created_by,INTEGER,,,fk_av_created,Cooperator,Cooperator_ID
+vou,modified,DATETIME,accession_voucher,modified_date,DATETIME,Nullable ,,,,
+vou,,INTEGER,accession_voucher,modified_by,INTEGER,Nullable ,,fk_av_modified,Cooperator,Cooperator_ID
+vou,,DATETIME,accession_voucher,owned_date,DATETIME,,,,,
+vou,,INTEGER,accession_voucher,owned_by,INTEGER,,,fk_av_owned,Cooperator,Cooperator_ID
+,,,accession_voucher_image_map,accession_voucher_image_map_id,INTEGER,Auto Increment,,,,
+,,,accession_voucher_image_map,accession_voucher_id,INTEGER,,,fk_avi_av,accession_voucher,accession_voucher_id
+,,,accession_voucher_image_map,image_id,INTEGER,,,fk_avi_img,image,image_id
+,,,accession_voucher_image_map,created_date,DATETIME,,,,,
+,,,accession_voucher_image_map,created_by,INTEGER,,,fk_avi_created,Cooperator,Cooperator_ID
+,,,accession_voucher_image_map,modified_date,DATETIME,Nullable ,,,,
+,,,accession_voucher_image_map,modified_by,INTEGER,Nullable ,,fk_avi_modified,Cooperator,Cooperator_ID
+,,,accession_voucher_image_map,owned_date,DATETIME,,,,,
+,,,accession_voucher_image_map,owned_by,INTEGER,,,fk_avi_owned,Cooperator,Cooperator_ID
+,,,image,image_id,INTEGER,Auto Increment,,,,
+,,,image,virtual_path,STRING,,500,,,
+,,,image,thumbnail_virtual_path,STRING,Nullable .   Image doesn't have to have a thumbnail,500,,,
+,,,image,created_date,DATETIME,,,,,
+,,,image,created_by,INTEGER,,,fk_img_created,Cooperator,Cooperator_ID
+,,,image,modified_date,DATETIME,Nullable ,,,,
+,,,image,modified_by,INTEGER,Nullable ,,fk_img_modified,Cooperator,Cooperator_ID
+,,,image,owned_date,DATETIME,,,,,
+,,,image,owned_by,INTEGER,,,fk_img_owned,Cooperator,Cooperator_ID
+,,,url,url_id,INTEGER,Auto Increment,,,,
+,,,url,caption,STRING,,200,,,
+,,,url,url,STRING,,200,,,
+,,,url,created_date,DATETIME,,,,,
+,,,url,created_by,INTEGER,,,fk_u_created,Cooperator,Cooperator_ID
+,,,url,modified_date,DATETIME,Nullable ,,,,
+,,,url,modified_by,INTEGER,Nullable ,,fk_u_modified,Cooperator,Cooperator_ID
+,,,url,owned_date,DATETIME,,,,,
+,,,url,owned_by,INTEGER,,,fk_u_owned,Cooperator,Cooperator_ID
+,,,accession_image_map,accession_image_map,INTEGER,Auto Increment,,,,
+,,,accession_image_map,accession_id,INTEGER,,,fk_aim_a,accession,accession_id
+,,,accession_image_map,image_id,INTEGER,,,fk_aim_img,image,image_id
+,,,accession_image_map,created_date,DATETIME,,,,,
+,,,accession_image_map,created_by,INTEGER,,,fk_aim_created,Cooperator,Cooperator_ID
+,,,accession_image_map,modified_date,DATETIME,Nullable ,,,,
+,,,accession_image_map,modified_by,INTEGER,Nullable ,,fk_aim_modified,Cooperator,Cooperator_ID
+,,,accession_image_map,owned_date,DATETIME,,,,,
+,,,accession_image_map,owned_by,INTEGER,,,fk_aim_owned,Cooperator,Cooperator_ID
+,,,inventory_image_map,inventory_image_map,INTEGER,Auto Increment,,,,
+,,,inventory_image_map,inventory_id,INTEGER,,,fk_iim_i,inventory,inventory_id
+,,,inventory_image_map,image_id,INTEGER,,,fk_iim_img,image,image_id
+,,,inventory_image_map,created_date,DATETIME,,,,,
+,,,inventory_image_map,created_by,INTEGER,,,fk_iim_created,Cooperator,Cooperator_ID
+,,,inventory_image_map,modified_date,DATETIME,Nullable ,,,,
+,,,inventory_image_map,modified_by,INTEGER,Nullable ,,fk_iim_modified,Cooperator,Cooperator_ID
+,,,inventory_image_map,owned_date,DATETIME,,,,,
+,,,inventory_image_map,owned_by,INTEGER,,,fk_iim_owned,Cooperator,Cooperator_ID
+site,,INTEGER,site,site_id,INTEGER,Auto Increment,,,,
+site,site,STRING,site,code,STRING,,8,,,
+site,sitename,STRING,site,name,STRING,,100,,,
+site,arsregion,STRING,site,region,STRING,Nullable,10,,,
+site,cmt,STRING,site,note,STRING,Nullable,500,,,
+site,userid,STRING,site,<absorbed by 3 amigos>,,,,,,
+site,distribute,STRING,site,can_distribute,STRING,,1,,,
+site,clonal,STRING,site,site_type,STRING,"SEED, CLNL, BOTH",4,,,
+site,instcode,STRING,site,institution_code,STRING,Nullable,20,,,
+site,cno,INTEGER,site,contact_cooperator_id,INTEGER,Nullable,,,,
+site,created,DATETIME,site,created_date,DATETIME,,,,,
+site,,INTEGER,site,created_by,INTEGER,,,fk_s_created,Cooperator,Cooperator_ID
+site,modified,DATETIME,site,modified_date,DATETIME,Nullable,,,,,
+site,,INTEGER,site,modified_by,INTEGER,Nullable,,fk_s_modified,Cooperator,Cooperator_ID,
+site,,DATETIME,site,owned_date,DATETIME,,,,,,
+site,,INTEGER,site,owned_by,INTEGER,,,fk_s_owned,Cooperator,Cooperator_ID,
+code_column,code_column_id,,code_column,code_column_id,INTEGER,Auto Increment - KEYS ONLY,,,,,
+code_column,owner,,code_column,owner,STRING,Used during import only,100,,,,
+code_column,table_name,,code_column,table_name,STRING,Used during import only,100,,,,
+code_column,column_name,,code_column,column_name,STRING,Used during import only,100,,,,
+code_column,code_no,,code_column,code_no,INTEGER,Used during import only,,,,,ndx_cc_lookup
+code_column,site,,code_column,site,STRING,Used during import only,100,,,,
+code_column,userid,,code_column,userid,STRING,"Nullable, Used during import only",100,,,,
+code_column,created,,code_column,created,DATETIME,"Nullable, Used during import only",,,,,
+code_column,modified,,code_column,modified,DATETIME,"Nullable, Used during import only",,,,,
+code_column,master,,code_column,master,STRING,"Nullable, Used during import only",100,,,,
+code_column,form_name,,code_column,form_name,STRING,"Nullable, Used during import only",100,,,,
+,,,sec_index,sec_index_id,INTEGER,Auto Increment,,,,,
+,,,sec_index,sec_table_id,INTEGER,,,fk_si_st,sec_table,sec_table_id
+,,,sec_index,index_name,STRING,,50,,,
+,,,sec_index,is_unique,STRING,,1,,,
+,,,sec_index,created_date,DATETIME,,,,,
+,,,sec_index,created_by,INTEGER,,,fk_si_created,Cooperator,Cooperator_ID
+,,,sec_index,modified_date,DATETIME,Nullable,,,,
+,,,sec_index,modified_by,INTEGER,Nullable,,fk_si_modified,Cooperator,Cooperator_ID
+,,,sec_index,owned_date,DATETIME,,,,,
+,,,sec_index,owned_by,INTEGER,,,fk_si_owned,Cooperator,Cooperator_ID
+,,,sec_index_field,sec_index_field_id,INTEGER,Auto Increment,,,,
+,,,sec_index_field,sec_index_id,INTEGER,,,fk_sif_si,sec_index,sec_index_id
+,,,sec_index_field,sec_table_field_id,INTEGER,,,fk_sif_stf,sec_table_field,sec_table_field_id
+,,,sec_index_field,sort_order,INTEGER,,,,,
+,,,sec_index_field,created_date,DATETIME,,,,,
+,,,sec_index_field,created_by,INTEGER,,,fk_sif_created,Cooperator,Cooperator_ID
+,,,sec_index_field,modified_date,DATETIME,Nullable,,,,
+,,,sec_index_field,modified_by,INTEGER,Nullable,,fk_sif_modified,Cooperator,Cooperator_ID
+,,,sec_index_field,owned_date,DATETIME,,,,,
+,,,sec_index_field,owned_by,INTEGER,,,fk_sif_owned,Cooperator,Cooperator_ID
+,,,sec_rs_filter,sec_rs_filter_id,INTEGER,Auto Increment,,,,
+,,,sec_rs_filter,sec_rs_id,INTEGER,Nullable,,fk_srfilt_stf,sec_table_field,sec_table_field_id
+,,,sec_rs_filter,assembly_name,STRING,,255,,,
+,,,sec_rs_filter,fully_qualified_class_name,STRING,,255,,,
+,,,sec_rs_filter,is_enabled,STRING,,1,,,
+,,,sec_rs_filter,is_system,STRING,,1,,,
+,,,sec_rs_filter,sort_order,INTEGER,,,,,
+,,,sec_rs_filter,created_date,DATETIME,,,,,
+,,,sec_rs_filter,created_by,INTEGER,,,fk_srfilt_created,Cooperator,Cooperator_ID
+,,,sec_rs_filter,modified_date,DATETIME,Nullable,,,,
+,,,sec_rs_filter,modified_by,INTEGER,Nullable,,fk_srfilt_modified,Cooperator,Cooperator_ID
+,,,sec_rs_filter,owned_date,DATETIME,,,,,
+,,,sec_rs_filter,owned_by,INTEGER,,,fk_srfilt_owned,Cooperator,Cooperator_ID
+,,,sec_table_filter,sec_table_filter_id,INTEGER,Auto Increment,,,,
+,,,sec_table_filter,sec_table_id,INTEGER,Nullable,,fk_stfilt_stf,sec_table_field,sec_table_field_id
+,,,sec_table_filter,assembly_name,STRING,,255,,,
+,,,sec_table_filter,fully_qualified_class_name,STRING,,255,,,
+,,,sec_table_filter,is_enabled,STRING,,1,,,
+,,,sec_table_filter,is_system,STRING,,1,,,
+,,,sec_table_filter,sort_order,INTEGER,,,,,
+,,,sec_table_filter,created_date,DATETIME,,,,,
+,,,sec_table_filter,created_by,INTEGER,,,fk_stfilt_created,Cooperator,Cooperator_ID
+,,,sec_table_filter,modified_date,DATETIME,Nullable,,,,
+,,,sec_table_filter,modified_by,INTEGER,Nullable,,fk_stfilt_modified,Cooperator,Cooperator_ID
+,,,sec_table_filter,owned_date,DATETIME,,,,,
+,,,sec_table_filter,owned_by,INTEGER,,,fk_stfilt_owned,Cooperator,Cooperator_ID
+,,,crop_trait_observation_raw,crop_trait_observation_raw_id,INTEGER,Auto Increment ,,,,
+,,,crop_trait_observation_raw,crop_trait_observation_id,INTEGER,,,fk_ctor_cto,crop_trait_observation,crop_trait_observation_id
+,,,crop_trait_observation_raw,crop_trait_id,INTEGER,,,fk_ctor_ct,crop_trait,crop_trait_id
+,,,crop_trait_observation_raw,crop_trait_code_id,INTEGER,Nullable - lookup to crop_trait_code!!!!,,fk_ctor_ctc,crop_trait_code,crop_trait_code_id
+,,,crop_trait_observation_raw,numeric_value,DECIMAL,Nullable - contains number-based data from ob,,,,
+,,,crop_trait_observation_raw,string_value,STRING,Nullable - contains string-based data from ob,30,,,
+,,,crop_trait_observation_raw,note,STRING,Nullable ,500,,,
+,,,crop_trait_observation_raw,rank,INTEGER,Nullable ,,,,
+,,,crop_trait_observation_raw,created_date,DATETIME,,,,,
+,,,crop_trait_observation_raw,created_by,INTEGER,,,fk_ctor_created,Cooperator,Cooperator_ID
+,,,crop_trait_observation_raw,modified_date,DATETIME,Nullable ,,,,
+,,,crop_trait_observation_raw,modified_by,INTEGER,Nullable ,,fk_ctor_modified,Cooperator,Cooperator_ID
+,,,crop_trait_observation_raw,owned_date,DATETIME,,,,,
+,,,crop_trait_observation_raw,owned_by,INTEGER,,,fk_ctor_owned,Cooperator,Cooperator_ID

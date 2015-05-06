@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8dff1631-4a90-4e7a-bd6d-d3d798f2e2db" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2010/GrinGlobal.Search.Service/SearchHost" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SearchHost.xsd" MetadataType="Schema" ID="9e89fb36-6ca9-481f-b74c-0ed76e66996f" SourceId="1" SourceUrl="http://localhost:2010/GrinGlobal.Search.Service/SearchHost?xsd=xsd0" />
+    <MetadataFile FileName="SearchHost1.xsd" MetadataType="Schema" ID="07e58f15-20a2-4839-b4db-0d89947ba947" SourceId="1" SourceUrl="http://localhost:2010/GrinGlobal.Search.Service/SearchHost?xsd=xsd1" />
+    <MetadataFile FileName="SearchHost.disco" MetadataType="Disco" ID="57c91b70-f216-43e2-84b3-cbf017a6a2c0" SourceId="1" SourceUrl="http://localhost:2010/GrinGlobal.Search.Service/SearchHost?disco" />
+    <MetadataFile FileName="SearchHost2.xsd" MetadataType="Schema" ID="f94c8112-fa1e-4654-989d-6dafcb1e571f" SourceId="1" SourceUrl="http://localhost:2010/GrinGlobal.Search.Service/SearchHost?xsd=xsd2" />
+    <MetadataFile FileName="SearchHost.wsdl" MetadataType="Wsdl" ID="b0fc5dac-ac0f-4a18-aac3-c86c7d0b90c0" SourceId="1" SourceUrl="http://localhost:2010/GrinGlobal.Search.Service/SearchHost?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

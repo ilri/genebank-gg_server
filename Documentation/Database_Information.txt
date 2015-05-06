@@ -1,0 +1,36 @@
+Information about Oracle-specific database stuff...
+
+ - The .NET Oracle driver is case sensitive for usernames and passwords (SYS != sys)
+ - The .NET Oracle driver does not support logging in any user that requires the AS SYSDBA or AS SYSOPER options.  I don't know why, I just know it doesn't allow it.  The installer code actually shells out to sqlplus.exe to do its dirty work when SYS is provided as the login credentials.
+ - The .NET Oracle driver does not work properly if the path of the hosting process contains ( or ) (parentheses).  Typically only affects 64-bit machines.
+ - GG db install creates a 'gringlobal' user, all tables/indexes/etc are created in that schema
+ - GG db install creates a 'gg_user' user that has read/write access to all tables in 'gringlobal' schema. Custom login trigger fires which switches the default schema for 'gg_user' to 'gringlobal'
+ - GG db install creates a 'gg_search' user that is same as 'gg_user' but has merely read-only rights.  This is used only by the search engine, which never writes to the database but will query it.
+ - All other GG db installs (sqlserver, mysql, postgresql) create only the 'gg_user' and 'gg_search' logins.
+
+Concerning the 'login trigger'...  Since Oracle seems to give each user their own schema, to run GG SQL we would need to prepend the 'gringlobal' specifier to the front of tables (so like PROD.ACC, we would have to gringlobal.accession).  SQL Server expects "gringlobal.dbo.accession", MySQL expects "gringlobal.accession", and PostgreSQL expects "gringlobal.dbo.accession".  i.e. they're all slightly different when fully qualified.  This would have been a total nightmare with all the SQL we have in code, so we really needed to use the 'default' schema -- i.e. just say 'accession' and assume the current schema is the proper one.
+
+The only way I could get that to work in Oracle -- having the gg_user's default schema as gringlobal instead of gg_user -- was to create that login trigger (or session trigger, whatever it's called) to auto-switch it to gringlobal every time gg_user ran SQL.  This was the best I could do and seems to work fine.  But it may cause performance issues or something, I honestly have no idea.  If you all can devise a better approach, that would be great!
+
+Other items of note:
+ - GG uses 'application' logins, also called 'shared', 'delegated', 'common', 'pooled', etc. depending on the IT shop.  
+ - This means every user within the GG app (such as 'administrator' or 'guest') actually connects to the database engine as 'gg_user'.
+ - GG logins are simply records in the gringlobal.sys_user table.  Nothing more.  This makes it very easy for us to manipulate users and security regardless of the database engine.
+ - The database engine knows nothing of the GG login username -- it is never passed during a SQL call except when doing the SELECT against sys_user table to check its credentials.  
+ - This means it is impossible to create per-user database triggers, or generate meaningful audits at the database engine level (since every request shows up in logs as 'gg_user')
+ - So for GG to work properly, there are 2 logins:
+ - The database engine login, 'gg_user'.  In SQL Server only: this may be Windows Authentication instead, meaning the Windows login credentials associated with the current process are used
+ - The GG login, such as 'administrator' or 'guest'.
+ - Database engine login info (these are hardcoded in the installers):
+ -  - gg_user = gg_user_PA55w0rd!
+ -  - gg_search = gg_search_PA55w0rd!
+ -  - gringlobal = TempPA55 (created only in oracle)
+
+ 
+ Note in Oracle that the gringlobal user is created simply to house the schema (or whatever Oracle calls it). The user must continue to exist, but GG itself never logs in as 'gringlobal'.  This is because 'gringlobal' has full access to all objects in the schema -- the gg_user only has read/write to the tables.  It's impossible for a nefarious user to wreak major havoc such as dropping tables or creating harmful triggers or whatever. 
+
+When troubleshooting login problems, I always go to the website first.  Just pulling up http://localhost/gringlobal/ will tell you if the website is configured properly to hit the database.  If it isn't, an error will happen and you'll see the "View Error" link.  This helps to disambiguate which login is failing -- database or GG.  This isn't entirely true because by default, the website logs into the GG database as 'guest', but that one is always available by default and will not change.
+
+If you get an ORAxxx error, it means the database is throwing it, not GG code.  If GG code is causing it, the ORAxxxx prefix won't be there (i.e. you'll just see "invalid username / password")
+
+So anyway, when I said last week that we treat the database as essentially a datastore with indexes -- I wasn't exaggerating too much.  We currently don't use built-in security, auditing, triggers, views, user-defined functions, stored procedures, custom types, or any other database features that vary among the 4 vendors.  We kept it as simple as possible so the code would work unchanged with all 4.  Even following these guidelines, there is still a fair amount of custom code for each engine (look under the GrinGlobal.Core.DataManagers folder to see what I mean).  Going forward it doesn't necessarily have to stay that way, but that's where we're at now.

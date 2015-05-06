@@ -1,0 +1,7 @@
+permissions examples:
+====================================
+
+* User 'joe' can update only accessions owned by user 'fred' (fails if updating accessions by 'lucy' even if lucy is in same site or adding any accession)
+* User 'frank' can add or update any observations made since 2007 for inventory belonging to accession 'maize abc'
+* User 'tom' can add inventory only to accession 'A1' and then only between counts of 1 - 5 (fails if adding count of 17)
+* User 'fred' 

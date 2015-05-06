@@ -1,0 +1,20 @@
+How to manually install a SQL Server backup file for gringlobal
+
+ 1. Make sure you have all GG components installed.  If not, install them.
+ 2. Locate the zip file containing the backup file (usually named gg_{server}_{yyyy}_{mm}_{dd}.zip)
+ 3. Unzip the file, should generate a large .bak file with same name (800+ MB)
+ 4. Open SSMS
+ 5. Drop the "gringlobal" database
+ 6. Right-click "Databases" and choose "Restore Database..."
+ 7. Type in "gringlobal" in the "To database:" field
+ 8. Select "From device:" radio button
+ 9. Click the "..." button next to it
+10. Locate the large .bak file from step 3
+11. Put a check next to the first item under "Select the backup to restore"
+12. Click OK
+13. Go to windows explorer
+14. Find the "drop_create_sql_users.sql" file
+15. Double click it, should open in SSMS
+16. Hit F5 to run it. Errors will display, ignore.
+17. Hit F5 AGAIN to run it (to make sure the recreation worked, it may take 2 passes).  Errors will display, ignore.
+18. The gringlobal database from the .bak file is now installed.

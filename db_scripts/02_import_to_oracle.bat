@@ -1,0 +1,2 @@
+\projects\GrinGlobal\GrinGlobal.DatabaseCopier\bin\Debug\GrinGlobal.DatabaseCopier.exe /import "C:\temp\dev1dump" oracle "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE)));User Id='gringlobal';Password='temppass';" gringlobal
+pause

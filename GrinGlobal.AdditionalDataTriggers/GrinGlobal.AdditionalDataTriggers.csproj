@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{607E0AE0-CCA3-4609-A98D-9B82C810F022}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GrinGlobal.AdditionalDataTriggers</RootNamespace>
+    <AssemblyName>GrinGlobal.AdditionalDataTriggers</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessionActionDataTrigger.cs" />
+    <Compile Include="AccessionDataTrigger.cs" />
+    <Compile Include="AccessionNameDataTrigger.cs" />
+    <Compile Include="AccessionSourceDataTrigger.cs" />
+    <Compile Include="AccessionPedigreeDataTrigger.cs" />
+    <Compile Include="AccessionIPRDataTrigger.cs" />
+    <Compile Include="AccessionQuarantineDataTrigger.cs" />
+    <Compile Include="AccessionInvAnnotationDataTrigger.cs" />
+    <Compile Include="CropTraitObservationDataTrigger.cs" />
+    <Compile Include="InventoryActionDataTrigger.cs" />
+    <Compile Include="InventoryMaintPolicyDataTrigger.cs" />
+    <Compile Include="InventoryQualityStatusDataTrigger.cs" />
+    <Compile Include="OrderRequestItemDataTrigger.cs" />
+    <Compile Include="CooperatorDataTrigger.cs" />
+    <Compile Include="GeographyDataTrigger.cs" />
+    <Compile Include="ImportAccessionDataTrigger.cs" />
+    <Compile Include="InventoryDataTrigger.cs" />
+    <Compile Include="InventoryViabilityDataTrigger.cs" />
+    <Compile Include="OrderRequestDataTrigger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxonomyCommonNameDataTrigger.cs" />
+    <Compile Include="TaxonomySpeciesDataTrigger.cs" />
+    <Compile Include="TaxonomyFamilyDataTrigger.cs" />
+    <Compile Include="TaxonomyGenusDataTrigger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GrinGlobal.Core\GrinGlobal.Core.csproj">
+      <Project>{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}</Project>
+      <Name>GrinGlobal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.Interface\GrinGlobal.Interface.csproj">
+      <Project>{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}</Project>
+      <Name>GrinGlobal.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>copy $(TargetPath) $(ProjectDir)..\GrinGlobal.Web\bin\$(TargetFileName)
+mkdir $(ProjectDir)..\GrinGlobal.Import\$(OutDir)bin
+copy $(TargetPath) $(ProjectDir)..\GrinGlobal.Import\$(OutDir)bin\$(TargetFileName)
+mkdir $(ProjectDir)..\GrinGlobal.Admin\$(OutDir)bin
+copy $(TargetPath) $(ProjectDir)..\GrinGlobal.Admin\$(OutDir)bin\$(TargetFileName)
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

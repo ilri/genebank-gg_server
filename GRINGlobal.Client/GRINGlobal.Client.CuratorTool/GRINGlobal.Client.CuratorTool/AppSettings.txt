@@ -1,0 +1,26 @@
+#
+# This is a sample AppSettings file used by the GRIN-Global Curator Tool application.
+#
+# This file contains settings used by the Curator Tool for customized behavior taylored 
+# to the users needs.  Each entry should be kept on an individual line. 
+# The setting name should be placed in the first column followed by an equal sign (=)
+# and then followed by the corresponding value of that setting.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines denoted by a '#' symbol at the beginning of the line.
+#
+# Here are some example treeview friendly name formulas:
+#
+#      ORDER_REQUEST_ITEM_ID_NAME_FORMULA = {get_order_request_item.sequence_number} + " - " + {get_order_request_item.external_taxonomy}
+#      TAXONOMY_SPECIES_ID_NAME_FORMULA = {get_taxonomy_species.name} + " - " + {get_taxonomy_species.name_authority}
+#
+#
+# And here are some example treeview virtual node definitions:
+#      TAXONOMY_GENUS_ID_VIRTUAL_NODE_DATAVIEW = get_taxonomy_species
+#      CROP_ID_VIRTUAL_NODE_DATAVIEW = get_crop_trait
+#
+#
+# And fianlly, here are some example misc. application setting definitions:
+#      ux_numericupdownMaxRowsReturned = 10000
+#      ux_numericupdownQueryPageSize = 1000
+#      ux_checkboxOptimizeLUTForSpeed = true

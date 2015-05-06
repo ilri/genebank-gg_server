@@ -1,0 +1,46 @@
+===================================================================================================
+Search for 'b73' in crop_trait_observation index returning Accessions using SOAP
+===================================================================================================
+
+HTTP Request
+===================================================================================================
+POST /SearchHost HTTP/1.1
+Accept-Encoding: identity
+Content-Length: 630
+Soapaction: http://www.grin-global.org/ISearchHost/Search
+Host: localhost:2011
+User-Agent: Python-urllib/2.6
+Connection: close
+Content-Type: text/xml; charset=utf-8
+
+
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <Search xmlns="http://www.grin-global.org/">
+      <searchString>b73</searchString>
+      <ignoreCase>true</ignoreCase>
+      <autoAndConsecutiveLiterals>false</autoAndConsecutiveLiterals>
+      <indexNames xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+          xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+        <a:string>crop_trait_observation</a:string>
+      </indexNames>
+      <resolverName>Accessions</resolverName>
+      <offset>0</offset>
+      <limit>10000</limit>
+    </Search>
+  </s:Body>
+</s:Envelope>
+
+
+
+
+HTTP Response
+===================================================================================================
+HTTP/1.1 200 OK
+Content-Length: 580
+Content-Type: text/xml; charset=utf-8
+Server: Microsoft-HTTPAPI/2.0
+Date: Sun, 17 May 2009 13:32:20 GMT
+Connection: close
+
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Header><ActivityId CorrelationId="7da46c1c-17ba-4e7b-ba38-5334c98ec210" xmlns="http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics">23e39e7c-e242-408d-9694-274a80bd8b45</ActivityId></s:Header><s:Body><SearchResponse xmlns="http://www.grin-global.org/"><SearchResult xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><a:int>388376</a:int><a:int>388384</a:int><a:int>400103</a:int></SearchResult></SearchResponse></s:Body></s:Envelope>

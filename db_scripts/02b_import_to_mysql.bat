@@ -1,0 +1,2 @@
+\projects\GrinGlobal\GrinGlobal.DatabaseCopier\bin\Debug\GrinGlobal.DatabaseCopier.exe /import "C:\temp\dev1dump" mysql "Data Source=localhost;Database=gringlobal;User Id=root;password=passw0rd!;" gringlobal
+pause
