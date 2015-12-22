@@ -1,0 +1,5 @@
+bin
+Debug
+*.exe
+*.bat
+TestApps
