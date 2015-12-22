@@ -4,3 +4,5 @@ Debug
 *.bat
 TestApps
 *.bak
+UpgradeLog*.XML
+_UpgradeReport_Files
