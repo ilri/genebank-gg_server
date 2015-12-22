@@ -1,4 +1,8 @@
-# GRIN-Global #
+# ILRI GRIN-Global Server Components #
+
+ILRI's fork of the Grin Global server
+
+** This fork was obtained from https://bitbucket.org/grin-global/gringlobal-server_v1.9.1
 
 GRIN-Global (GG) is a plant genebank management system. The initial GG project involved the **USDA
 Agricultural Research Service**, **Bioversity International**, and the **Global Crop Diversity Trust**.
@@ -9,7 +13,7 @@ Agricultural Research Service**, **Bioversity International**, and the **Global 
 * End User Components
 * Server Components
  
-This repository contain the source code of GRIN-Global Admin and GRIN-Global Public website,***version 1.9.1*** . These components are part of GRIN-Global **Server Components**.
+This repository contain the source code of GRIN-Global Admin and GRIN-Global Public website. These components are part of GRIN-Global **Server Components**.
 
 ### How do I get set up? ###
 
@@ -19,4 +23,4 @@ This repository contain the source code of GRIN-Global Admin and GRIN-Global Pub
 
 ### Contribution ###
 
-* For any contribution to this source code, please, contact CIMMYT-GRINGlobal-International@cgiar.org
+* For any contribution to this repository, please, contact a.kihara@cgiar.org and/or e.gacheru@cgiar.org
