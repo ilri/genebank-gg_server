@@ -9,7 +9,8 @@ using GrinGlobal.Core;
 using GrinGlobal.InstallHelper;
 using System.Runtime.InteropServices;
 using GrinGlobal.Business;
-using GrinGlobal.Business.SearchSvc;
+// using GrinGlobal.Business.SearchSvc;
+// using GrinGlobal.Search.Engine.Service.SearchSvc;
 using System.Text;
 using System.Data;
 

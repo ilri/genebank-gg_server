@@ -1,14 +1,14 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.Core", "GrinGlobal.Core\GrinGlobal.Core.csproj", "{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{618B291F-4699-4904-A597-76D986769D23}"
 	ProjectSection(SolutionItems) = preProject
 		GrinGlobal.vsmdi = GrinGlobal.vsmdi
 		GrinGlobal1.vsmdi = GrinGlobal1.vsmdi
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.Core", "GrinGlobal.Core\GrinGlobal.Core.csproj", "{3D5A6988-05FF-47CF-ABA2-79483A9ACA3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrinGlobal.DatabaseCopier", "GrinGlobal.DatabaseCopier\GrinGlobal.DatabaseCopier.csproj", "{CBB06891-60E8-4941-BB8C-499CCD6A161D}"
 	ProjectSection(ProjectDependencies) = postProject

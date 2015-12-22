@@ -238,8 +238,6 @@
             // chkWindowsAuthentication
             // 
             this.chkWindowsAuthentication.AutoSize = true;
-            this.chkWindowsAuthentication.Checked = true;
-            this.chkWindowsAuthentication.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkWindowsAuthentication.Location = new System.Drawing.Point(110, 97);
             this.chkWindowsAuthentication.Name = "chkWindowsAuthentication";
             this.chkWindowsAuthentication.Size = new System.Drawing.Size(163, 17);

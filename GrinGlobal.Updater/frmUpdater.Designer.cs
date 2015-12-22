@@ -86,7 +86,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cboSourceServer.FormattingEnabled = true;
             this.cboSourceServer.Items.AddRange(new object[] {
-            "http://distribution.grin-global.org/gringlobal"});
+            "http://sun.ars-grin.gov/~dbmuke/cgi-bin/gringlobal/1.9.4/gui.asmx"});
             this.cboSourceServer.Location = new System.Drawing.Point(137, 34);
             this.cboSourceServer.Name = "cboSourceServer";
             this.cboSourceServer.Size = new System.Drawing.Size(420, 21);

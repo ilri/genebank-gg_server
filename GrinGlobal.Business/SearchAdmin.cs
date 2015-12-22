@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GrinGlobal.Business.SearchSvc;
+// using GrinGlobal.Business.SearchSvc;
+using GrinGlobal.Search.Engine.Service.SearchSvc;
 using GrinGlobal.Core;
 
 namespace GrinGlobal.Business {

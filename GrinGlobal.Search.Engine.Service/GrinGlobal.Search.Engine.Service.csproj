@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -27,6 +27,10 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -122,6 +126,12 @@
     <None Include="Properties\DataSources\GrinGlobal.Search.Engine.IndexReport.datasource" />
     <None Include="Properties\DataSources\GrinGlobal.Search.Engine.ResolvedHitData.datasource" />
     <None Include="Service References\SearchSvc\Arrays.xsd" />
+    <None Include="Service References\SearchSvc\GrinGlobal.Search.Engine.Service.SearchSvc.IndexReport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SearchSvc\GrinGlobal.Search.Engine.Service.SearchSvc.ResolvedHitData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\SearchSvc\GrinGlobal.Search.Engine.xsd" />
     <None Include="Service References\SearchSvc\service.wsdl" />
     <None Include="Service References\SearchSvc\service.xsd" />
@@ -209,8 +219,13 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>cd "$(TargetDir)"
+"\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
+cd "$(TargetDir)..\..\obj\Debug"
+"\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1</PostBuildEvent>
+<!--
 "\Program Files\Microsoft SDKs\Windows\v6.0a\bin\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
 cd "$(TargetDir)..\..\obj\Debug"
 "\Program Files\Microsoft SDKs\Windows\v6.0a\bin\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1</PostBuildEvent>
+-->
   </PropertyGroup>
 </Project>

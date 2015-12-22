@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <UseHostCompilerIfAvailable>FALSE</UseHostCompilerIfAvailable>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -31,6 +31,10 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ApplicationIcon>sysAT.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -629,6 +633,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -750,6 +755,21 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>
+		cd "$(TargetDir)"
+	"\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
+
+	cd "$(TargetDir)..\..\obj\$(ConfigurationName)"
+	"\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
+
+	REM echo RE-SIGNING ASSEMBLY...
+
+	REM cd "$(TargetDir)"
+	REM "\sn.exe" -q -Ra "$(TargetFileName)" "$(ProjectDir)GrinGlobal.snk"
+	REM cd "$(TargetDir)..\..\obj\$(ConfigurationName)"
+	REM "\sn.exe" -q -Ra "$(TargetFileName)" "$(ProjectDir)GrinGlobal.snk"
+
+	REM echo ASSEMBLY RE-SIGNED
+<!--
 cd "$(TargetDir)"
 "\Program Files\Microsoft SDKs\Windows\v6.0a\bin\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
 
@@ -764,6 +784,7 @@ REM cd "$(TargetDir)..\..\obj\$(ConfigurationName)"
 REM "\Program Files\Microsoft SDKs\Windows\v6.0a\bin\sn.exe" -q -Ra "$(TargetFileName)" "$(ProjectDir)GrinGlobal.snk"
 
 REM echo ASSEMBLY RE-SIGNED
+-->
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,6 +12,10 @@
     <AssemblyName>GrinGlobal.Business</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -110,6 +114,10 @@
     <ProjectReference Include="..\GrinGlobal.Interface\GrinGlobal.Interface.csproj">
       <Project>{87B1A4A2-74F4-4A99-BC46-80C16A1C5FCE}</Project>
       <Name>GrinGlobal.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrinGlobal.Search.Engine.Service\GrinGlobal.Search.Engine.Service.csproj">
+      <Project>{BF0F35D2-39DB-44A5-AB0C-A522B12F04D0}</Project>
+      <Name>GrinGlobal.Search.Engine.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

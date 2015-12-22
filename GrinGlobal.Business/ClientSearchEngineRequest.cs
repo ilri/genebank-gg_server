@@ -9,7 +9,8 @@ using System.IO;
 using System.Xml;
 using GrinGlobal.Core.Xml;
 using GrinGlobal.Interface.Dataviews;
-using wcf=GrinGlobal.Business.SearchSvc;
+// using wcf=GrinGlobal.Business.SearchSvc;
+using wcf=GrinGlobal.Search.Engine.Service.SearchSvc;
 using System.Data;
 
 namespace GrinGlobal.Business {
@@ -80,7 +81,8 @@ namespace GrinGlobal.Business {
             var svcRow = new wcf.UpdateRow();
             svcRow.ID = row.ID;
             svcRow.Mode = (wcf.UpdateMode)Enum.Parse(typeof(wcf.UpdateMode), row.Mode.ToString(), true);
-            svcRow.Values = new List<GrinGlobal.Business.SearchSvc.FieldValue>();
+            // svcRow.Values = new List<GrinGlobal.Business.SearchSvc.FieldValue>();
+            svcRow.Values = new List<GrinGlobal.Search.Engine.Service.SearchSvc.FieldValue>();
             if (row.Values != null) {
                 foreach (var fv in row.Values) {
                     svcRow.Values.Add(convertToWcfFieldValue(fv));

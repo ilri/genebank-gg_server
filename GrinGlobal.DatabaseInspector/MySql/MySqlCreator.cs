@@ -63,7 +63,7 @@ namespace GrinGlobal.DatabaseInspector.MySql {
                 ProcessTables(tables, ti => {
                     string toRun = null;
                     try {
-                        if (ti.IsSelected) {
+                        if (ti.IsSelected && ti.TableName != "app_user_item_list") {
                             toRun = ((MySqlTableInfo)ti).GenerateCreateAllIndexesForTable();
                             showProgress(getDisplayMember("CreateIndexes{progress}", "Creating all indexes for {0}...", ti.TableName), 0, 0);
                             dm.DataConnectionSpec.CommandTimeout = 3600; // allow one hour for each table index recreation (!!!)

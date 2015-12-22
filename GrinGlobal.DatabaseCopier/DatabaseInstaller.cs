@@ -1049,12 +1049,10 @@ namespace GrinGlobal.DatabaseCopier {
             var sourceCab = (targetDir + @"\system_data.cab").Replace(@"\\", @"\");
             var extractOutput = Utility.ExtractCabFile(sourceCab, dataDestinationFolder, gguacPath);
 
-
-
             // copy schema file to data dest folder
             string tgtXml = (dataDestinationFolder + @"\__schema.xml").Replace(@"\\", @"\");
             if (File.Exists(tgtXml)) {
-                File.Delete(tgtXml);
+                 File.Delete(tgtXml);
             }
             File.Copy((targetDir + @"\__schema.xml").Replace(@"\\", @"\"), tgtXml);
         }

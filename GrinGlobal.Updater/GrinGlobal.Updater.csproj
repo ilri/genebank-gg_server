@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -28,6 +28,10 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ApplicationIcon>sysUP.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -268,8 +272,13 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>cd "$(TargetDir)"
+		"\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
+		cd "$(TargetDir)..\..\obj\Debug"
+		"\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
+<!--
 "\Program Files\Microsoft SDKs\Windows\v6.0a\bin\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
 cd "$(TargetDir)..\..\obj\Debug"
-"\Program Files\Microsoft SDKs\Windows\v6.0a\bin\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1</PostBuildEvent>
+"\Program Files\Microsoft SDKs\Windows\v6.0a\bin\mt.exe" -manifest ..\..\$(TargetFileName).manifest  -outputresource:$(TargetFileName);#1
+--></PostBuildEvent>
   </PropertyGroup>
 </Project>

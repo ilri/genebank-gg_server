@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using GrinGlobal.Interface.DataTriggers;
-using GrinGlobal.Business.SearchSvc;
+// using GrinGlobal.Business.SearchSvc;
+using GrinGlobal.Search.Engine.Service.SearchSvc;
 using System.Threading;
 using GrinGlobal.Core;
 
